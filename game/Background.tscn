@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://assets/cityscape.png" type="Texture" id=1]
+[ext_resource path="res://assets/buildings.png" type="Texture" id=2]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = false
+_sections_unfolded = [ "Scroll" ]
+
+[node name="BackLayer" type="ParallaxLayer" parent="." index="0"]
+
+motion_scale = Vector2( 0.2, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 480, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="cityscape" type="Sprite" parent="BackLayer" index="0"]
+
+texture = ExtResource( 1 )
+centered = false
+region_rect = Rect2( 0, 0, 1280, 240 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="MiddleLayer" type="ParallaxLayer" parent="." index="1"]
+
+motion_scale = Vector2( 0.5, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 480, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="buildings" type="Sprite" parent="MiddleLayer" index="0"]
+
+texture = ExtResource( 2 )
+centered = false
+region_rect = Rect2( 0, 0, 1280, 240 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+

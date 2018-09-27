@@ -1,0 +1,25 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=3
+
+[application]
+
+config/name="Mecha Peron"
+run/main_scene="res://game/Level.tscn"
+config/icon="res://icon.png"
+
+[display]
+
+window/size/width=320
+window/size/height=240
+
+[rendering]
+
+environment/default_clear_color=Color( 0.827451, 0.662745, 0.662745, 1 )
+environment/default_environment="res://default_env.tres"
