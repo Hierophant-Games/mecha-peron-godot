@@ -16,7 +16,6 @@ position = Vector2( 75, -133 )
 texture = ExtResource( 1 )
 centered = false
 hframes = 7
-frame = 1
 script = ExtResource( 2 )
 _sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
@@ -33,7 +32,6 @@ position = Vector2( 14, -224 )
 texture = ExtResource( 4 )
 centered = false
 hframes = 7
-frame = 2
 region_rect = Rect2( 0, 0, 68, 100 )
 script = ExtResource( 5 )
 _sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
@@ -44,6 +42,7 @@ position = Vector2( -6, -164 )
 texture = ExtResource( 6 )
 centered = false
 hframes = 11
+frame = 2
 script = ExtResource( 7 )
 _sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
