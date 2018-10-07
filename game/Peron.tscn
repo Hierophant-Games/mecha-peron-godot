@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://assets/peron/leftArm.png" type="Texture" id=1]
+[ext_resource path="res://game/leftArm.gd" type="Script" id=2]
+[ext_resource path="res://assets/peron/torso.png" type="Texture" id=3]
+[ext_resource path="res://assets/peron/head.png" type="Texture" id=4]
+[ext_resource path="res://game/head.gd" type="Script" id=5]
+[ext_resource path="res://assets/peron/rightArm.png" type="Texture" id=6]
+[ext_resource path="res://game/rightArm.gd" type="Script" id=7]
+
+[node name="Node2D" type="Node2D" index="0"]
+
+[node name="leftArm" type="Sprite" parent="." index="0"]
+
+position = Vector2( 75, -133 )
+texture = ExtResource( 1 )
+centered = false
+hframes = 7
+frame = 1
+script = ExtResource( 2 )
+_sections_unfolded = [ "Animation", "Offset", "Transform" ]
+
+[node name="torso" type="Sprite" parent="." index="1"]
+
+position = Vector2( 0, -164 )
+texture = ExtResource( 3 )
+centered = false
+_sections_unfolded = [ "Offset", "Transform" ]
+
+[node name="head" type="Sprite" parent="." index="2"]
+
+position = Vector2( 14, -224 )
+texture = ExtResource( 4 )
+centered = false
+hframes = 7
+frame = 2
+region_rect = Rect2( 0, 0, 68, 100 )
+script = ExtResource( 5 )
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+
+[node name="rightArm" type="Sprite" parent="." index="3"]
+
+position = Vector2( -6, -164 )
+texture = ExtResource( 6 )
+centered = false
+hframes = 11
+script = ExtResource( 7 )
+_sections_unfolded = [ "Animation", "Offset", "Transform" ]
+
+
