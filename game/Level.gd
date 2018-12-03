@@ -1,5 +1,10 @@
 extends Node2D
 
+const Pool = preload("res://addons/godot-object-pool/pool.gd")
+const FrontBuilding = preload("res://game/FrontBuilding.tscn")
+
+const FRONT_BUILDING_POOL_SIZE = 10
+
 var current_speed = 0
 
 enum { PRE_INTRO, INTRO, POST_INTRO }
@@ -8,12 +13,21 @@ var intro_state = PRE_INTRO
 var fist = preload("res://game/Fist.tscn").instance()
 
 onready var Constants = get_node("/root/Constants")
-onready var peron = $Peron
-onready var peron_fist_start = $Peron/FistStart
+onready var main_layer = $Camera2D/ParallaxBackground/MainLayer
+onready var front_layer = $Camera2D/ParallaxBackground/FrontLayer
+onready var peron = $Camera2D/ParallaxBackground/MainLayer/Peron
+onready var peron_fist_start = $Camera2D/ParallaxBackground/MainLayer/Peron/FistStart
 onready var camera = $Camera2D
+
+onready var pool = Pool.new(FRONT_BUILDING_POOL_SIZE, "front_building", FrontBuilding)
 
 func _ready():
 	peron.walk()
+	
+	# setup front building pool
+	pool.add_to_node(front_layer)
+	
+	update_front_buildings()
 
 func _process(delta):
 	update_intro()
@@ -23,8 +37,9 @@ func _process(delta):
 	if intro_state != POST_INTRO:
 		return
 	
-	update_camera()
+	camera.position.x = peron.position.x
 	input()
+	update_front_buildings()
 
 func update_intro():
 	match intro_state:
@@ -41,16 +56,13 @@ func update_intro():
 				Engine.time_scale = 1
 				peron.walk()
 
-func update_camera():
-	camera.position.x = peron.position.x
-
 func input():
 	if peron.is_attacking():
 		return
 	if Input.is_action_just_pressed("attack_fist"):
-		peron.attack_fist()
+		launch_fist()
 	if Input.is_action_just_pressed("attack_arm"):
-		peron.attack_arm()
+		attack_arm()
 
 func _on_Peron_started_walking():
 	current_speed = Constants.PERON_SPEED
@@ -58,9 +70,35 @@ func _on_Peron_started_walking():
 func _on_Peron_stopped_walking():
 	current_speed = 0
 
-func _on_Peron_fist_launched():
-	fist.position = peron_fist_start.global_position
-	add_child(fist)
+func launch_fist():
+	peron.attack_fist()
+	yield(peron, "fist_launched"); # waits for the signal
+	fist.position = peron_fist_start.position
+	peron.add_child(fist)
 
-func _on_Peron_arm_landed():
+func attack_arm():
+	peron.attack_arm()
+	yield(peron, "arm_landed"); # waits for the signal
 	print("here we should check for front building collisions")
+
+var last_building_pos = 0
+
+func update_front_buildings():
+	var scroll_scale = front_layer.motion_scale.x
+	var screen_left = camera.position.x * scroll_scale
+	var screen_right = screen_left + get_viewport_rect().size.x * scroll_scale
+	
+	# first kill the buildings that are no longer in screen
+	for building in front_layer.get_children():
+		if building.position.x + building.width < screen_left:
+			building.kill()
+	
+	# then add buildings if needed
+	while last_building_pos < screen_right:
+		var building = pool.get_first_dead()
+		if !building:
+			break
+		building.position.x = last_building_pos
+		building.position.y = get_viewport_rect().size.y
+		var random_offset = 20 + (randi() % 10) * 2
+		last_building_pos += building.width + random_offset

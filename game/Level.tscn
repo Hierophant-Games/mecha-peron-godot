@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://game/Level.gd" type="Script" id=1]
-[ext_resource path="res://game/Background.tscn" type="PackedScene" id=2]
-[ext_resource path="res://game/Peron.tscn" type="PackedScene" id=3]
+[ext_resource path="res://assets/cityscape.png" type="Texture" id=2]
+[ext_resource path="res://assets/buildings.png" type="Texture" id=3]
+[ext_resource path="res://game/Peron.tscn" type="PackedScene" id=4]
 
 [sub_resource type="GDScript" id=1]
 
@@ -24,7 +25,6 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="Camera2D" type="Camera2D" parent="." index="0"]
 
-editor/display_folded = true
 anchor_mode = 0
 rotating = false
 current = true
@@ -50,19 +50,70 @@ editor_draw_drag_margin = false
 script = SubResource( 1 )
 _sections_unfolded = [ "Smoothing" ]
 
-[node name="ParallaxBackground" parent="Camera2D" index="0" instance=ExtResource( 2 )]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D" index="0"]
 
-[node name="Peron" parent="." index="1" instance=ExtResource( 3 )]
+layer = -1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+scroll_offset = Vector2( 0, 0 )
+scroll_base_offset = Vector2( 0, 0 )
+scroll_base_scale = Vector2( 1, 1 )
+scroll_limit_begin = Vector2( 0, 0 )
+scroll_limit_end = Vector2( 0, 0 )
+scroll_ignore_camera_zoom = false
+_sections_unfolded = [ "Scroll" ]
+
+[node name="BackLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground" index="0"]
+
+motion_scale = Vector2( 0.2, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 480, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="cityscape" type="Sprite" parent="Camera2D/ParallaxBackground/BackLayer" index="0"]
+
+texture = ExtResource( 2 )
+centered = false
+region_rect = Rect2( 0, 0, 1280, 240 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="MiddleLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground" index="1"]
+
+motion_scale = Vector2( 0.5, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 480, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="buildings" type="Sprite" parent="Camera2D/ParallaxBackground/MiddleLayer" index="0"]
+
+texture = ExtResource( 3 )
+centered = false
+region_rect = Rect2( 0, 0, 1280, 240 )
+_sections_unfolded = [ "Offset", "Region", "Transform" ]
+
+[node name="MainLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground" index="2"]
+
+motion_scale = Vector2( 1, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 0, 0 )
+_sections_unfolded = [ "Motion" ]
+
+[node name="Peron" parent="Camera2D/ParallaxBackground/MainLayer" index="0" instance=ExtResource( 4 )]
 
 position = Vector2( -160, 240 )
 _sections_unfolded = [ "Transform" ]
 
-[connection signal="arm_landed" from="Peron" to="." method="_on_Peron_arm_landed"]
+[node name="FrontLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground" index="3"]
 
-[connection signal="fist_launched" from="Peron" to="." method="_on_Peron_fist_launched"]
+motion_scale = Vector2( 1.5, 1 )
+motion_offset = Vector2( 0, 0 )
+motion_mirroring = Vector2( 0, 0 )
+_sections_unfolded = [ "Motion" ]
 
-[connection signal="started_walking" from="Peron" to="." method="_on_Peron_started_walking"]
+[connection signal="started_walking" from="Camera2D/ParallaxBackground/MainLayer/Peron" to="." method="_on_Peron_started_walking"]
 
-[connection signal="stopped_walking" from="Peron" to="." method="_on_Peron_stopped_walking"]
+[connection signal="stopped_walking" from="Camera2D/ParallaxBackground/MainLayer/Peron" to="." method="_on_Peron_stopped_walking"]
 
 

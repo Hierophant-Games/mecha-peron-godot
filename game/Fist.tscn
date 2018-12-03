@@ -27,7 +27,7 @@ tracks/0/keys = {
 "values": [ 0, 4 ]
 }
 
-[node name="Fist" type="Area2D" index="0"]
+[node name="Fist" type="Area2D"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -43,7 +43,6 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 centered = false
 hframes = 5
-frame = 3
 _sections_unfolded = [ "Animation", "Offset", "Region" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
