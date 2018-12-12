@@ -105,13 +105,25 @@ tracks/2/keys = {
 "update": 1,
 "values": [ 3, 4, 5, 6, 7, 8, 9, 10, 9, 8, 7, 6, 5, 4, 3 ]
 }
-tracks/3/type = "method"
-tracks/3/path = NodePath(".")
+tracks/3/type = "value"
+tracks/3/path = NodePath("rightArm:z_index")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
+"times": PoolRealArray( 0, 0.6, 0.9 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 4096, 0 ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath(".")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
 "times": PoolRealArray( 0.7 ),
 "transitions": PoolRealArray( 1 ),
 "values": [ {
@@ -331,7 +343,7 @@ tracks/2/keys = {
 "values": [ 2, 1, 0, 1 ]
 }
 
-[node name="Peron" type="Node2D"]
+[node name="Peron" type="Node2D" index="0"]
 
 script = ExtResource( 1 )
 
@@ -341,7 +353,7 @@ position = Vector2( 75, -135 )
 texture = ExtResource( 2 )
 centered = false
 hframes = 7
-frame = 6
+frame = 1
 _sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
 [node name="torso" type="Sprite" parent="." index="1"]
@@ -359,7 +371,7 @@ centered = false
 hframes = 7
 frame = 1
 region_rect = Rect2( 0, 0, 68, 100 )
-_sections_unfolded = [ "Animation", "Offset", "Region", "Transform" ]
+_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Z Index" ]
 
 [node name="rightArm" type="Sprite" parent="." index="3"]
 
@@ -367,8 +379,8 @@ position = Vector2( -1, -166 )
 texture = ExtResource( 5 )
 centered = false
 hframes = 11
-frame = 1
-_sections_unfolded = [ "Animation", "Offset", "Transform" ]
+frame = 3
+_sections_unfolded = [ "Animation", "Offset", "Transform", "Z Index" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 

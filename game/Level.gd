@@ -15,7 +15,9 @@ var fist = preload("res://game/Fist.tscn").instance()
 onready var Constants = get_node("/root/Constants")
 onready var main_layer = $Camera2D/ParallaxBackground/MainLayer
 onready var front_layer = $Camera2D/ParallaxBackground/FrontLayer
+onready var front_building_container = $Camera2D/ParallaxBackground/FrontLayer/FrontBuildingContainer
 onready var peron = $Camera2D/ParallaxBackground/MainLayer/Peron
+onready var peron_right_arm = $Camera2D/ParallaxBackground/MainLayer/Peron/rightArm
 onready var peron_fist_start = $Camera2D/ParallaxBackground/MainLayer/Peron/FistStart
 onready var camera = $Camera2D
 
@@ -25,7 +27,7 @@ func _ready():
 	peron.walk()
 	
 	# setup front building pool
-	pool.add_to_node(front_layer)
+	pool.add_to_node(front_building_container)
 	
 	update_front_buildings()
 
@@ -89,7 +91,7 @@ func update_front_buildings():
 	var screen_right = screen_left + get_viewport_rect().size.x * scroll_scale
 	
 	# first kill the buildings that are no longer in screen
-	for building in front_layer.get_children():
+	for building in front_building_container.get_children():
 		if building.position.x + building.width < screen_left:
 			building.kill()
 	
@@ -100,5 +102,5 @@ func update_front_buildings():
 			break
 		building.position.x = last_building_pos
 		building.position.y = get_viewport_rect().size.y
-		var random_offset = 20 + (randi() % 10) * 2
+		var random_offset = 20 + randi() % 20
 		last_building_pos += building.width + random_offset
