@@ -2,8 +2,8 @@ extends Node2D
 
 const Pool = preload("res://addons/godot-object-pool/pool.gd")
 const FrontBuilding = preload("res://game/FrontBuilding.tscn")
-const Fist = preload("res://game/Fist.tscn")
-const Laser = preload("res://game/Laser.tscn")
+const Fist = preload("res://game/peron/Fist.tscn")
+const Laser = preload("res://game/peron/Laser.tscn")
 
 const FRONT_BUILDING_POOL_SIZE = 10
 

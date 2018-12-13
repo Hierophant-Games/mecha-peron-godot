@@ -1,33 +1,34 @@
 [gd_scene load_steps=5 format=2]
 
-[ext_resource path="res://game/Fist.gd" type="Script" id=1]
-[ext_resource path="res://assets/fist.png" type="Texture" id=2]
+[ext_resource path="res://game/peron/Laser.gd" type="Script" id=1]
+[ext_resource path="res://assets/laser.png" type="Texture" id=2]
 
-[sub_resource type="RectangleShape2D" id=1]
+
+[sub_resource type="RectangleShape2D" id=2]
 
 custom_solver_bias = 0.0
-extents = Vector2( 14, 14 )
+extents = Vector2( 160, 4 )
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=1]
 
-resource_name = "flying"
-length = 1.0
-loop = true
-step = 0.1
+resource_name = "on"
+length = 0.12
+loop = false
+step = 0.03
 tracks/0/type = "value"
-tracks/0/path = NodePath("fist:frame")
+tracks/0/path = NodePath("laser:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.12 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0, 4 ]
 }
 
-[node name="Fist" type="Area2D"]
+[node name="Laser" type="Area2D" index="0"]
 
 input_pickable = true
 gravity_vec = Vector2( 0, 1 )
@@ -38,28 +39,29 @@ audio_bus_override = false
 audio_bus_name = "Master"
 script = ExtResource( 1 )
 
-[node name="fist" type="Sprite" parent="." index="0"]
+[node name="laser" type="Sprite" parent="." index="0"]
 
+position = Vector2( -2, -4 )
 texture = ExtResource( 2 )
 centered = false
-hframes = 5
-frame = 1
-_sections_unfolded = [ "Animation", "Offset", "Region" ]
+vframes = 5
+frame = 4
+_sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." index="1"]
 
-position = Vector2( 30, 15 )
-shape = SubResource( 1 )
+position = Vector2( 158, 0 )
+shape = SubResource( 2 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="2"]
 
 root_node = NodePath("..")
-autoplay = ""
+autoplay = "on"
 playback_process_mode = 1
 playback_default_blend_time = 0.0
 playback_speed = 1.0
-anims/flying = SubResource( 2 )
+anims/on = SubResource( 1 )
 blend_times = [  ]
 
 
