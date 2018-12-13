@@ -5,8 +5,12 @@ signal stopped_walking
 signal fist_launched
 signal arm_landed
 
+var laser_anim = false
+
 func is_attacking():
-	return $AnimationPlayer.current_animation == "attack_left_arm" || $AnimationPlayer.current_animation == "attack_right_arm"
+	return laser_anim \
+		or $AnimationPlayer.current_animation == "attack_left_arm" \
+		or $AnimationPlayer.current_animation == "attack_right_arm"
 
 func play_and_set_next(anim):
 	$AnimationPlayer.play(anim)
@@ -24,6 +28,20 @@ func attack_fist():
 
 func attack_arm():
 	$AnimationPlayer.play("attack_right_arm")
+
+func laser():
+	laser_anim = true
+	$AnimationPlayer.play("laser")
+	
+func laser_reverse():
+	laser_anim = false
+	$AnimationPlayer.play_backwards("laser")
+	yield($AnimationPlayer, "animation_finished")
+	walk() # maybe should check idle?
+	
+func laser_off():
+	laser_anim = false
+	$AnimationPlayer.play("laser_off")
 
 func _on_AnimationPlayer_animation_started(anim_name):
 	if anim_name == "walk":

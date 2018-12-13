@@ -2,6 +2,8 @@ extends Node2D
 
 const Pool = preload("res://addons/godot-object-pool/pool.gd")
 const FrontBuilding = preload("res://game/FrontBuilding.tscn")
+const Fist = preload("res://game/Fist.tscn")
+const Laser = preload("res://game/Laser.tscn")
 
 const FRONT_BUILDING_POOL_SIZE = 10
 
@@ -10,7 +12,9 @@ var current_speed = 0
 enum { PRE_INTRO, INTRO, POST_INTRO }
 var intro_state = PRE_INTRO
 
-var fist = preload("res://game/Fist.tscn").instance()
+var fist = Fist.instance()
+var left_laser = Laser.instance()
+var right_laser = Laser.instance()
 
 onready var Constants = get_node("/root/Constants")
 onready var main_layer = $Camera2D/ParallaxBackground/MainLayer
@@ -19,6 +23,8 @@ onready var front_building_container = $Camera2D/ParallaxBackground/FrontLayer/F
 onready var peron = $Camera2D/ParallaxBackground/MainLayer/Peron
 onready var peron_right_arm = $Camera2D/ParallaxBackground/MainLayer/Peron/rightArm
 onready var peron_fist_start = $Camera2D/ParallaxBackground/MainLayer/Peron/FistStart
+onready var peron_left_eye = $Camera2D/ParallaxBackground/MainLayer/Peron/LeftEye
+onready var peron_right_eye = $Camera2D/ParallaxBackground/MainLayer/Peron/RightEye
 onready var camera = $Camera2D
 
 onready var pool = Pool.new(FRONT_BUILDING_POOL_SIZE, "front_building", FrontBuilding)
@@ -58,13 +64,25 @@ func update_intro():
 				Engine.time_scale = 1
 				peron.walk()
 
+var shooting_laser = false
+
 func input():
+	var mouse_pressed = Input.is_mouse_button_pressed(BUTTON_LEFT)
+	
+	if shooting_laser:
+		if mouse_pressed:
+			rotate_laser()
+		else:
+			end_laser()
+	
 	if peron.is_attacking():
 		return
 	if Input.is_action_just_pressed("attack_fist"):
 		launch_fist()
 	if Input.is_action_just_pressed("attack_arm"):
 		attack_arm()
+	if mouse_pressed:
+		laser()
 
 func _on_Peron_started_walking():
 	current_speed = Constants.PERON_SPEED
@@ -82,6 +100,25 @@ func attack_arm():
 	peron.attack_arm()
 	yield(peron, "arm_landed"); # waits for the signal
 	print("here we should check for front building collisions")
+	
+func laser():
+	shooting_laser = true
+	peron.laser()
+	left_laser.position = peron_left_eye.position
+	right_laser.position = peron_right_eye.position
+	peron.add_child(left_laser)
+	peron.add_child(right_laser)
+	rotate_laser()
+
+func end_laser():
+	shooting_laser = false
+	peron.laser_reverse()
+	left_laser.remove()
+	right_laser.remove()
+
+func rotate_laser():
+	right_laser.look_at(get_viewport().get_mouse_position())
+	left_laser.rotation = right_laser.rotation
 
 var last_building_pos = 0
 

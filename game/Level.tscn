@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://game/Level.gd" type="Script" id=1]
 [ext_resource path="res://assets/cityscape.png" type="Texture" id=2]
@@ -6,19 +6,6 @@
 [ext_resource path="res://game/Peron.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/crosshair.png" type="Texture" id=5]
 [ext_resource path="res://game/Cursor.gd" type="Script" id=6]
-
-[sub_resource type="GDScript" id=1]
-
-script/source = "extends Camera2D
-
-const SPEED = 500
-
-func _process(delta):
-	if Input.is_key_pressed(KEY_LEFT):
-		position.x -= round(SPEED * delta)
-	elif Input.is_key_pressed(KEY_RIGHT):
-		position.x += round(SPEED * delta)
-"
 
 [node name="Level" type="Node2D" index="0"]
 
@@ -49,7 +36,6 @@ drag_margin_bottom = 0.2
 editor_draw_screen = true
 editor_draw_limits = false
 editor_draw_drag_margin = false
-script = SubResource( 1 )
 _sections_unfolded = [ "Smoothing" ]
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D" index="0"]
