@@ -404,12 +404,12 @@ _sections_unfolded = [ "Transform" ]
 
 [node name="RightEye" type="Node2D" parent="." index="6"]
 
-position = Vector2( 49, -183 )
+position = Vector2( 51, -183 )
 _sections_unfolded = [ "Transform" ]
 
 [node name="LeftEye" type="Node2D" parent="." index="7"]
 
-position = Vector2( 72, -183 )
+position = Vector2( 74, -183 )
 _sections_unfolded = [ "Transform" ]
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
