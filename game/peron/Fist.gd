@@ -18,6 +18,6 @@ func _process(delta):
 	position.x += Constants.FIST_SPEED * delta
 	position.y += vel_y * delta
 	
-	# we remove the node from the tree when it moved a full viewport width
-	if distance > get_viewport_rect().size.x:
+	# we remove the node from the tree when it went outside the viewport
+	if get_global_transform_with_canvas().origin.x > get_viewport_rect().size.x:
 		get_parent().remove_child(self)

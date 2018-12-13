@@ -4,6 +4,7 @@ const Pool = preload("res://addons/godot-object-pool/pool.gd")
 const FrontBuilding = preload("res://game/FrontBuilding.tscn")
 const Fist = preload("res://game/peron/Fist.tscn")
 const Laser = preload("res://game/peron/Laser.tscn")
+const AirPlane = preload("res://game/enemies/Plane.tscn")
 
 const FRONT_BUILDING_POOL_SIZE = 10
 
@@ -15,6 +16,7 @@ var intro_state = PRE_INTRO
 var fist = Fist.instance()
 var left_laser = Laser.instance()
 var right_laser = Laser.instance()
+var plane = AirPlane.instance()
 
 onready var Constants = get_node("/root/Constants")
 onready var main_layer = $Camera2D/ParallaxBackground/MainLayer
@@ -141,3 +143,14 @@ func update_front_buildings():
 		building.position.y = get_viewport_rect().size.y
 		var random_offset = 20 + randi() % 20
 		last_building_pos += building.width + random_offset
+
+func _on_AIDirector_enemy_needed(enemy_type, x):
+	print("here should spawn %s at %d" % [enemy_type, x])
+	match enemy_type:
+		"plane":
+			plane.position.x = get_viewport_rect().size.x + x
+			main_layer.add_child(plane)
+		"building":
+			pass
+		"cannon":
+			pass
