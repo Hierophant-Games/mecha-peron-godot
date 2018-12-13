@@ -116,7 +116,15 @@ _sections_unfolded = [ "Motion", "Z Index" ]
 
 [node name="FrontBuildingContainer" type="Node2D" parent="Camera2D/ParallaxBackground/FrontLayer" index="0"]
 
-[node name="Cursor" type="Sprite" parent="." index="1"]
+[node name="GUILayer" type="CanvasLayer" parent="." index="1"]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+
+[node name="Cursor" type="Sprite" parent="GUILayer" index="0"]
 
 texture = ExtResource( 5 )
 script = ExtResource( 6 )
