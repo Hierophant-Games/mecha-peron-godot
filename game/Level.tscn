@@ -9,122 +9,52 @@
 [ext_resource path="res://game/AIDirector.gd" type="Script" id=7]
 
 [node name="Level" type="Node2D"]
-
 script = ExtResource( 1 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="Camera2D" type="Camera2D" parent="." index="0"]
-
+[node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
-rotating = false
 current = true
-zoom = Vector2( 1, 1 )
-limit_left = -10000000
-limit_top = -10000000
-limit_right = 10000000
-limit_bottom = 10000000
-limit_smoothed = false
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
 smoothing_enabled = true
-smoothing_speed = 5.0
-offset_v = 0.0
-offset_h = 0.0
-drag_margin_left = 0.2
-drag_margin_top = 0.2
-drag_margin_right = 0.2
-drag_margin_bottom = 0.2
-editor_draw_screen = true
-editor_draw_limits = false
-editor_draw_drag_margin = false
-_sections_unfolded = [ "Smoothing" ]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D" index="0"]
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
 
-layer = -1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-scroll_offset = Vector2( 0, 0 )
-scroll_base_offset = Vector2( 0, 0 )
-scroll_base_scale = Vector2( 1, 1 )
-scroll_limit_begin = Vector2( 0, 0 )
-scroll_limit_end = Vector2( 0, 0 )
-scroll_ignore_camera_zoom = false
-_sections_unfolded = [ "Scroll" ]
-
-[node name="BackLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground" index="0"]
-
+[node name="BackLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
 motion_scale = Vector2( 0.2, 1 )
-motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 480, 0 )
-_sections_unfolded = [ "Motion", "Z Index" ]
 
-[node name="cityscape" type="Sprite" parent="Camera2D/ParallaxBackground/BackLayer" index="0"]
-
+[node name="cityscape" type="Sprite" parent="Camera2D/ParallaxBackground/BackLayer"]
 texture = ExtResource( 2 )
 centered = false
 region_rect = Rect2( 0, 0, 1280, 240 )
-_sections_unfolded = [ "Offset", "Region", "Transform" ]
 
-[node name="MiddleLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground" index="1"]
-
+[node name="MiddleLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
 motion_scale = Vector2( 0.5, 1 )
-motion_offset = Vector2( 0, 0 )
 motion_mirroring = Vector2( 480, 0 )
-_sections_unfolded = [ "Motion", "Z Index" ]
 
-[node name="buildings" type="Sprite" parent="Camera2D/ParallaxBackground/MiddleLayer" index="0"]
-
+[node name="buildings" type="Sprite" parent="Camera2D/ParallaxBackground/MiddleLayer"]
 texture = ExtResource( 3 )
 centered = false
 region_rect = Rect2( 0, 0, 1280, 240 )
-_sections_unfolded = [ "Offset", "Region", "Transform" ]
 
-[node name="MainLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground" index="2"]
+[node name="MainLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
 
-motion_scale = Vector2( 1, 1 )
-motion_offset = Vector2( 0, 0 )
-motion_mirroring = Vector2( 0, 0 )
-_sections_unfolded = [ "Motion", "Z Index" ]
-
-[node name="Peron" parent="Camera2D/ParallaxBackground/MainLayer" index="0" instance=ExtResource( 4 )]
-
+[node name="Peron" parent="Camera2D/ParallaxBackground/MainLayer" instance=ExtResource( 4 )]
 position = Vector2( -160, 240 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="FrontLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground" index="3"]
-
+[node name="FrontLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
 motion_scale = Vector2( 1.5, 1 )
-motion_offset = Vector2( 0, 0 )
-motion_mirroring = Vector2( 0, 0 )
-_sections_unfolded = [ "Motion", "Z Index" ]
 
-[node name="FrontBuildingContainer" type="Node2D" parent="Camera2D/ParallaxBackground/FrontLayer" index="0"]
+[node name="FrontBuildingContainer" type="Node2D" parent="Camera2D/ParallaxBackground/FrontLayer"]
 
-[node name="GUILayer" type="CanvasLayer" parent="." index="1"]
+[node name="GUILayer" type="CanvasLayer" parent="."]
 
-layer = 1
-offset = Vector2( 0, 0 )
-rotation = 0.0
-scale = Vector2( 1, 1 )
-transform = Transform2D( 1, 0, 0, 1, 0, 0 )
-
-[node name="Cursor" type="Sprite" parent="GUILayer" index="0"]
-
+[node name="Cursor" type="Sprite" parent="GUILayer"]
 texture = ExtResource( 5 )
 script = ExtResource( 6 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="AIDirector" type="Node2D" parent="." index="2"]
-
+[node name="AIDirector" type="Node2D" parent="."]
 script = ExtResource( 7 )
 
 [connection signal="started_walking" from="Camera2D/ParallaxBackground/MainLayer/Peron" to="." method="_on_Peron_started_walking"]
-
 [connection signal="stopped_walking" from="Camera2D/ParallaxBackground/MainLayer/Peron" to="." method="_on_Peron_stopped_walking"]
-
 [connection signal="enemy_needed" from="AIDirector" to="." method="_on_AIDirector_enemy_needed"]
-
-

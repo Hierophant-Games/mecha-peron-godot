@@ -1,7 +1,5 @@
 extends Area2D
 
-onready var Constants = get_node("/root/Constants")
-
 var distance = 0
 var vel_y = 0
 

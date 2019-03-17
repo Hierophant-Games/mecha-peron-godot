@@ -1,6 +1,5 @@
 extends Area2D
 
-onready var Constants = get_node("/root/Constants")
 onready var width = $plane.texture.get_width() / $plane.hframes
 
 var health = 100

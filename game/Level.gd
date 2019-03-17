@@ -1,6 +1,6 @@
 extends Node2D
 
-const Pool = preload("res://addons/godot-object-pool/pool.gd")
+var Pool = load("res://addons/godot-object-pool/pool.gd")
 const FrontBuilding = preload("res://game/FrontBuilding.tscn")
 const Fist = preload("res://game/peron/Fist.tscn")
 const Laser = preload("res://game/peron/Laser.tscn")
@@ -18,7 +18,6 @@ var left_laser = Laser.instance()
 var right_laser = Laser.instance()
 var plane = AirPlane.instance()
 
-onready var Constants = get_node("/root/Constants")
 onready var main_layer = $Camera2D/ParallaxBackground/MainLayer
 onready var front_layer = $Camera2D/ParallaxBackground/FrontLayer
 onready var front_building_container = $Camera2D/ParallaxBackground/FrontLayer/FrontBuildingContainer
