@@ -12,6 +12,8 @@ export (int) var LASER_MAX_CHARGE = 1200
 export (int) var LASER_CHARGE_STEP = 10
 export (int) var LASER_RECHARGE_STEP = 13
 export (float) var LASER_RECHARGE_DELAY = 2.0 # seconds
+export (float) var LASER_ROTATION_MIN = deg2rad(-15)
+export (float) var LASER_ROTATION_MAX = deg2rad(45)
 
 export (float) var FIST_SPEED = 200.0
 export (float) var FIST_GRAVITY = 40.0

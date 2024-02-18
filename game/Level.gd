@@ -119,6 +119,7 @@ func end_laser():
 
 func rotate_laser():
 	right_laser.look_at(get_viewport().get_mouse_position())
+	right_laser.rotation = clamp(right_laser.rotation, Constants.LASER_ROTATION_MIN, Constants.LASER_ROTATION_MAX)
 	left_laser.rotation = right_laser.rotation
 
 var last_building_pos = 0
