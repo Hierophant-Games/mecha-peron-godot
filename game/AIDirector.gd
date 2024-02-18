@@ -26,7 +26,7 @@ var last_pos = {
 	cannon = 0,
 }
 
-func _process(delta):
+func _process(_delta):
 	var x = -get_canvas_transform().get_origin().x
 	var diff_level = get_difficulty_level(x)
 	check_enemy("plane", x, diff_level)
