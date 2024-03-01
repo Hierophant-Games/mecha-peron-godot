@@ -1,7 +1,7 @@
 extends Area2D
 
-var distance = 0
-var vel_y = 0
+var distance = 0.0
+var vel_y = 0.0
 
 # we need to reset these values each time the node is added to the scene
 func _enter_tree():
