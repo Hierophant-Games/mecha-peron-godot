@@ -17,7 +17,7 @@ onready var camera = $Camera2D
 
 func _ready():
 	peron.walk()
-	
+
 	update_front_buildings()
 
 func _process(delta):
@@ -94,7 +94,7 @@ func update_front_buildings():
 	var scroll_scale = front_layer.motion_scale.x
 	var screen_left = camera.position.x * scroll_scale
 	var screen_right = screen_left + get_viewport_rect().size.x * scroll_scale
-	
+
 	front_building_container.update_building_pool(screen_left, screen_right)
 
 func _on_AIDirector_enemy_needed(enemy_type, x):

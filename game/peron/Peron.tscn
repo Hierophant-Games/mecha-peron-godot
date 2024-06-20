@@ -6,12 +6,9 @@
 [ext_resource path="res://assets/peron/head.png" type="Texture" id=4]
 [ext_resource path="res://assets/peron/rightArm.png" type="Texture" id=5]
 
-
 [sub_resource type="Animation" id=1]
-
 resource_name = "attack_left_arm"
 length = 1.5
-loop = false
 step = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath("head:frame")
@@ -65,11 +62,8 @@ tracks/3/keys = {
 }
 
 [sub_resource type="Animation" id=2]
-
 resource_name = "attack_right_arm"
 length = 1.5
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("head:frame")
 tracks/0/interp = 1
@@ -134,10 +128,7 @@ tracks/4/keys = {
 }
 
 [sub_resource type="Animation" id=3]
-
 resource_name = "damage"
-length = 1.0
-loop = false
 step = 0.0625
 tracks/0/type = "value"
 tracks/0/path = NodePath("head:frame")
@@ -177,10 +168,6 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=4]
-
-length = 1.0
-loop = false
-step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("head:frame")
 tracks/0/interp = 1
@@ -219,9 +206,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=5]
-
 length = 0.33
-loop = false
 step = 0.11
 tracks/0/type = "value"
 tracks/0/path = NodePath("head:frame")
@@ -261,9 +246,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=6]
-
 length = 0.33
-loop = false
 step = 0.11
 tracks/0/type = "value"
 tracks/0/path = NodePath("head:frame")
@@ -303,7 +286,6 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id=7]
-
 length = 0.8
 loop = true
 step = 0.2
@@ -345,16 +327,10 @@ tracks/2/keys = {
 }
 
 [node name="Peron" type="Node2D"]
-
 script = ExtResource( 1 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="0"]
-
-root_node = NodePath("..")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
-playback_process_mode = 1
-playback_default_blend_time = 0.0
-playback_speed = 1.0
 anims/attack_left_arm = SubResource( 1 )
 anims/attack_right_arm = SubResource( 2 )
 anims/damage = SubResource( 3 )
@@ -362,57 +338,39 @@ anims/idle = SubResource( 4 )
 anims/laser = SubResource( 5 )
 anims/laser_off = SubResource( 6 )
 anims/walk = SubResource( 7 )
-blend_times = [  ]
-_sections_unfolded = [ "Playback Options" ]
 
-[node name="leftArm" type="Sprite" parent="." index="1"]
-
+[node name="leftArm" type="Sprite" parent="."]
 position = Vector2( 75, -135 )
 texture = ExtResource( 2 )
 centered = false
 hframes = 7
-_sections_unfolded = [ "Animation", "Offset", "Transform" ]
 
-[node name="torso" type="Sprite" parent="." index="2"]
-
+[node name="torso" type="Sprite" parent="."]
 position = Vector2( 0, -164 )
 texture = ExtResource( 3 )
 centered = false
-_sections_unfolded = [ "Offset", "Transform" ]
 
-[node name="head" type="Sprite" parent="." index="3"]
-
+[node name="head" type="Sprite" parent="."]
 position = Vector2( 14, -224 )
 texture = ExtResource( 4 )
 centered = false
 hframes = 7
 frame = 6
 region_rect = Rect2( 0, 0, 68, 100 )
-_sections_unfolded = [ "Animation", "Offset", "Region", "Transform", "Z Index" ]
 
-[node name="rightArm" type="Sprite" parent="." index="4"]
-
+[node name="rightArm" type="Sprite" parent="."]
 position = Vector2( -1, -166 )
 texture = ExtResource( 5 )
 centered = false
 hframes = 11
-_sections_unfolded = [ "Animation", "Offset", "Transform", "Z Index" ]
 
-[node name="FistStart" type="Node2D" parent="." index="5"]
-
+[node name="FistStart" type="Node2D" parent="."]
 position = Vector2( 135, -132 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="RightEye" type="Node2D" parent="." index="6"]
-
+[node name="RightEye" type="Node2D" parent="."]
 position = Vector2( 51, -183 )
-_sections_unfolded = [ "Transform" ]
 
-[node name="LeftEye" type="Node2D" parent="." index="7"]
-
+[node name="LeftEye" type="Node2D" parent="."]
 position = Vector2( 74, -183 )
-_sections_unfolded = [ "Transform" ]
 
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
-
-
