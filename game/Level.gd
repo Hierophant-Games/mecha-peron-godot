@@ -18,10 +18,9 @@ onready var camera = $Camera2D
 func _ready():
 	peron.walk()
 
-	update_front_buildings()
-
 func _process(delta):
 	update_intro()
+	update_front_buildings()
 
 	peron.position.x += current_speed * delta
 
@@ -30,7 +29,6 @@ func _process(delta):
 
 	camera.position.x = peron.position.x
 	input()
-	update_front_buildings()
 
 func update_intro():
 	match intro_state:
