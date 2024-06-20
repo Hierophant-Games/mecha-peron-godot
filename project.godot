@@ -8,8 +8,26 @@
 
 config_version=4
 
-_global_script_classes=[  ]
+_global_script_classes=[ {
+"base": "Area2D",
+"class": "Fist",
+"language": "GDScript",
+"path": "res://game/peron/Fist.gd"
+}, {
+"base": "Area2D",
+"class": "Laser",
+"language": "GDScript",
+"path": "res://game/peron/Laser.gd"
+}, {
+"base": "Node2D",
+"class": "Peron",
+"language": "GDScript",
+"path": "res://game/peron/Peron.gd"
+} ]
 _global_script_class_icons={
+"Fist": "",
+"Laser": "",
+"Peron": ""
 }
 
 [application]

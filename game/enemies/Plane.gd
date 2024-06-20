@@ -21,12 +21,12 @@ func _process(delta):
 	position.x += Constants.PLANE_SPEED * delta
 	sin_accum = fmod(sin_accum + SIN_FACTOR, 2 * PI)
 	position.y = initial_y - SIN_HEIGHT * sin(sin_accum)
-	
+
 	if hurting:
 		health -= Constants.LASER_PLANE_DAMAGE
 		if health <= 0:
 			hide()
-	
+
 	# we could use VisibilityNotifier2D for this
 	# but I tried and somehow is not working for me :(
 	if get_global_transform_with_canvas().origin.x < -width:

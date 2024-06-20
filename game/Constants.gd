@@ -1,31 +1,31 @@
 extends Node2D
 
-export (float) var PERON_SPEED = 30.0
+export var PERON_SPEED: float = 30.0
 
-export (int) var LASER_PLANE_DAMAGE = 2
-export (int) var LASER_SOLDIER_DAMAGE = 3
-export (int) var LASER_SOLDIER_BOMB_DAMAGE = 6
-export (int) var LASER_CANNON_BOMB_DAMAGE = 4
+export var LASER_PLANE_DAMAGE: int = 2
+export var LASER_SOLDIER_DAMAGE: int = 3
+export var LASER_SOLDIER_BOMB_DAMAGE: int = 6
+export var LASER_CANNON_BOMB_DAMAGE: int = 4
 
-export (int) var LASER_MAX_CHARGE = 1200
+export var LASER_MAX_CHARGE: int = 1200
 # how much charge the laser consumes and reloads each frame
-export (int) var LASER_CHARGE_STEP = 10
-export (int) var LASER_RECHARGE_STEP = 13
-export (float) var LASER_RECHARGE_DELAY = 2.0 # seconds
-export (float) var LASER_ROTATION_MIN = deg2rad(-15)
-export (float) var LASER_ROTATION_MAX = deg2rad(45)
+export var LASER_CHARGE_STEP: int = 10
+export var LASER_RECHARGE_STEP: int = 13
+export var LASER_RECHARGE_DELAY: float = 2.0 # seconds
+export var LASER_ROTATION_MIN: float = deg2rad(-15)
+export var LASER_ROTATION_MAX: float = deg2rad(45)
 
-export (float) var FIST_SPEED = 200.0
-export (float) var FIST_GRAVITY = 40.0
-export (float) var FIST_RELOAD_TIME = 10.0 # seconds
+export var FIST_SPEED: float = 200.0
+export var FIST_GRAVITY: float = 40.0
+export var FIST_RELOAD_TIME: float = 10.0 # seconds
 
-export (float) var PLANE_SPEED = -120.0
-export (int) var PLANE_BOMB_DAMAGE = 5
+export var PLANE_SPEED: float = -120.0
+export var PLANE_BOMB_DAMAGE: int = 5
 
-# how much seconds waits since it's visible to release bomb
-export (float) var CANNON_ATTACK_DELAY = 3.0
-export (float) var CANNON_BOMB_SPEED = 60.0
-export (int) var CANNON_BOMB_DAMAGE = 10
+# how many seconds waits since it's visible to release bomb
+export var CANNON_ATTACK_DELAY: float = 3.0
+export var CANNON_BOMB_SPEED: float = 60.0
+export var CANNON_BOMB_DAMAGE: int = 10
 
-export (float) var SOLDIER_BULLET_SPEED = -50.0
-export (int) var SOLDIER_BULLET_DAMAGE = 2
+export var SOLDIER_BULLET_SPEED: float = -50.0
+export var SOLDIER_BULLET_DAMAGE: int = 2
