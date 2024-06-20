@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://game/HealthBar.gd" type="Script" id=1]
+
+[node name="under" type="Polygon2D"]
+color = Color( 0, 0, 0, 1 )
+polygon = PoolVector2Array( 0, 0, 20, 0, 20, 2, 0, 2 )
+script = ExtResource( 1 )
+
+[node name="progress" type="Polygon2D" parent="."]
+color = Color( 0, 1, 0, 1 )
+polygon = PoolVector2Array( 0, 0, 20, 0, 20, 2, 0, 2 )
