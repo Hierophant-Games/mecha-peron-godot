@@ -1,5 +1,7 @@
 extends Area2D
 
+class_name Laser
+
 func _enter_tree():
 	$AnimationPlayer.play("on")
 
