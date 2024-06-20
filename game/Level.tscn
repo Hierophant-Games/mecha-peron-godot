@@ -45,7 +45,7 @@ position = Vector2( -160, 240 )
 [node name="FrontLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
 motion_scale = Vector2( 1.5, 1 )
 
-[node name="FrontBuildingContainer" parent="Camera2D/ParallaxBackground/FrontLayer" instance=ExtResource( 8 )]
+[node name="Foreground" parent="Camera2D/ParallaxBackground/FrontLayer" instance=ExtResource( 8 )]
 
 [node name="GUILayer" type="CanvasLayer" parent="."]
 

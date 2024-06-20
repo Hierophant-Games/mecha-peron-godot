@@ -11,7 +11,7 @@ var plane = AirPlane.instance()
 
 onready var main_layer = $Camera2D/ParallaxBackground/MainLayer
 onready var front_layer = $Camera2D/ParallaxBackground/FrontLayer
-onready var front_building_container = $Camera2D/ParallaxBackground/FrontLayer/FrontBuildingContainer
+onready var foreground = $Camera2D/ParallaxBackground/FrontLayer/Foreground
 onready var peron: Peron = $Camera2D/ParallaxBackground/MainLayer/Peron as Peron
 onready var camera = $Camera2D
 
@@ -20,7 +20,7 @@ func _ready():
 
 func _process(delta):
 	update_intro()
-	update_front_buildings()
+	update_foreground()
 
 	peron.position.x += current_speed * delta
 
@@ -88,12 +88,12 @@ func end_laser():
 func rotate_laser():
 	peron.point_laser(get_viewport().get_mouse_position())
 
-func update_front_buildings():
+func update_foreground():
 	var scroll_scale = front_layer.motion_scale.x
 	var screen_left = camera.position.x * scroll_scale
 	var screen_right = screen_left + get_viewport_rect().size.x * scroll_scale
 
-	front_building_container.update_building_pool(screen_left, screen_right)
+	foreground.update_building_pool(screen_left, screen_right)
 
 func _on_AIDirector_enemy_needed(enemy_type, x):
 	print("here should spawn %s at %d" % [enemy_type, x])
