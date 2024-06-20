@@ -7,7 +7,7 @@
 [ext_resource path="res://assets/crosshair.png" type="Texture" id=5]
 [ext_resource path="res://game/Cursor.gd" type="Script" id=6]
 [ext_resource path="res://game/AIDirector.gd" type="Script" id=7]
-[ext_resource path="res://game/FrontBuildingContainer.gd" type="Script" id=8]
+[ext_resource path="res://game/Foreground.tscn" type="PackedScene" id=8]
 
 [node name="Level" type="Node2D"]
 script = ExtResource( 1 )
@@ -45,8 +45,7 @@ position = Vector2( -160, 240 )
 [node name="FrontLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
 motion_scale = Vector2( 1.5, 1 )
 
-[node name="FrontBuildingContainer" type="Node2D" parent="Camera2D/ParallaxBackground/FrontLayer"]
-script = ExtResource( 8 )
+[node name="FrontBuildingContainer" parent="Camera2D/ParallaxBackground/FrontLayer" instance=ExtResource( 8 )]
 
 [node name="GUILayer" type="CanvasLayer" parent="."]
 
