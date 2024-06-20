@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/foreground_building_a.png-2de09f9afdb655d6c948168d6802941a.stex"
+path="res://.import/foreground_building_0.png-ab42654766eff247f499fc6ea130ea7e.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/foreground_building_a.png"
-dest_files=[ "res://.import/foreground_building_a.png-2de09f9afdb655d6c948168d6802941a.stex" ]
+source_file="res://assets/foreground_building_0.png"
+dest_files=[ "res://.import/foreground_building_0.png-ab42654766eff247f499fc6ea130ea7e.stex" ]
 
 [params]
 

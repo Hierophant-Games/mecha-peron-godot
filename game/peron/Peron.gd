@@ -34,7 +34,7 @@ func idle():
 
 func attack_fist():
 	$AnimationPlayer.play("attack_left_arm")
-	yield(self, "fist_launched"); # waits for the signal
+	yield(self, "fist_launched") # waits for the signal
 	fist.position = $FistStart.position
 	add_child(fist)
 
@@ -76,4 +76,8 @@ func anim_callback_fist_launched():
 	emit_signal("fist_launched")
 
 func anim_callback_arm_landed():
-	emit_signal("arm_landed")
+	var areas = $arm_hit.get_overlapping_areas()
+	for area in areas:
+		var building = area as FrontBuilding
+		if building:
+			building.destroy()
