@@ -1,0 +1,215 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://game/enemies/EnemyBuilding.gd" type="Script" id=1]
+[ext_resource path="res://assets/enemyBuilding.png" type="Texture" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 39.5, 112.5 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "destroy"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 225 ), Vector2( 0, 450 ) ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 10.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "kill"
+} ]
+}
+
+[node name="EnemyBuilding" type="Area2D"]
+position = Vector2( 0, 225 )
+collision_layer = 2
+collision_mask = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 39.5, -112.5 )
+shape = SubResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 40, -112 )
+texture = ExtResource( 2 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="SpawnArea" type="Node2D" parent="."]
+position = Vector2( 7, -199 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D" type="Node2D" parent="SpawnArea"]
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D2" type="Node2D" parent="SpawnArea"]
+position = Vector2( 13, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D3" type="Node2D" parent="SpawnArea"]
+position = Vector2( 26, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D4" type="Node2D" parent="SpawnArea"]
+position = Vector2( 39, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D5" type="Node2D" parent="SpawnArea"]
+position = Vector2( 52, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D6" type="Node2D" parent="SpawnArea"]
+position = Vector2( 65, 0 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D7" type="Node2D" parent="SpawnArea"]
+position = Vector2( 0, 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D8" type="Node2D" parent="SpawnArea"]
+position = Vector2( 13, 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D9" type="Node2D" parent="SpawnArea"]
+position = Vector2( 26, 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D10" type="Node2D" parent="SpawnArea"]
+position = Vector2( 39, 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D11" type="Node2D" parent="SpawnArea"]
+position = Vector2( 52, 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D12" type="Node2D" parent="SpawnArea"]
+position = Vector2( 65, 12 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D13" type="Node2D" parent="SpawnArea"]
+position = Vector2( 0, 24 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D14" type="Node2D" parent="SpawnArea"]
+position = Vector2( 13, 24 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D15" type="Node2D" parent="SpawnArea"]
+position = Vector2( 26, 24 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D16" type="Node2D" parent="SpawnArea"]
+position = Vector2( 39, 24 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D17" type="Node2D" parent="SpawnArea"]
+position = Vector2( 52, 24 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D18" type="Node2D" parent="SpawnArea"]
+position = Vector2( 65, 24 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D19" type="Node2D" parent="SpawnArea"]
+position = Vector2( 0, 36 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D20" type="Node2D" parent="SpawnArea"]
+position = Vector2( 13, 36 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D21" type="Node2D" parent="SpawnArea"]
+position = Vector2( 26, 36 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D22" type="Node2D" parent="SpawnArea"]
+position = Vector2( 39, 36 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D23" type="Node2D" parent="SpawnArea"]
+position = Vector2( 52, 36 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Node2D24" type="Node2D" parent="SpawnArea"]
+position = Vector2( 65, 36 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/destroy = SubResource( 2 )
+
+[connection signal="area_entered" from="." to="." method="_on_EnemyBuilding_area_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

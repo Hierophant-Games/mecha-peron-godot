@@ -10,6 +10,11 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Area2D",
+"class": "EnemyBuilding",
+"language": "GDScript",
+"path": "res://game/enemies/EnemyBuilding.gd"
+}, {
+"base": "Area2D",
 "class": "Fist",
 "language": "GDScript",
 "path": "res://game/peron/Fist.gd"
@@ -38,14 +43,21 @@ _global_script_classes=[ {
 "class": "Peron",
 "language": "GDScript",
 "path": "res://game/peron/Peron.gd"
+}, {
+"base": "Area2D",
+"class": "Soldier",
+"language": "GDScript",
+"path": "res://game/enemies/Soldier.gd"
 } ]
 _global_script_class_icons={
+"EnemyBuilding": "",
 "Fist": "",
 "Foreground": "",
 "FrontBuilding": "",
 "HealthBar": "",
 "Laser": "",
-"Peron": ""
+"Peron": "",
+"Soldier": ""
 }
 
 [application]

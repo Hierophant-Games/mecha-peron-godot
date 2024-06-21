@@ -5,7 +5,6 @@ class_name Peron
 signal started_walking
 signal stopped_walking
 signal fist_launched
-signal arm_landed
 
 const Fist = preload("res://game/peron/Fist.tscn")
 const Laser = preload("res://game/peron/Laser.tscn")
