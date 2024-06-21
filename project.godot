@@ -14,6 +14,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://game/peron/Fist.gd"
 }, {
+"base": "Node2D",
+"class": "Foreground",
+"language": "GDScript",
+"path": "res://game/Foreground.gd"
+}, {
+"base": "Node2D",
+"class": "FrontBuilding",
+"language": "GDScript",
+"path": "res://game/FrontBuilding.gd"
+}, {
 "base": "Polygon2D",
 "class": "HealthBar",
 "language": "GDScript",
@@ -31,6 +41,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Fist": "",
+"Foreground": "",
+"FrontBuilding": "",
 "HealthBar": "",
 "Laser": "",
 "Peron": ""

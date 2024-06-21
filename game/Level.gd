@@ -62,6 +62,7 @@ func input():
 		peron.attack_fist()
 	if Input.is_action_just_pressed("attack_arm"):
 		attack_arm()
+		print("se llamo attack arm")
 	if mouse_pressed:
 		laser()
 
@@ -73,8 +74,6 @@ func _on_Peron_stopped_walking():
 
 func attack_arm():
 	peron.attack_arm()
-	yield(peron, "arm_landed"); # waits for the signal
-	print("here we should check for front building collisions")
 
 func laser():
 	shooting_laser = true
