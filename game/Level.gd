@@ -102,6 +102,8 @@ func _on_AIDirector_enemy_needed(enemy_type, x):
 			plane.position.x = get_viewport_rect().size.x + x
 			main_layer.add_child(plane)
 		"building":
+			if !is_instance_valid(enemyBuilding):
+				enemyBuilding = EnemyBuilding.instance()
 			enemyBuilding.position.y = get_viewport_rect().size.y
 			enemyBuilding.position.x = get_viewport_rect().size.x + x
 			main_layer.add_child(enemyBuilding)

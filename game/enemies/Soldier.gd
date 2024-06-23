@@ -10,6 +10,7 @@ onready var health_bar: HealthBar = $HealthBar as HealthBar
 var shootTimer: float = 0
 var hurting: bool = false
 var health: int = 100
+var dead: bool = false
 
 func _enter_tree():
 	$Sprite.frame = 0
@@ -17,6 +18,8 @@ func _enter_tree():
 	shootTimer = randi() % SHOOT_TIME #randomize start time for shooting
 
 func _process(delta: float):
+	if dead:
+		return
 	process_damage()
 	health_bar.update_health(float(health) / 100)
 	if health <= 0:
@@ -26,8 +29,6 @@ func _process(delta: float):
 		aim(delta)
 
 func process_damage():
-	if health <= 0:
-		return
 	for area in self.get_overlapping_areas():
 		if area as Laser:
 			health -= Constants.LASER_SOLDIER_DAMAGE
@@ -47,4 +48,6 @@ func reload():
 
 func die():
 	health = 0
+	health_bar.hide()
+	dead = true
 	$AnimationPlayer.play("die")

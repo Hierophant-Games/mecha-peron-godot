@@ -25,19 +25,19 @@ func populate():
 		i+=1
 
 func getRandomSpawnPoints(count):
-	var spawnPoints = $SpawnArea.get_children()
+	var spawnPoints = $Sprite/SpawnArea.get_children()
 	spawnPoints.shuffle()
 	return spawnPoints.slice(0, count-1)
 
 func kill():
 	for soldier in soldiers:
-		soldier.get_parent().remove_child(soldier)
-		soldier.free()
+		soldier.queue_free()
 	soldiers.clear()
-	get_parent().remove_child(self)
+	queue_free()
 
 func _on_EnemyBuilding_area_entered(area):
-	if area as Fist:
+	if area is Fist:
 		for soldier in soldiers:
 			soldier.die()
+		set_deferred("monitorable", false) # turn off area detection
 		$AnimationPlayer.play("destroy")

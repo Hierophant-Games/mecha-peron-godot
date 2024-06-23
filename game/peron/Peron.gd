@@ -80,3 +80,12 @@ func anim_callback_arm_landed():
 		var building = area as FrontBuilding
 		if building:
 			building.destroy()
+
+
+func _on_Peron_area_entered(area):
+	if area is EnemyBuilding:
+		emit_signal("stopped_walking")
+
+func _on_Peron_area_exited(area):
+		if area is EnemyBuilding:
+			emit_signal("started_walking")
