@@ -30,7 +30,7 @@ func _process(delta: float):
 
 func process_damage():
 	for area in self.get_overlapping_areas():
-		if area as Laser:
+		if area is Laser:
 			health -= Constants.LASER_SOLDIER_DAMAGE
 			return
 
