@@ -9,10 +9,10 @@ var width
 onready var sprite = $Sprite
 
 func _ready():
-	setupRandomBuilding()
+	setup_random_building()
 	reset()
 
-func setupRandomBuilding():
+func setup_random_building():
 	var index = randi() % FOREGROUND_BUILDING_TYPES_COUNT
 	sprite.texture = load(str("res://assets/foreground_building_", index, ".png"))
 	sprite.show()
@@ -28,6 +28,8 @@ func setupRandomBuilding():
 	collision.shape = shape
 
 func reset():
+	set_deferred("collision_layer", 4) #layer 3 -> bit 2 value 4
+	$AnimationPlayer.play("reset")
 	sprite.frame = 0
 
 func kill():
@@ -36,4 +38,5 @@ func kill():
 	emit_signal("killed", self)
 
 func destroy():
+	set_deferred("collision_layer", 0)
 	$AnimationPlayer.play("destroy_building")

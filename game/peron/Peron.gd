@@ -1,4 +1,4 @@
-extends Node2D
+extends Area2D
 
 class_name Peron
 
@@ -12,8 +12,16 @@ const Laser = preload("res://game/peron/Laser.tscn")
 var fist: Fist = Fist.instance() as Fist
 var left_laser: Laser = Laser.instance() as Laser
 var right_laser: Laser = Laser.instance() as Laser
+var blocked = false
 
 var laser_anim = false
+
+func _process(_delta):
+	for area in get_overlapping_areas():
+		if area is EnemyBuilding:
+			if blocked and area.isDestroyed:
+				blocked = false
+				walk()
 
 func is_attacking():
 	return laser_anim \
@@ -30,6 +38,12 @@ func walk():
 
 func idle():
 	play_and_set_next("idle")
+	
+func resume():
+	if !blocked:
+		walk()
+	else:
+		idle()
 
 func attack_fist():
 	$AnimationPlayer.play("attack_left_arm")
@@ -54,7 +68,8 @@ func laser_reverse():
 	right_laser.remove()
 	$AnimationPlayer.play_backwards("laser")
 	yield($AnimationPlayer, "animation_finished")
-	walk() # maybe should check idle?
+	resume()
+	
 
 func laser_off():
 	laser_anim = false
@@ -84,8 +99,10 @@ func anim_callback_arm_landed():
 
 func _on_Peron_area_entered(area):
 	if area is EnemyBuilding:
-		emit_signal("stopped_walking")
+		blocked = true
+		idle()
 
 func _on_Peron_area_exited(area):
 		if area is EnemyBuilding:
-			emit_signal("started_walking")
+			blocked = false
+			walk()

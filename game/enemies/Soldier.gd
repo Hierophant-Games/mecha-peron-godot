@@ -7,7 +7,7 @@ const SHOOT_TIME: int = 6
 onready var width: int = $Sprite.texture.get_width() / $Sprite.hframes
 onready var health_bar: HealthBar = $HealthBar as HealthBar
 
-var shootTimer: float = 0
+var shoot_timer: float = 0
 var hurting: bool = false
 var health: int = 100
 var dead: bool = false
@@ -15,7 +15,7 @@ var dead: bool = false
 func _enter_tree():
 	$Sprite.frame = 0
 	health = 100
-	shootTimer = randi() % SHOOT_TIME #randomize start time for shooting
+	shoot_timer = randi() % SHOOT_TIME #randomize start time for shooting
 
 func _process(delta: float):
 	if dead:
@@ -35,9 +35,9 @@ func process_damage():
 			return
 
 func aim(delta):
-	shootTimer += delta
-	if shootTimer >= SHOOT_TIME:
-		shootTimer -= SHOOT_TIME
+	shoot_timer += delta
+	if shoot_timer >= SHOOT_TIME:
+		shoot_timer -= SHOOT_TIME
 		$AnimationPlayer.play("aim")
 	
 func shoot():
