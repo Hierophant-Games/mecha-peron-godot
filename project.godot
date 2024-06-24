@@ -24,7 +24,7 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://game/Foreground.gd"
 }, {
-"base": "Node2D",
+"base": "Area2D",
 "class": "FrontBuilding",
 "language": "GDScript",
 "path": "res://game/FrontBuilding.gd"
