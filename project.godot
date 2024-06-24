@@ -10,6 +10,16 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "Area2D",
+"class": "AirPlane",
+"language": "GDScript",
+"path": "res://game/enemies/Plane.gd"
+}, {
+"base": "Area2D",
+"class": "Bomb",
+"language": "GDScript",
+"path": "res://game/enemies/Bomb.gd"
+}, {
+"base": "Area2D",
 "class": "EnemyBuilding",
 "language": "GDScript",
 "path": "res://game/enemies/EnemyBuilding.gd"
@@ -50,6 +60,8 @@ _global_script_classes=[ {
 "path": "res://game/enemies/Soldier.gd"
 } ]
 _global_script_class_icons={
+"AirPlane": "",
+"Bomb": "",
 "EnemyBuilding": "",
 "Fist": "",
 "Foreground": "",

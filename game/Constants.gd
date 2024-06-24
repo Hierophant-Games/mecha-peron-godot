@@ -1,5 +1,7 @@
 extends Node2D
 
+export var GRAVITY: float = 200.0
+
 export var PERON_SPEED: float = 30.0
 
 export var LASER_PLANE_DAMAGE: int = 2
@@ -16,7 +18,7 @@ export var LASER_ROTATION_MIN: float = deg2rad(-15)
 export var LASER_ROTATION_MAX: float = deg2rad(45)
 
 export var FIST_SPEED: float = 200.0
-export var FIST_GRAVITY: float = 40.0
+export var FIST_GRAVITY: float = GRAVITY * 0.25
 export var FIST_RELOAD_TIME: float = 10.0 # seconds
 
 export var PLANE_SPEED: float = -120.0

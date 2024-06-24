@@ -1,6 +1,6 @@
+class_name FrontBuilding
 extends Area2D
 
-class_name FrontBuilding
 signal killed
 
 const FOREGROUND_BUILDING_TYPES_COUNT: int = 3
@@ -19,7 +19,7 @@ func setup_random_building():
 	var height = sprite.texture.get_height()
 	width = sprite.texture.get_width() / sprite.hframes
 	sprite.position.y = -height * 0.5
-	
+
 	var collision = CollisionShape2D.new()
 	self.add_child(collision)
 	var shape = RectangleShape2D.new()

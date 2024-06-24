@@ -44,5 +44,8 @@ anims/fly = SubResource( 2 )
 [node name="HealthBar" parent="." instance=ExtResource( 3 )]
 position = Vector2( 26, 2 )
 
+[node name="BombOrigin" type="Node2D" parent="."]
+position = Vector2( 40, 25 )
+
 [connection signal="area_entered" from="." to="." method="_on_Plane_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Plane_area_exited"]
