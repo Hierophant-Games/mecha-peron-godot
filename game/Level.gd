@@ -1,6 +1,7 @@
 extends Node2D
 
 const AirPlane = preload("res://game/enemies/Plane.tscn")
+const EnemyBuilding = preload("res://game/enemies/EnemyBuilding.tscn")
 
 var current_speed = 0
 
@@ -62,7 +63,6 @@ func input():
 		peron.attack_fist()
 	if Input.is_action_just_pressed("attack_arm"):
 		attack_arm()
-		print("se llamo attack arm")
 	if mouse_pressed:
 		laser()
 
@@ -101,6 +101,9 @@ func _on_AIDirector_enemy_needed(enemy_type, x):
 			plane.position.x = get_viewport_rect().size.x + x
 			main_layer.add_child(plane)
 		"building":
-			pass
+			var enemy_building = EnemyBuilding.instance()
+			enemy_building.position.y = get_viewport_rect().size.y
+			enemy_building.position.x = get_viewport_rect().size.x + x
+			main_layer.add_child(enemy_building)
 		"cannon":
 			pass
