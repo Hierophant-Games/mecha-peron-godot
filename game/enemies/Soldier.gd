@@ -12,7 +12,7 @@ var hurting: bool = false
 var health: int = 100
 var dead: bool = false
 
-func _enter_tree():
+func _ready():
 	$Sprite.frame = 0
 	health = 100
 	shoot_timer = randi() % SHOOT_TIME #randomize start time for shooting
