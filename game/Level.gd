@@ -1,14 +1,13 @@
 extends Node2D
 
 const AirPlane = preload("res://game/enemies/Plane.tscn")
+const Bomb = preload("res://game/enemies/Bomb.tscn")
 const EnemyBuilding = preload("res://game/enemies/EnemyBuilding.tscn")
 
 var current_speed = 0
 
 enum { PRE_INTRO, INTRO, POST_INTRO }
 var intro_state = PRE_INTRO
-
-var plane = AirPlane.instance()
 
 onready var main_layer = $Camera2D/ParallaxBackground/MainLayer
 onready var front_layer = $Camera2D/ParallaxBackground/FrontLayer
@@ -95,15 +94,31 @@ func update_foreground():
 	foreground.update_building_pool(screen_left, screen_right)
 
 func _on_AIDirector_enemy_needed(enemy_type, x):
-	print("here should spawn %s at %d" % [enemy_type, x])
 	match enemy_type:
 		"plane":
-			plane.position.x = get_viewport_rect().size.x + x
-			main_layer.add_child(plane)
+			spawn_plane(x)
 		"building":
-			var enemy_building = EnemyBuilding.instance()
-			enemy_building.position.y = get_viewport_rect().size.y
-			enemy_building.position.x = get_viewport_rect().size.x + x
-			main_layer.add_child(enemy_building)
+			spawn_building(x)
 		"cannon":
-			pass
+			spawn_cannon(x)
+
+func spawn_plane(x: float):
+	var plane: AirPlane = AirPlane.instance()
+	plane.position.x = get_viewport_rect().size.x + x
+	plane.player = peron
+	plane.connect("bomb_dropped", self, "_on_Plane_bomb_dropped")
+	main_layer.add_child(plane)
+
+func spawn_building(x: float):
+	var enemy_building = EnemyBuilding.instance()
+	enemy_building.position.y = get_viewport_rect().size.y
+	enemy_building.position.x = get_viewport_rect().size.x + x
+	main_layer.add_child(enemy_building)
+
+func spawn_cannon(x: float):
+	print("here should spawn cannon at %d" % [x])
+
+func _on_Plane_bomb_dropped(position: Vector2):
+	var bomb: Bomb = Bomb.instance()
+	bomb.position = position
+	main_layer.add_child(bomb)

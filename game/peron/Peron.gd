@@ -1,6 +1,5 @@
-extends Area2D
-
 class_name Peron
+extends Area2D
 
 signal started_walking
 signal stopped_walking
@@ -38,7 +37,7 @@ func walk():
 
 func idle():
 	play_and_set_next("idle")
-	
+
 func resume():
 	if !blocked:
 		walk()
@@ -69,7 +68,6 @@ func laser_reverse():
 	$AnimationPlayer.play_backwards("laser")
 	yield($AnimationPlayer, "animation_finished")
 	resume()
-	
 
 func laser_off():
 	laser_anim = false
@@ -95,7 +93,6 @@ func anim_callback_arm_landed():
 		var building = area as FrontBuilding
 		if building:
 			building.destroy()
-
 
 func _on_Peron_area_entered(area):
 	if area is EnemyBuilding:
