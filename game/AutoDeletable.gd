@@ -1,6 +1,6 @@
 extends Node
 
-class_name Deletable
+class_name AutoDeletable
 
 export var deletion_threshold: float
 

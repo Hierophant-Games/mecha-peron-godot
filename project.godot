@@ -14,15 +14,15 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://game/enemies/Plane.gd"
 }, {
+"base": "Node",
+"class": "AutoDeletable",
+"language": "GDScript",
+"path": "res://game/AutoDeletable.gd"
+}, {
 "base": "Area2D",
 "class": "Bomb",
 "language": "GDScript",
 "path": "res://game/enemies/Bomb.gd"
-}, {
-"base": "Node",
-"class": "Deletable",
-"language": "GDScript",
-"path": "res://game/Deletable.gd"
 }, {
 "base": "Area2D",
 "class": "EnemyBuilding",
@@ -66,8 +66,8 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "AirPlane": "",
+"AutoDeletable": "",
 "Bomb": "",
-"Deletable": "",
 "EnemyBuilding": "",
 "Fist": "",
 "Foreground": "",
