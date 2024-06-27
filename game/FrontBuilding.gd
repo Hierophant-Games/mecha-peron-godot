@@ -28,7 +28,7 @@ func setup_random_building():
 	collision.shape = shape
 
 func reset():
-	set_deferred("collision_layer", 4) #layer 3 -> bit 2 value 4
+	set_collision_layer_bit(2, true)
 	$AnimationPlayer.play("reset")
 	sprite.frame = 0
 
@@ -38,5 +38,5 @@ func kill():
 	emit_signal("killed", self)
 
 func destroy():
-	set_deferred("collision_layer", 0)
+	set_collision_layer_bit(2, false)
 	$AnimationPlayer.play("destroy_building")

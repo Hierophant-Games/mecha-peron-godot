@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/bomb.png" type="Texture" id=1]
 [ext_resource path="res://game/enemies/Bomb.gd" type="Script" id=2]
 [ext_resource path="res://game/HealthBar.tscn" type="PackedScene" id=3]
+[ext_resource path="res://game/AutoDeletable.gd" type="Script" id=4]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 5, 3 )
@@ -21,6 +22,9 @@ position = Vector2( -5, -5 )
 polygon = PoolVector2Array( 0, 0, 10, 0, 10, 1, 0, 1 )
 width = 10
 height = 1
+
+[node name="AutoDeletable" type="Node" parent="."]
+script = ExtResource( 4 )
 
 [connection signal="area_entered" from="." to="." method="_on_Bomb_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Bomb_area_exited"]

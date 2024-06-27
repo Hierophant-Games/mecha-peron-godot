@@ -37,11 +37,6 @@ func _process(delta: float):
 
 	drop_bomb()
 
-	# we could use VisibilityNotifier2D for this
-	# but I tried and somehow is not working for me :(
-	if get_global_transform_with_canvas().origin.x < -width:
-		queue_free()
-
 func drop_bomb():
 	if bomb_dropped:
 		return
