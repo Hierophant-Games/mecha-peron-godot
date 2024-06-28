@@ -3,7 +3,7 @@ extends Area2D
 
 const FOREGROUND_BUILDING_TYPES_COUNT: int = 3
 var dead = true
-@onready var width: int
+var width: int
 @onready var sprite = $Sprite2D
 
 func _ready():

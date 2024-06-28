@@ -32,5 +32,4 @@ extends Node2D
 @export var SOLDIER_BULLET_SPEED: float = -50.0
 @export var SOLDIER_BULLET_DAMAGE: int = 2
 
-@export var DELETION_THRESHOLD_X: float = 960 #640 * 1.5
-@export var DELETION_THRESHOLD_Y: float = 720 #480 * 1.5
+@export var DELETION_THRESHOLD_MODIFIER: Vector2 = Vector2(2, 2)

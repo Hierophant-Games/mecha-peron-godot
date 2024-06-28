@@ -88,14 +88,8 @@ func rotate_laser():
 	peron.point_laser(get_viewport().get_mouse_position())
 
 func update_foreground():
-	var scroll_scale = front_layer.motion_scale.x
-	var screen_left = camera.position.x * scroll_scale
-	var screen_right = screen_left + get_viewport_rect().size.x * scroll_scale
-
-	print("screen right", screen_right)
+	var screen_right = (camera.position.x + get_viewport_rect().size.x) *  front_layer.motion_scale.x
 	foreground.update_buildings(screen_right)
-	#var screen_right = (camera.position.x + get_viewport_rect().size.x) *  front_layer.motion_scale.x
-	#foreground.update_buildings(screen_right)
 
 func _on_AIDirector_enemy_needed(enemy_type, x):
 	match enemy_type:
