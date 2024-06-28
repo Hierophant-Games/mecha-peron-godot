@@ -6,7 +6,7 @@ signal killed
 const FOREGROUND_BUILDING_TYPES_COUNT: int = 3
 var dead = true
 var width
-onready var sprite = $Sprite
+@onready var sprite = $Sprite2D
 
 func _ready():
 	setup_random_building()
@@ -28,7 +28,7 @@ func setup_random_building():
 	collision.shape = shape
 
 func reset():
-	set_collision_layer_bit(2, true)
+	set_collision_layer_value(2, true)
 	$AnimationPlayer.play("reset")
 	sprite.frame = 0
 
@@ -38,5 +38,5 @@ func kill():
 	emit_signal("killed", self)
 
 func destroy():
-	set_collision_layer_bit(2, false)
+	set_collision_layer_value(2, false)
 	$AnimationPlayer.play("destroy_building")

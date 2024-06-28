@@ -5,7 +5,7 @@ class_name Foreground
 const FrontBuilding = preload("res://game/FrontBuilding.tscn")
 
 var Pool = load("res://addons/godot-object-pool/pool.gd")
-onready var pool = Pool.new(10, "front_building", FrontBuilding)
+@onready var pool = Pool.new(10, "front_building", FrontBuilding)
 
 var last_building_pos = 0
 

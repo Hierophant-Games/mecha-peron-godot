@@ -1,4 +1,4 @@
-extends Sprite
+extends Sprite2D
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)

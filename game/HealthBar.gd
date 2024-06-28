@@ -1,10 +1,10 @@
-tool
+@tool
 extends Polygon2D
 
 class_name HealthBar
 
-export var width: int = 20 setget set_width
-export var height: int = 2 setget set_height
+@export var width: int = 20: set = set_width
+@export var height: int = 2: set = set_height
 
 const FADE_TIME: float = 0.4
 var fade_timer: float = 0.0
@@ -19,11 +19,11 @@ func set_height(new_height: int):
 
 func _ready():
 	update_geometry()
-	if !Engine.editor_hint:
+	if !Engine.is_editor_hint():
 		visible = false # start hidden in game
 
 func update_geometry():
-	var polygon_data = PoolVector2Array([
+	var polygon_data = PackedVector2Array([
 		Vector2(0, 0),
 		Vector2(width, 0),
 		Vector2(width, height),

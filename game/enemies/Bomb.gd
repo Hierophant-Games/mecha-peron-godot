@@ -1,7 +1,7 @@
 class_name Bomb
 extends Area2D
 
-onready var health_bar: HealthBar = $HealthBar as HealthBar
+@onready var health_bar: HealthBar = $HealthBar as HealthBar
 
 var vel_y: float = 0.0
 var hurting: bool = false

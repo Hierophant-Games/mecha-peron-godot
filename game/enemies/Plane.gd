@@ -3,9 +3,9 @@ extends Area2D
 
 signal bomb_dropped
 
-onready var width: int = $plane.texture.get_width() / $plane.hframes
-onready var collision: CollisionShape2D = $CollisionShape2D as CollisionShape2D
-onready var health_bar: HealthBar = $HealthBar as HealthBar
+@onready var width: int = $plane.texture.get_width() / $plane.hframes
+@onready var collision: CollisionShape2D = $CollisionShape2D as CollisionShape2D
+@onready var health_bar: HealthBar = $HealthBar as HealthBar
 
 var health: int = 100
 var hurting = false

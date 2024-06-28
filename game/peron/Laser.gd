@@ -7,7 +7,7 @@ func _enter_tree():
 
 func remove():
 	$AnimationPlayer.play_backwards("on")
-	yield($AnimationPlayer, "animation_finished")
+	await $AnimationPlayer.animation_finished
 	var parent = get_parent()
 	if parent:
 		parent.remove_child(self)

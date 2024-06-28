@@ -2,7 +2,7 @@ extends Node
 
 class_name AutoDeletable
 
-export var deletion_threshold: float
+@export var deletion_threshold: float
 
 func _enter_tree():
 	assert(owner is Node2D, "Owner must be Node2D")

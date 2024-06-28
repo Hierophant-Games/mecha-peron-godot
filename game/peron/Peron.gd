@@ -8,9 +8,9 @@ signal fist_launched
 const Fist = preload("res://game/peron/Fist.tscn")
 const Laser = preload("res://game/peron/Laser.tscn")
 
-var fist: Fist = Fist.instance() as Fist
-var left_laser: Laser = Laser.instance() as Laser
-var right_laser: Laser = Laser.instance() as Laser
+var fist: Fist = Fist.instantiate() as Fist
+var left_laser: Laser = Laser.instantiate() as Laser
+var right_laser: Laser = Laser.instantiate() as Laser
 var blocked = false
 
 var laser_anim = false
@@ -46,7 +46,7 @@ func resume():
 
 func attack_fist():
 	$AnimationPlayer.play("attack_left_arm")
-	yield(self, "fist_launched") # waits for the signal
+	await self.fist_launched # waits for the signal
 	fist.position = $FistStart.position
 	add_child(fist)
 
@@ -66,7 +66,7 @@ func laser_reverse():
 	left_laser.remove()
 	right_laser.remove()
 	$AnimationPlayer.play_backwards("laser")
-	yield($AnimationPlayer, "animation_finished")
+	await $AnimationPlayer.animation_finished
 	resume()
 
 func laser_off():

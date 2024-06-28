@@ -11,13 +11,13 @@ var soldiers: Array = []
 var isDestroyed = false
 
 func _enter_tree():
-	$Sprite.frame = 0
+	$Sprite2D.frame = 0
 	populate()
 
 func populate():
 	var soldierCount = randi() % MAX_ADDITIONAL_SOLDIERS + MIN_SOLDIERS
 	for i in soldierCount:
-		var soldier = Soldier.instance()
+		var soldier = Soldier.instantiate()
 		soldiers.append(soldier)
 
 	var i = 0
@@ -26,7 +26,7 @@ func populate():
 		i+=1
 
 func get_random_spawn_points(count):
-	var spawnPoints = $Sprite/SpawnArea.get_children()
+	var spawnPoints = $Sprite2D/SpawnArea.get_children()
 	spawnPoints.shuffle()
 	return spawnPoints.slice(0, count-1)
 

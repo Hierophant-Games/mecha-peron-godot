@@ -1,55 +1,62 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=3 uid="uid://dpd5t3hw33ii1"]
 
-[ext_resource path="res://game/enemies/Plane.gd" type="Script" id=1]
-[ext_resource path="res://assets/plane.png" type="Texture" id=2]
-[ext_resource path="res://game/HealthBar.tscn" type="PackedScene" id=3]
-[ext_resource path="res://game/AutoDeletable.gd" type="Script" id=4]
+[ext_resource type="Script" path="res://game/enemies/Plane.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://cb6lr1058llof" path="res://assets/plane.png" id="2"]
+[ext_resource type="PackedScene" path="res://game/HealthBar.tscn" id="3"]
+[ext_resource type="Script" path="res://game/AutoDeletable.gd" id="4"]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 36, 10 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(72, 20)
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "fly"
 length = 0.2
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("plane:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ 0, 2 ]
+"values": [0, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mom4g"]
+_data = {
+"fly": SubResource("2")
 }
 
 [node name="Plane" type="Area2D"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="plane" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="plane" type="Sprite2D" parent="."]
+texture = ExtResource("2")
 centered = false
 hframes = 3
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 36, 19 )
-shape = SubResource( 1 )
+position = Vector2(36, 19)
+shape = SubResource("1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mom4g")
+}
 autoplay = "fly"
-anims/fly = SubResource( 2 )
 
-[node name="HealthBar" parent="." instance=ExtResource( 3 )]
-position = Vector2( 26, 2 )
+[node name="HealthBar" parent="." instance=ExtResource("3")]
+position = Vector2(26, 2)
 
 [node name="BombOrigin" type="Node2D" parent="."]
-position = Vector2( 40, 25 )
+position = Vector2(40, 25)
 
 [node name="AutoDeletable" type="Node" parent="."]
-script = ExtResource( 4 )
+script = ExtResource("4")
 
 [connection signal="area_entered" from="." to="." method="_on_Plane_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Plane_area_exited"]

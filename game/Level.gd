@@ -9,11 +9,11 @@ var current_speed = 0
 enum { PRE_INTRO, INTRO, POST_INTRO }
 var intro_state = PRE_INTRO
 
-onready var main_layer = $Camera2D/ParallaxBackground/MainLayer
-onready var front_layer = $Camera2D/ParallaxBackground/FrontLayer
-onready var foreground = $Camera2D/ParallaxBackground/FrontLayer/Foreground
-onready var peron: Peron = $Camera2D/ParallaxBackground/MainLayer/Peron as Peron
-onready var camera = $Camera2D
+@onready var main_layer = $Camera2D/ParallaxBackground/MainLayer
+@onready var front_layer = $Camera2D/ParallaxBackground/FrontLayer
+@onready var foreground = $Camera2D/ParallaxBackground/FrontLayer/Foreground
+@onready var peron: Peron = $Camera2D/ParallaxBackground/MainLayer/Peron as Peron
+@onready var camera = $Camera2D
 
 func _ready():
 	peron.walk()
@@ -48,7 +48,7 @@ func update_intro():
 var shooting_laser = false
 
 func input():
-	var mouse_pressed = Input.is_mouse_button_pressed(BUTTON_LEFT)
+	var mouse_pressed = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 
 	if shooting_laser:
 		if mouse_pressed:
@@ -103,16 +103,16 @@ func _on_AIDirector_enemy_needed(enemy_type, x):
 			spawn_cannon(x)
 
 func spawn_plane(x: float):
-	var plane: AirPlane = AirPlane.instance()
+	var plane: AirPlane = AirPlane.instantiate()
 	plane.position.x = get_viewport_rect().size.x + x
 	plane.player = peron
-	var error_code = plane.connect("bomb_dropped", self, "_on_Plane_bomb_dropped")
+	var error_code = plane.connect("bomb_dropped", Callable(self, "_on_Plane_bomb_dropped"))
 	if error_code != 0:
 		print("ERROR: when connecting bomb_dropped signal", error_code)
 	main_layer.add_child(plane)
 
 func spawn_building(x: float):
-	var enemy_building = EnemyBuilding.instance()
+	var enemy_building = EnemyBuilding.instantiate()
 	enemy_building.position.y = get_viewport_rect().size.y
 	enemy_building.position.x = get_viewport_rect().size.x + x
 	main_layer.add_child(enemy_building)
@@ -121,6 +121,6 @@ func spawn_cannon(x: float):
 	print("here should spawn cannon at %d" % [x])
 
 func _on_Plane_bomb_dropped(position: Vector2):
-	var bomb: Bomb = Bomb.instance()
+	var bomb: Bomb = Bomb.instantiate()
 	bomb.position = position
 	main_layer.add_child(bomb)
