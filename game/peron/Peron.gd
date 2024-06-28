@@ -3,22 +3,29 @@ extends Area2D
 
 signal started_walking
 signal stopped_walking
-signal fist_launched
 
-const Fist = preload("res://game/peron/Fist.tscn")
-const Laser = preload("res://game/peron/Laser.tscn")
+const FistScene = preload("res://game/peron/Fist.tscn")
+const LaserScene = preload("res://game/peron/Laser.tscn")
 
-var fist: Fist = Fist.instantiate() as Fist
-var left_laser: Laser = Laser.instantiate() as Laser
-var right_laser: Laser = Laser.instantiate() as Laser
+var left_laser: Laser = LaserScene.instantiate() as Laser
+var right_laser: Laser = LaserScene.instantiate() as Laser
 var blocked = false
 
 var laser_anim = false
 
+func _ready():
+	setup_laser(left_laser, $LeftEye.position)
+	setup_laser(right_laser, $RightEye.position)
+
+func setup_laser(new_laser: Laser, laser_position: Vector2):
+	add_child(new_laser)
+	new_laser.hide()
+	new_laser.position = laser_position
+
 func _process(_delta):
 	for area in get_overlapping_areas():
 		if area is EnemyBuilding:
-			if blocked and area.isDestroyed:
+			if blocked and area.is_destroyed:
 				blocked = false
 				walk()
 
@@ -46,7 +53,9 @@ func resume():
 
 func attack_fist():
 	$AnimationPlayer.play("attack_left_arm")
-	await self.fist_launched # waits for the signal
+
+func launch_fist():
+	var fist = FistScene.instantiate() as Fist
 	fist.position = $FistStart.position
 	add_child(fist)
 
@@ -56,15 +65,13 @@ func attack_arm():
 func laser():
 	laser_anim = true
 	$AnimationPlayer.play("laser")
-	left_laser.position = $LeftEye.position
-	right_laser.position = $RightEye.position
-	add_child(left_laser)
-	add_child(right_laser)
+	left_laser.on()
+	right_laser.on()
 
 func laser_reverse():
 	laser_anim = false
-	left_laser.remove()
-	right_laser.remove()
+	left_laser.off()
+	right_laser.off()
 	$AnimationPlayer.play_backwards("laser")
 	await $AnimationPlayer.animation_finished
 	resume()
@@ -83,9 +90,6 @@ func _on_AnimationPlayer_animation_started(anim_name: String):
 		emit_signal("started_walking")
 	else:
 		emit_signal("stopped_walking")
-
-func anim_callback_fist_launched():
-	emit_signal("fist_launched")
 
 func anim_callback_arm_landed():
 	var areas = $arm_hit.get_overlapping_areas()

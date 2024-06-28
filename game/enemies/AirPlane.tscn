@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dpd5t3hw33ii1"]
 
-[ext_resource type="Script" path="res://game/enemies/Plane.gd" id="1"]
-[ext_resource type="Texture2D" uid="uid://cb6lr1058llof" path="res://assets/plane.png" id="2"]
-[ext_resource type="PackedScene" path="res://game/HealthBar.tscn" id="3"]
-[ext_resource type="Script" path="res://game/AutoDeletable.gd" id="4"]
+[ext_resource type="Script" path="res://game/enemies/AirPlane.gd" id="1_skl2x"]
+[ext_resource type="Texture2D" uid="uid://cb6lr1058llof" path="res://assets/plane.png" id="2_gjhde"]
+[ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3_ct571"]
+[ext_resource type="Script" path="res://game/AutoDeletable.gd" id="4_snh2c"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(72, 20)
@@ -31,10 +31,10 @@ _data = {
 }
 
 [node name="Plane" type="Area2D"]
-script = ExtResource("1")
+script = ExtResource("1_skl2x")
 
 [node name="plane" type="Sprite2D" parent="."]
-texture = ExtResource("2")
+texture = ExtResource("2_gjhde")
 centered = false
 hframes = 3
 frame = 1
@@ -49,14 +49,14 @@ libraries = {
 }
 autoplay = "fly"
 
-[node name="HealthBar" parent="." instance=ExtResource("3")]
+[node name="HealthBar" parent="." instance=ExtResource("3_ct571")]
 position = Vector2(26, 2)
 
 [node name="BombOrigin" type="Node2D" parent="."]
 position = Vector2(40, 25)
 
 [node name="AutoDeletable" type="Node" parent="."]
-script = ExtResource("4")
+script = ExtResource("4_snh2c")
 
 [connection signal="area_entered" from="." to="." method="_on_Plane_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Plane_area_exited"]

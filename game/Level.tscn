@@ -3,11 +3,11 @@
 [ext_resource type="Script" path="res://game/Level.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c0d1h3xba2j4e" path="res://assets/cityscape.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://dsaiijkscvrfw" path="res://assets/buildings.png" id="3"]
-[ext_resource type="PackedScene" path="res://game/peron/Peron.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://ck7uiqcyaf6j2" path="res://game/peron/Peron.tscn" id="4"]
 [ext_resource type="Texture2D" uid="uid://cbwwes1f88d7d" path="res://assets/crosshair.png" id="5"]
 [ext_resource type="Script" path="res://game/Cursor.gd" id="6"]
 [ext_resource type="Script" path="res://game/AIDirector.gd" id="7"]
-[ext_resource type="PackedScene" path="res://game/Foreground.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://c57bmno58duvi" path="res://game/Foreground.tscn" id="8"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1")

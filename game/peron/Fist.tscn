@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cot5epnlpx6rh"]
+[gd_scene load_steps=7 format=3 uid="uid://cot5epnlpx6rh"]
 
 [ext_resource type="Script" path="res://game/peron/Fist.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://rwlrbaqu0psh" path="res://assets/fist.png" id="2"]
+[ext_resource type="Script" path="res://game/AutoDeletable.gd" id="3_0sqys"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(28, 28)
@@ -28,7 +29,7 @@ _data = {
 }
 
 [node name="Fist" type="Area2D"]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
 script = ExtResource("1")
 
@@ -46,3 +47,6 @@ shape = SubResource("1")
 libraries = {
 "": SubResource("AnimationLibrary_j75ny")
 }
+
+[node name="AutoDeletable" type="Node" parent="."]
+script = ExtResource("3_0sqys")

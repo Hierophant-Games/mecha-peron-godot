@@ -1,8 +1,9 @@
+class_name Level
 extends Node2D
 
-const AirPlane = preload("res://game/enemies/Plane.tscn")
-const Bomb = preload("res://game/enemies/Bomb.tscn")
-const EnemyBuilding = preload("res://game/enemies/EnemyBuilding.tscn")
+const AirPlaneScene = preload("res://game/enemies/AirPlane.tscn")
+const BombScene = preload("res://game/enemies/Bomb.tscn")
+const EnemyBuildingScene = preload("res://game/enemies/EnemyBuilding.tscn")
 
 var current_speed = 0
 
@@ -91,7 +92,10 @@ func update_foreground():
 	var screen_left = camera.position.x * scroll_scale
 	var screen_right = screen_left + get_viewport_rect().size.x * scroll_scale
 
-	foreground.update_building_pool(screen_left, screen_right)
+	print("screen right", screen_right)
+	foreground.update_buildings(screen_right)
+	#var screen_right = (camera.position.x + get_viewport_rect().size.x) *  front_layer.motion_scale.x
+	#foreground.update_buildings(screen_right)
 
 func _on_AIDirector_enemy_needed(enemy_type, x):
 	match enemy_type:
@@ -103,16 +107,16 @@ func _on_AIDirector_enemy_needed(enemy_type, x):
 			spawn_cannon(x)
 
 func spawn_plane(x: float):
-	var plane: AirPlane = AirPlane.instantiate()
+	var plane: AirPlane = AirPlaneScene.instantiate() as AirPlane
 	plane.position.x = get_viewport_rect().size.x + x
 	plane.player = peron
-	var error_code = plane.connect("bomb_dropped", Callable(self, "_on_Plane_bomb_dropped"))
+	var error_code: int = plane.connect("bomb_dropped", Callable(self, "_on_Plane_bomb_dropped"))
 	if error_code != 0:
 		print("ERROR: when connecting bomb_dropped signal", error_code)
 	main_layer.add_child(plane)
 
 func spawn_building(x: float):
-	var enemy_building = EnemyBuilding.instantiate()
+	var enemy_building = EnemyBuildingScene.instantiate() as EnemyBuilding
 	enemy_building.position.y = get_viewport_rect().size.y
 	enemy_building.position.x = get_viewport_rect().size.x + x
 	main_layer.add_child(enemy_building)
@@ -120,7 +124,7 @@ func spawn_building(x: float):
 func spawn_cannon(x: float):
 	print("here should spawn cannon at %d" % [x])
 
-func _on_Plane_bomb_dropped(position: Vector2):
-	var bomb: Bomb = Bomb.instantiate()
-	bomb.position = position
+func _on_Plane_bomb_dropped(bomb_position: Vector2):
+	var bomb: Bomb = BombScene.instantiate()
+	bomb.position = bomb_position
 	main_layer.add_child(bomb)
