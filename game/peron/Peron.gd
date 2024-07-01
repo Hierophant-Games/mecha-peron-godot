@@ -95,7 +95,7 @@ func anim_callback_arm_landed():
 	var areas = $arm_hit.get_overlapping_areas()
 	for area in areas:
 		var building = area as FrontBuilding
-		if building:
+		if building and building.monitorable:
 			building.destroy()
 
 func _on_Peron_area_entered(area):

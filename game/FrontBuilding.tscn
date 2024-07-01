@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://dqyyvmnjldxta"]
+[gd_scene load_steps=10 format=3 uid="uid://dqyyvmnjldxta"]
 
 [ext_resource type="Script" path="res://game/FrontBuilding.gd" id="1"]
 [ext_resource type="Script" path="res://game/AutoDeletable.gd" id="2_e75p7"]
+[ext_resource type="Texture2D" uid="uid://d1d84pqvdlv5c" path="res://assets/foreground_building_0.png" id="2_p4hbp"]
+[ext_resource type="Texture2D" uid="uid://damgeq2watpkt" path="res://assets/foreground_building_1.png" id="3_ram8t"]
+[ext_resource type="Texture2D" uid="uid://b8ae01jc0v56w" path="res://assets/foreground_building_2.png" id="4_dhfdf"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "destroy_building"
@@ -40,11 +43,16 @@ _data = {
 "reset": SubResource("2")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_75ih8"]
+resource_local_to_scene = true
+
 [node name="FrontBuilding" type="Area2D"]
 collision_layer = 4
 collision_mask = 0
+input_pickable = false
 monitoring = false
 script = ExtResource("1")
+textures = Array[Texture2D]([ExtResource("2_p4hbp"), ExtResource("3_ram8t"), ExtResource("4_dhfdf")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 hframes = 3
@@ -56,3 +64,6 @@ libraries = {
 
 [node name="AutoDeletable" type="Node" parent="."]
 script = ExtResource("2_e75p7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_75ih8")
