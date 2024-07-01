@@ -1,29 +1,21 @@
+class_name Foreground
 extends Node2D
 
-class_name Foreground
+var FrontBuildingScene = preload("res://game/FrontBuilding.tscn")
 
-const FrontBuilding = preload("res://game/FrontBuilding.tscn")
+@onready var next_building_spawn_pos_x = random_offset()
 
-var Pool = load("res://addons/godot-object-pool/pool.gd")
-onready var pool = Pool.new(10, "front_building", FrontBuilding)
+func update_buildings(screen_right):
+	while next_building_spawn_pos_x < screen_right:
+		var new_building: FrontBuilding = create_building()
+		add_child(new_building)
+		next_building_spawn_pos_x += new_building.width + random_offset()
 
-var last_building_pos = 0
+func create_building() -> FrontBuilding:
+	var building: FrontBuilding = FrontBuildingScene.instantiate() as FrontBuilding
+	building.position.y = get_viewport_rect().size.y
+	building.position.x = next_building_spawn_pos_x
+	return building
 
-func _ready():
-	pool.add_to_node(self)
-
-func update_building_pool(screen_left, screen_right):
-	# first kill the buildings that are no longer in screen
-	for building in get_children():
-		if building.position.x + building.width < screen_left:
-			building.kill()
-	
-	# then add buildings if needed
-	while last_building_pos < screen_right:
-		var building = pool.get_first_dead()
-		if !building:
-			break
-		building.position.x = last_building_pos
-		building.position.y = get_viewport_rect().size.y
-		var random_offset = 20 + randi() % 20
-		last_building_pos += building.width + random_offset
+func random_offset() -> int:
+	return 20 + randi() % 20

@@ -1,120 +1,126 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=3 uid="uid://dv46uf7dwa1d4"]
 
-[ext_resource path="res://game/enemies/Soldier.gd" type="Script" id=1]
-[ext_resource path="res://assets/soldier.png" type="Texture" id=2]
-[ext_resource path="res://game/HealthBar.tscn" type="PackedScene" id=3]
+[ext_resource type="Script" path="res://game/enemies/Soldier.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://on5k4bebfgjp" path="res://assets/soldier.png" id="2"]
+[ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3"]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5, 4.5 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(10, 9)
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "aim"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5, 1 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ 0, 1, 2 ]
+"values": [0, 1, 2]
 }
 tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "shoot"
-} ]
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot"
+}]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id="5"]
 resource_name = "die"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ 6 ]
+"values": [6]
 }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id="4"]
 resource_name = "reload"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.25, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [ 2, 1, 0 ]
+"values": [2, 1, 0]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id="3"]
 resource_name = "shoot"
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.17, 0.33, 0.5 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"times": PackedFloat32Array(0, 0.17, 0.33, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [ 3, 4, 5, 2 ]
+"values": [3, 4, 5, 2]
 }
 tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
 tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.5 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "reload"
-} ]
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"reload"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fk5vw"]
+_data = {
+"aim": SubResource("2"),
+"die": SubResource("5"),
+"reload": SubResource("4"),
+"shoot": SubResource("3")
 }
 
 [node name="Soldier" type="Area2D"]
-collision_mask = 0
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, -0.5 )
-shape = SubResource( 1 )
+position = Vector2(0, -0.5)
+shape = SubResource("1")
 
-[node name="Sprite" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2")
 hframes = 7
 frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/aim = SubResource( 2 )
-anims/die = SubResource( 5 )
-anims/reload = SubResource( 4 )
-anims/shoot = SubResource( 3 )
+libraries = {
+"": SubResource("AnimationLibrary_fk5vw")
+}
 
-[node name="HealthBar" parent="." instance=ExtResource( 3 )]
-position = Vector2( -5, -8 )
-polygon = PoolVector2Array( 0, 0, 10, 0, 10, 2, 0, 2 )
+[node name="HealthBar" parent="." instance=ExtResource("3")]
+position = Vector2(-5, -8)
+polygon = PackedVector2Array(0, 0, 10, 0, 10, 2, 0, 2)
 width = 10

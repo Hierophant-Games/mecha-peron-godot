@@ -1,0 +1,62 @@
+[gd_scene load_steps=8 format=3 uid="uid://dpd5t3hw33ii1"]
+
+[ext_resource type="Script" path="res://game/enemies/AirPlane.gd" id="1_skl2x"]
+[ext_resource type="Texture2D" uid="uid://cb6lr1058llof" path="res://assets/plane.png" id="2_gjhde"]
+[ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3_ct571"]
+[ext_resource type="Script" path="res://game/AutoDeletable.gd" id="4_snh2c"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(72, 20)
+
+[sub_resource type="Animation" id="2"]
+resource_name = "fly"
+length = 0.2
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("plane:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0, 2]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mom4g"]
+_data = {
+"fly": SubResource("2")
+}
+
+[node name="Plane" type="Area2D"]
+script = ExtResource("1_skl2x")
+
+[node name="plane" type="Sprite2D" parent="."]
+texture = ExtResource("2_gjhde")
+centered = false
+hframes = 3
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(36, 19)
+shape = SubResource("1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mom4g")
+}
+autoplay = "fly"
+
+[node name="HealthBar" parent="." instance=ExtResource("3_ct571")]
+position = Vector2(26, 2)
+
+[node name="BombOrigin" type="Node2D" parent="."]
+position = Vector2(40, 25)
+
+[node name="AutoDeletable" type="Node" parent="."]
+script = ExtResource("4_snh2c")
+
+[connection signal="area_entered" from="." to="." method="_on_Plane_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_Plane_area_exited"]

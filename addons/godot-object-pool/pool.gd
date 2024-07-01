@@ -11,20 +11,20 @@
 signal killed(target)
 
 # Prefix to use when adding objects to the scene (becomes "undefined_1, undefined_2, etc")
-var prefix setget set_no_access, get_prefix
+var prefix : get = get_prefix, set = set_no_access
 
 # Pool size on initialization
-var size setget set_no_access, get_size
+var size : get = get_size, set = set_no_access
 
 # Preloaded scene resource
-var scene setget set_no_access, get_scene
+var scene : get = get_scene, set = set_no_access
 
 # Dictionary of "alive" objects currently in-use.
 # Using a dictionary for fast lookup/deletion
-var alive = {} setget set_no_access, get_no_access
+var alive = {}: get = get_no_access, set = set_no_access
 
 # Array of "dead" objects currently available for use
-var dead = [] setget set_no_access, get_no_access
+var dead = []: get = get_no_access, set = set_no_access
 
 # Constructor accepting pool size, prefix and scene
 func _init(size_, prefix_, scene_):
@@ -41,9 +41,9 @@ func init():
 		return
 
 	for i in range(size):
-		var s = scene.instance()
+		var s = scene.instantiate()
 		s.set_name(prefix + "_" + str(i))
-		s.connect("killed", self, "_on_killed")
+		s.connect("killed", Callable(self, "_on_killed"))
 		dead.push_back(s)
 
 func set_no_access(value):
@@ -77,7 +77,7 @@ func get_first_dead():
 		alive[n] = o
 		dead.pop_back()
 		o.dead = false
-		o.set_pause_mode(0)
+		o.set_process_mode(0)
 		return o
 
 	return null
@@ -129,6 +129,6 @@ func _on_killed(target):
 	# Add the killed object to the dead pool, now available for use
 	dead.push_back(target)
 
-	target.set_pause_mode(1)
+	target.set_process_mode(1)
 
 	emit_signal("killed", target)

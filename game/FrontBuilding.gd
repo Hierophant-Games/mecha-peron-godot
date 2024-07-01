@@ -1,20 +1,14 @@
 class_name FrontBuilding
 extends Area2D
 
-signal killed
-
 const FOREGROUND_BUILDING_TYPES_COUNT: int = 3
 var dead = true
-var width
-onready var sprite = $Sprite
+var width: int
+@onready var sprite = $Sprite2D
 
 func _ready():
-	setup_random_building()
-	reset()
-
-func setup_random_building():
 	var index = randi() % FOREGROUND_BUILDING_TYPES_COUNT
-	sprite.texture = load(str("res://assets/foreground_building_", index, ".png"))
+	sprite.texture = load("res://assets/foreground_building_" + str(index) + ".png")
 	sprite.show()
 	var height = sprite.texture.get_height()
 	width = sprite.texture.get_width() / sprite.hframes
@@ -26,17 +20,9 @@ func setup_random_building():
 	shape.extents = Vector2(width * 0.5, height * 0.5)
 	collision.position = sprite.position
 	collision.shape = shape
-
-func reset():
-	set_collision_layer_bit(2, true)
-	$AnimationPlayer.play("reset")
-	sprite.frame = 0
-
-func kill():
-	reset()
-	dead = true
-	emit_signal("killed", self)
+	
+	set_collision_layer_value(2, true)
 
 func destroy():
-	set_collision_layer_bit(2, false)
+	set_collision_layer_value(2, false)
 	$AnimationPlayer.play("destroy_building")

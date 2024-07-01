@@ -1,13 +1,11 @@
+class_name Laser
 extends Area2D
 
-class_name Laser
-
-func _enter_tree():
+func on():
 	$AnimationPlayer.play("on")
+	show()
 
-func remove():
+func off():
 	$AnimationPlayer.play_backwards("on")
-	yield($AnimationPlayer, "animation_finished")
-	var parent = get_parent()
-	if parent:
-		parent.remove_child(self)
+	await $AnimationPlayer.animation_finished
+	hide()

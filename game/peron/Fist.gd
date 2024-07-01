@@ -1,6 +1,5 @@
-extends Area2D
-
 class_name Fist
+extends Area2D
 
 var distance = 0.0
 var vel_y = 0.0
@@ -17,7 +16,3 @@ func _process(delta):
 
 	position.x += Constants.FIST_SPEED * delta
 	position.y += vel_y * delta
-
-	# we remove the node from the tree when it went outside the viewport
-	if get_global_transform_with_canvas().origin.x > get_viewport_rect().size.x:
-		get_parent().remove_child(self)

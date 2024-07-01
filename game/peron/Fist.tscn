@@ -1,41 +1,52 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://cot5epnlpx6rh"]
 
-[ext_resource path="res://game/peron/Fist.gd" type="Script" id=1]
-[ext_resource path="res://assets/fist.png" type="Texture" id=2]
+[ext_resource type="Script" path="res://game/peron/Fist.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://rwlrbaqu0psh" path="res://assets/fist.png" id="2"]
+[ext_resource type="Script" path="res://game/AutoDeletable.gd" id="3_0sqys"]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14, 14 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(28, 28)
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id="2"]
 resource_name = "flying"
-loop = true
+loop_mode = 1
 tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
 tracks/0/path = NodePath("fist:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [ 0, 4 ]
+"values": [0, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j75ny"]
+_data = {
+"flying": SubResource("2")
 }
 
 [node name="Fist" type="Area2D"]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 2
-script = ExtResource( 1 )
+script = ExtResource("1")
 
-[node name="fist" type="Sprite" parent="."]
-texture = ExtResource( 2 )
+[node name="fist" type="Sprite2D" parent="."]
+texture = ExtResource("2")
 centered = false
 hframes = 5
 frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 30, 15 )
-shape = SubResource( 1 )
+position = Vector2(30, 15)
+shape = SubResource("1")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/flying = SubResource( 2 )
+libraries = {
+"": SubResource("AnimationLibrary_j75ny")
+}
+
+[node name="AutoDeletable" type="Node" parent="."]
+script = ExtResource("3_0sqys")
