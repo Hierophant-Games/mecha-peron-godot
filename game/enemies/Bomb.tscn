@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://i12q10ttsgri" path="res://assets/bomb.png" id="1"]
 [ext_resource type="Script" path="res://game/enemies/Bomb.gd" id="2"]
-[ext_resource type="PackedScene" path="res://game/HealthBar.tscn" id="3"]
+[ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3"]
 [ext_resource type="Script" path="res://game/AutoDeletable.gd" id="4"]
 
 [sub_resource type="RectangleShape2D" id="1"]

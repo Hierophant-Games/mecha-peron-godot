@@ -1,28 +1,21 @@
 class_name FrontBuilding
 extends Area2D
 
-const FOREGROUND_BUILDING_TYPES_COUNT: int = 3
-var dead = true
 var width: int
-@onready var sprite = $Sprite2D
+@export var textures: Array[Texture2D]
+@onready var sprite: Sprite2D = $Sprite2D
+@onready var collision: CollisionShape2D = $CollisionShape2D
 
 func _ready():
-	var index = randi() % FOREGROUND_BUILDING_TYPES_COUNT
-	sprite.texture = load("res://assets/foreground_building_" + str(index) + ".png")
-	sprite.show()
-	var height = sprite.texture.get_height()
+	sprite.texture = textures.pick_random()
+	@warning_ignore("integer_division")
 	width = sprite.texture.get_width() / sprite.hframes
+	var height = sprite.texture.get_height()
 	sprite.position.y = -height * 0.5
 
-	var collision = CollisionShape2D.new()
-	self.add_child(collision)
-	var shape = RectangleShape2D.new()
-	shape.extents = Vector2(width * 0.5, height * 0.5)
+	collision.shape.extents = Vector2(width * 0.5, height * 0.5)
 	collision.position = sprite.position
-	collision.shape = shape
-	
-	set_collision_layer_value(2, true)
 
 func destroy():
-	set_collision_layer_value(2, false)
+	monitorable = false
 	$AnimationPlayer.play("destroy_building")
