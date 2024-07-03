@@ -4,11 +4,15 @@ extends Node2D
 var FrontBuildingScene = preload("res://game/FrontBuilding.tscn")
 
 @onready var next_building_spawn_pos_x = random_offset()
+var should_spawn_cannon = false
 
 func update_buildings(screen_right):
 	while next_building_spawn_pos_x < screen_right:
 		var new_building: FrontBuilding = create_building()
 		add_child(new_building)
+		if should_spawn_cannon:
+			new_building.spawn_cannon()
+			should_spawn_cannon = false
 		next_building_spawn_pos_x += new_building.width + random_offset()
 
 func create_building() -> FrontBuilding:
@@ -19,3 +23,6 @@ func create_building() -> FrontBuilding:
 
 func random_offset() -> int:
 	return 20 + randi() % 20
+
+func prepare_cannon():
+	should_spawn_cannon = true
