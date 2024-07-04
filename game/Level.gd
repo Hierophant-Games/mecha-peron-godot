@@ -98,7 +98,6 @@ func _on_AIDirector_enemy_needed(enemy_type, x):
 		"building":
 			spawn_building(x)
 		"cannon":
-			print("here should spawn cannon at %d" % [x])
 			foreground.prepare_cannon()
 
 func spawn_plane(x: float):
