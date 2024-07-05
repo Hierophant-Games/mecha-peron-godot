@@ -1,0 +1,177 @@
+[gd_scene load_steps=12 format=3 uid="uid://1ww3f1d0evk8"]
+
+[ext_resource type="Script" path="res://Cannon.gd" id="1_nqgpx"]
+[ext_resource type="Texture2D" uid="uid://bvsig5d4ekwfy" path="res://assets/cannon.png" id="2_v2xqr"]
+[ext_resource type="Texture2D" uid="uid://d0hiemg3b3jin" path="res://assets/explosion.png" id="3_ns7hl"]
+
+[sub_resource type="Animation" id="Animation_x8b3n"]
+resource_name = "explode"
+length = 0.44
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CannonSprite:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExplosionSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("ExplosionSprite:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4, 0.44),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+}
+
+[sub_resource type="Animation" id="Animation_5fd3v"]
+resource_name = "idle_left"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CannonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_pfl66"]
+resource_name = "idle_top"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CannonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+
+[sub_resource type="Animation" id="Animation_cm472"]
+resource_name = "idle_top_left"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CannonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_qlme0"]
+resource_name = "shoot_left"
+length = 0.3333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CannonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="Animation" id="Animation_c6dwa"]
+resource_name = "shoot_top_left"
+length = 0.3333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CannonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_faxh4"]
+resource_name = "shoot_top"
+length = 0.3333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CannonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_nuhau"]
+_data = {
+"explode": SubResource("Animation_x8b3n"),
+"idle_left": SubResource("Animation_5fd3v"),
+"idle_top": SubResource("Animation_pfl66"),
+"idle_top_left": SubResource("Animation_cm472"),
+"shoot_left": SubResource("Animation_qlme0"),
+"shoot_top": SubResource("Animation_faxh4"),
+"shoot_top_left": SubResource("Animation_c6dwa")
+}
+
+[node name="Cannon" type="Node2D"]
+script = ExtResource("1_nqgpx")
+
+[node name="CannonSprite" type="Sprite2D" parent="."]
+position = Vector2(-2, -5)
+texture = ExtResource("2_v2xqr")
+hframes = 6
+
+[node name="ExplosionSprite" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(-26, -33)
+texture = ExtResource("3_ns7hl")
+centered = false
+hframes = 6
+vframes = 2
+frame = 11
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_nuhau")
+}
+autoplay = "idle_left"
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
