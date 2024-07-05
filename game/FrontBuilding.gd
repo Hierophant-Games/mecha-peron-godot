@@ -4,13 +4,13 @@ extends Area2D
 var CannonScene = preload("res://game/enemies/Cannon.tscn")
 
 var width: int
-@export var textures: Array[Texture2D]
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var collision: CollisionShape2D = $CollisionShape2D
 var cannon: Cannon = null
 
-func _ready():
-	sprite.texture = textures.pick_random()
+func setup(texture: Texture2D, should_spawn_cannon: bool):
+	sprite.texture = texture
+	
 	@warning_ignore("integer_division")
 	width = sprite.texture.get_width() / sprite.hframes
 	var height = sprite.texture.get_height()
@@ -20,11 +20,11 @@ func _ready():
 	# offset sprite to make anchor top-left
 	sprite.position.y = -height
 	sprite.position.x -= width * 0.5
-
-func spawn_cannon():
-	cannon = CannonScene.instantiate()
-	add_child(cannon)
-	cannon.position.y = sprite.position.y
+	
+	if should_spawn_cannon:
+		cannon = CannonScene.instantiate()
+		add_child(cannon)
+		cannon.position.y = sprite.position.y
 
 func destroy():
 	monitorable = false

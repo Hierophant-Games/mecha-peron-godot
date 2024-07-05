@@ -1,6 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://c57bmno58duvi"]
+[gd_scene load_steps=5 format=3 uid="uid://c57bmno58duvi"]
 
 [ext_resource type="Script" path="res://game/Foreground.gd" id="1"]
+[ext_resource type="Texture2D" uid="uid://d1d84pqvdlv5c" path="res://assets/foreground_building_0.png" id="2_h466b"]
+[ext_resource type="Texture2D" uid="uid://damgeq2watpkt" path="res://assets/foreground_building_1.png" id="3_jh2ep"]
+[ext_resource type="Texture2D" uid="uid://b8ae01jc0v56w" path="res://assets/foreground_building_2.png" id="4_1f13t"]
 
 [node name="Foreground" type="Node2D"]
 script = ExtResource("1")
+building_textures = Array[Texture2D]([ExtResource("2_h466b"), ExtResource("3_jh2ep"), ExtResource("4_1f13t")])
