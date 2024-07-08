@@ -8,7 +8,7 @@ var left_laser: Laser = LaserScene.instantiate() as Laser
 var right_laser: Laser = LaserScene.instantiate() as Laser
 
 var blocked: bool = false
-var laser_anim: bool = false
+var shooting_laser: bool = false
 var current_speed: float = 0
 
 func _ready():
@@ -30,8 +30,8 @@ func _process(delta: float):
 				blocked = false
 				walk()
 
-func is_attacking():
-	return laser_anim \
+func is_attacking() -> bool:
+	return shooting_laser \
 		or $AnimationPlayer.current_animation == "attack_left_arm" \
 		or $AnimationPlayer.current_animation == "attack_right_arm"
 
@@ -64,13 +64,13 @@ func attack_arm():
 	$AnimationPlayer.play("attack_right_arm")
 
 func laser():
-	laser_anim = true
+	shooting_laser = true
 	$AnimationPlayer.play("laser")
 	left_laser.on()
 	right_laser.on()
 
 func laser_reverse():
-	laser_anim = false
+	shooting_laser = false
 	left_laser.off()
 	right_laser.off()
 	$AnimationPlayer.play_backwards("laser")
@@ -78,7 +78,7 @@ func laser_reverse():
 	resume()
 
 func laser_off():
-	laser_anim = false
+	shooting_laser = false
 	$AnimationPlayer.play("laser_off")
 
 func point_laser(pos: Vector2):

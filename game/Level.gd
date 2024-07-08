@@ -39,12 +39,10 @@ func update_intro():
 				Engine.time_scale = 1
 				peron.walk()
 
-var shooting_laser = false
-
 func input():
 	var mouse_pressed = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 
-	if shooting_laser:
+	if peron.shooting_laser:
 		if mouse_pressed:
 			rotate_laser()
 		else:
@@ -52,6 +50,7 @@ func input():
 
 	if peron.is_attacking():
 		return
+	
 	if Input.is_action_just_pressed("attack_fist"):
 		peron.attack_fist()
 	if Input.is_action_just_pressed("attack_arm"):
@@ -63,12 +62,10 @@ func attack_arm():
 	peron.attack_arm()
 
 func laser():
-	shooting_laser = true
 	peron.laser()
 	rotate_laser()
 
 func end_laser():
-	shooting_laser = false
 	peron.laser_reverse()
 
 func rotate_laser():
