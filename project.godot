@@ -76,6 +76,15 @@ attack_arm={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Peron"
+2d_physics/layer_2="Laser"
+2d_physics/layer_3="Fist"
+2d_physics/layer_4="Airplane"
+2d_physics/layer_5="EnemyBuilding"
+2d_physics/layer_6="FrontBuilding"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0

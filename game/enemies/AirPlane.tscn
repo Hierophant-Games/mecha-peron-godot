@@ -31,6 +31,8 @@ _data = {
 }
 
 [node name="Plane" type="Area2D"]
+collision_layer = 8
+collision_mask = 2
 script = ExtResource("1_skl2x")
 
 [node name="plane" type="Sprite2D" parent="."]
