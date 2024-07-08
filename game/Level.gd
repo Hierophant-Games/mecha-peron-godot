@@ -5,8 +5,6 @@ const AirPlaneScene = preload("res://game/enemies/AirPlane.tscn")
 const BombScene = preload("res://game/enemies/Bomb.tscn")
 const EnemyBuildingScene = preload("res://game/enemies/EnemyBuilding.tscn")
 
-var current_speed = 0
-
 enum { PRE_INTRO, INTRO, POST_INTRO }
 var intro_state = PRE_INTRO
 
@@ -16,14 +14,9 @@ var intro_state = PRE_INTRO
 @onready var peron: Peron = $Camera2D/ParallaxBackground/MainLayer/Peron as Peron
 @onready var camera = $Camera2D
 
-func _ready():
-	peron.walk()
-
-func _process(delta):
+func _process(_delta: float):
 	update_intro()
 	update_foreground()
-
-	peron.position.x += current_speed * delta
 
 	if intro_state != POST_INTRO:
 		return
@@ -65,12 +58,6 @@ func input():
 		attack_arm()
 	if mouse_pressed:
 		laser()
-
-func _on_Peron_started_walking():
-	current_speed = Constants.PERON_SPEED
-
-func _on_Peron_stopped_walking():
-	current_speed = 0
 
 func attack_arm():
 	peron.attack_arm()

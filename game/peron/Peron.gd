@@ -1,28 +1,29 @@
 class_name Peron
 extends Area2D
 
-signal started_walking
-signal stopped_walking
-
 const FistScene = preload("res://game/peron/Fist.tscn")
 const LaserScene = preload("res://game/peron/Laser.tscn")
 
 var left_laser: Laser = LaserScene.instantiate() as Laser
 var right_laser: Laser = LaserScene.instantiate() as Laser
-var blocked = false
 
-var laser_anim = false
+var blocked: bool = false
+var laser_anim: bool = false
+var current_speed: float = 0
 
 func _ready():
 	setup_laser(left_laser, $LeftEye.position)
 	setup_laser(right_laser, $RightEye.position)
+	walk()
 
 func setup_laser(new_laser: Laser, laser_position: Vector2):
 	add_child(new_laser)
 	new_laser.hide()
 	new_laser.position = laser_position
 
-func _process(_delta):
+func _process(delta: float):
+	position.x += current_speed * delta
+	
 	for area in get_overlapping_areas():
 		if area is EnemyBuilding:
 			if blocked and area.is_destroyed:
@@ -87,9 +88,9 @@ func point_laser(pos: Vector2):
 
 func _on_AnimationPlayer_animation_started(anim_name: String):
 	if anim_name == "walk":
-		emit_signal("started_walking")
+		current_speed = Constants.PERON_SPEED
 	else:
-		emit_signal("stopped_walking")
+		current_speed = 0
 
 func anim_callback_arm_landed():
 	var areas = $arm_hit.get_overlapping_areas()

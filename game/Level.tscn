@@ -55,6 +55,4 @@ script = ExtResource("6")
 [node name="AIDirector" type="Node2D" parent="."]
 script = ExtResource("7")
 
-[connection signal="started_walking" from="Camera2D/ParallaxBackground/MainLayer/Peron" to="." method="_on_Peron_started_walking"]
-[connection signal="stopped_walking" from="Camera2D/ParallaxBackground/MainLayer/Peron" to="." method="_on_Peron_stopped_walking"]
 [connection signal="enemy_needed" from="AIDirector" to="." method="_on_AIDirector_enemy_needed"]
