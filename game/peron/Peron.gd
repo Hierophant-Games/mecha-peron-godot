@@ -24,9 +24,11 @@ func setup_laser(new_laser: Laser, laser_position: Vector2):
 func _process(delta: float):
 	position.x += current_speed * delta
 	
-	for area in get_overlapping_areas():
-		if area is EnemyBuilding:
-			if blocked and area.is_destroyed:
+	# Unfortunately, disabling collisions in the EnemyBuilding area
+	# doesn't trigger the exited signal, so this code is necessary
+	if blocked:
+		for area in get_overlapping_areas():
+			if area is EnemyBuilding and !area.monitorable:
 				blocked = false
 				walk()
 
