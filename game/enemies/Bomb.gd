@@ -22,9 +22,9 @@ func _process(delta: float):
 	health_bar.update_health(float(health) / 100)
 
 func _on_Bomb_area_entered(area: Area2D):
-	if area.name == "Laser":
-		hurting = true
+	assert(area is Laser)
+	hurting = true
 
 func _on_Bomb_area_exited(area: Area2D):
-	if area.name == "Laser":
-		hurting = false
+	assert(area is Laser)
+	hurting = false

@@ -30,13 +30,13 @@ func get_random_spawn_points(count):
 func kill():
 	queue_free()
 
-func _on_EnemyBuilding_area_entered(area):
-	if area is Fist:
-		area.queue_free() # destroy fist
-		if is_destroyed:
-			return
-		is_destroyed = true
-		for soldier in soldiers:
-			soldier.die()
-		set_deferred("monitoring", false) # turn off area detection
-		$AnimationPlayer.play("destroy")
+func _on_EnemyBuilding_area_entered(area: Area2D):
+	assert(area is Fist)
+	area.queue_free() # destroy fist
+	if is_destroyed:
+		return
+	is_destroyed = true
+	for soldier in soldiers:
+		soldier.die()
+	set_deferred("monitoring", false) # turn off area detection
+	$AnimationPlayer.play("destroy")
