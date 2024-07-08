@@ -5,8 +5,6 @@ const AirPlaneScene = preload("res://game/enemies/AirPlane.tscn")
 const BombScene = preload("res://game/enemies/Bomb.tscn")
 const EnemyBuildingScene = preload("res://game/enemies/EnemyBuilding.tscn")
 
-var current_speed = 0
-
 enum { PRE_INTRO, INTRO, POST_INTRO }
 var intro_state = PRE_INTRO
 
@@ -16,14 +14,9 @@ var intro_state = PRE_INTRO
 @onready var peron: Peron = $Camera2D/ParallaxBackground/MainLayer/Peron as Peron
 @onready var camera = $Camera2D
 
-func _ready():
-	peron.walk()
-
-func _process(delta):
+func _process(_delta: float):
 	update_intro()
 	update_foreground()
-
-	peron.position.x += current_speed * delta
 
 	if intro_state != POST_INTRO:
 		return
@@ -46,12 +39,10 @@ func update_intro():
 				Engine.time_scale = 1
 				peron.walk()
 
-var shooting_laser = false
-
 func input():
 	var mouse_pressed = Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 
-	if shooting_laser:
+	if peron.shooting_laser:
 		if mouse_pressed:
 			rotate_laser()
 		else:
@@ -59,6 +50,7 @@ func input():
 
 	if peron.is_attacking():
 		return
+	
 	if Input.is_action_just_pressed("attack_fist"):
 		peron.attack_fist()
 	if Input.is_action_just_pressed("attack_arm"):
@@ -66,22 +58,14 @@ func input():
 	if mouse_pressed:
 		laser()
 
-func _on_Peron_started_walking():
-	current_speed = Constants.PERON_SPEED
-
-func _on_Peron_stopped_walking():
-	current_speed = 0
-
 func attack_arm():
 	peron.attack_arm()
 
 func laser():
-	shooting_laser = true
 	peron.laser()
 	rotate_laser()
 
 func end_laser():
-	shooting_laser = false
 	peron.laser_reverse()
 
 func rotate_laser():

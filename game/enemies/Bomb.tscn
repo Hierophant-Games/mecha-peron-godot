@@ -9,7 +9,7 @@
 size = Vector2(10, 6)
 
 [node name="Bomb" type="Area2D"]
-collision_layer = 8
+collision_layer = 64
 collision_mask = 2
 script = ExtResource("2")
 

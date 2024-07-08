@@ -38,5 +38,7 @@ func _on_EnemyBuilding_area_entered(area: Area2D):
 	is_destroyed = true
 	for soldier in soldiers:
 		soldier.die()
-	set_deferred("monitoring", false) # turn off area detection
+	# turn off area detection
+	set_deferred("monitoring", false)
+	set_deferred("monitorable", false)
 	$AnimationPlayer.play("destroy")

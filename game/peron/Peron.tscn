@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ck7uiqcyaf6j2"]
+[gd_scene load_steps=17 format=3 uid="uid://ck7uiqcyaf6j2"]
 
 [ext_resource type="Script" path="res://game/peron/Peron.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://du45m3pa52xc6" path="res://assets/peron/leftArm.png" id="2"]
@@ -343,6 +343,9 @@ _data = {
 [sub_resource type="RectangleShape2D" id="8"]
 size = Vector2(35, 37)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_c0708"]
+size = Vector2(66, 224)
+
 [node name="Peron" type="Area2D"]
 collision_mask = 16
 script = ExtResource("1")
@@ -362,7 +365,7 @@ position = Vector2(75, -135)
 texture = ExtResource("2")
 centered = false
 hframes = 7
-frame = 4
+frame = 3
 
 [node name="torso" type="Sprite2D" parent="."]
 position = Vector2(0, -164)
@@ -374,7 +377,7 @@ position = Vector2(14, -224)
 texture = ExtResource("4")
 centered = false
 hframes = 7
-frame = 2
+frame = 1
 region_rect = Rect2(0, 0, 68, 100)
 
 [node name="rightArm" type="Sprite2D" parent="."]
@@ -382,7 +385,7 @@ position = Vector2(-1, -166)
 texture = ExtResource("5")
 centered = false
 hframes = 11
-frame = 1
+frame = 3
 
 [node name="FistStart" type="Node2D" parent="."]
 position = Vector2(135, -132)
@@ -401,6 +404,15 @@ collision_mask = 32
 position = Vector2(49.5, -85.5)
 shape = SubResource("8")
 
+[node name="DamageArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
+position = Vector2(48, -112)
+shape = SubResource("RectangleShape2D_c0708")
+
 [connection signal="area_entered" from="." to="." method="_on_Peron_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Peron_area_exited"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
+[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]
