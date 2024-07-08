@@ -88,6 +88,13 @@ func point_laser(pos: Vector2):
 	right_laser.rotation = clamp(right_laser.rotation, Constants.LASER_ROTATION_MIN, Constants.LASER_ROTATION_MAX)
 	left_laser.rotation = right_laser.rotation
 
+func damage():
+	blocked = true
+	$AnimationPlayer.play("damage")
+	await $AnimationPlayer.animation_finished
+	blocked = false
+	walk()
+
 func _on_AnimationPlayer_animation_started(anim_name: String):
 	if anim_name == "walk":
 		current_speed = Constants.PERON_SPEED
@@ -101,12 +108,17 @@ func anim_callback_arm_landed():
 		if building and building.monitorable:
 			building.destroy()
 
-func _on_Peron_area_entered(area):
-	if area is EnemyBuilding:
-		blocked = true
-		idle()
+func _on_Peron_area_entered(area: Area2D):
+	assert(area is EnemyBuilding)
+	blocked = true
+	idle()
 
-func _on_Peron_area_exited(area):
-		if area is EnemyBuilding:
-			blocked = false
-			walk()
+func _on_Peron_area_exited(area: Area2D):
+	assert(area is EnemyBuilding)
+	blocked = false
+	walk()
+
+func _on_damage_area_area_entered(area: Area2D):
+	assert(area is Bomb) # TODO: it may be a Soldier shot or cannon missile
+	area.destroy()
+	damage()

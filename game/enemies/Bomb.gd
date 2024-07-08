@@ -17,7 +17,7 @@ func _process(delta: float):
 		# This was not used in the original game but we might want to?
 		#health -= Constants.LASER_CANNON_BOMB_DAMAGE
 		if health <= 0:
-			queue_free()
+			destroy()
 
 	health_bar.update_health(float(health) / 100)
 
@@ -28,3 +28,6 @@ func _on_Bomb_area_entered(area: Area2D):
 func _on_Bomb_area_exited(area: Area2D):
 	assert(area is Laser)
 	hurting = false
+
+func destroy():
+	queue_free() # TODO: explode
