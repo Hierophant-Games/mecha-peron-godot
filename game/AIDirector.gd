@@ -37,7 +37,7 @@ func check_enemy(enemy_type, x, diff_level):
 	var config = ENEMY_CONFIG[enemy_type]
 	if x - last_pos[enemy_type] > config.pos_between[diff_level]:
 		last_pos[enemy_type] = x + randi() % config.random_tweak
-		emit_signal("enemy_needed", enemy_type, last_pos[enemy_type])
+		enemy_needed.emit(enemy_type, last_pos[enemy_type])
 
 func get_difficulty_level(x):
 	var diff_level = 0

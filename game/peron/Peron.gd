@@ -22,6 +22,8 @@ func setup_laser(new_laser: Laser, laser_position: Vector2):
 	new_laser.position = laser_position
 
 func _process(delta: float):
+	if $AnimationPlayer.current_animation == "damage":
+		return
 	position.x += current_speed * delta
 	
 	# Unfortunately, disabling collisions in the EnemyBuilding area
@@ -89,11 +91,9 @@ func point_laser(pos: Vector2):
 	left_laser.rotation = right_laser.rotation
 
 func damage():
-	blocked = true
 	$AnimationPlayer.play("damage")
 	await $AnimationPlayer.animation_finished
-	blocked = false
-	walk()
+	resume()
 
 func _on_AnimationPlayer_animation_started(anim_name: String):
 	if anim_name == "walk":

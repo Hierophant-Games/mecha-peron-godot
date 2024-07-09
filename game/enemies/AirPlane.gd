@@ -48,7 +48,7 @@ func drop_bomb():
 	var pos_x_to_hit = origin_pos.x + Constants.PLANE_SPEED * time_to_hit_target
 	if pos_x_to_hit < target_pos.x:
 		did_drop = true
-		emit_signal("bomb_dropped", position + $BombOrigin.position)
+		bomb_dropped.emit(position + $BombOrigin.position)
 
 func _on_Plane_area_entered(area: Area2D):
 	assert(area is Laser)

@@ -15,7 +15,7 @@ func _process(_delta):
 	# decide whether shooting or idling
 	attack_timer += _delta
 	var ready_to_shoot: bool = attack_timer >= Constants.CANNON_ATTACK_DELAY
-	var prefix = "shoot" if ready_to_shoot else "idle"	
+	var prefix = "shoot" if ready_to_shoot else "idle"
 	
 	# get required context
 	var viewport_x_pos = get_global_transform_with_canvas().origin.x
