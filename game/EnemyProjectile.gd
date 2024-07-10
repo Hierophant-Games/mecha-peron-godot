@@ -4,7 +4,7 @@ extends Destroyable
 @export var velocity: Vector2 = Vector2()
 
 func _ready():
-	var error_code = area_2d.connect("area_entered", Callable(self._on_area_entered))
+	var error_code = area_2d.area_entered.connect(self._on_area_entered)
 	if error_code != 0:
 		print("ERROR: when connecting area_entered signal", error_code)
 
