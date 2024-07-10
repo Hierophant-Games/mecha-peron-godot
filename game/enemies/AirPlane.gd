@@ -1,10 +1,9 @@
 class_name AirPlane
-extends Area2D
+extends Node2D
 
 signal bomb_dropped
 
 @onready var width: int = $plane.texture.get_width() / $plane.hframes
-@onready var collision: CollisionShape2D = $CollisionShape2D as CollisionShape2D
 @onready var health_bar: HealthBar = $HealthBar as HealthBar
 
 var health: int = 100
@@ -28,13 +27,8 @@ func _process(delta: float):
 	sin_accum = fmod(sin_accum + SIN_FACTOR, 2 * PI)
 	position.y = initial_y - SIN_HEIGHT * sin(sin_accum)
 
-	if hurting:
-		health -= Constants.LASER_PLANE_DAMAGE
-		if health <= 0:
-			queue_free()
-
-	health_bar.update_health(float(health) / 100)
-
+	if get_meta("destroyed", false):
+		return
 	if !did_drop:
 		drop_bomb()
 
@@ -49,11 +43,3 @@ func drop_bomb():
 	if pos_x_to_hit < target_pos.x:
 		did_drop = true
 		bomb_dropped.emit(position + $BombOrigin.position)
-
-func _on_Plane_area_entered(area: Area2D):
-	assert(area is Laser)
-	hurting = true
-
-func _on_Plane_area_exited(area: Area2D):
-	assert(area is Laser)
-	hurting = false

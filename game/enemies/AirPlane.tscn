@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dpd5t3hw33ii1"]
+[gd_scene load_steps=11 format=3 uid="uid://dpd5t3hw33ii1"]
 
 [ext_resource type="Script" path="res://game/enemies/AirPlane.gd" id="1_skl2x"]
 [ext_resource type="Texture2D" uid="uid://cb6lr1058llof" path="res://assets/plane.png" id="2_gjhde"]
 [ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3_ct571"]
 [ext_resource type="Script" path="res://game/AutoDeletable.gd" id="4_snh2c"]
+[ext_resource type="Script" path="res://game/Destroyable.gd" id="5_omss2"]
+[ext_resource type="Script" path="res://game/Damageable.gd" id="6_moyrp"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(72, 20)
@@ -25,23 +27,28 @@ tracks/0/keys = {
 "values": [0, 2]
 }
 
+[sub_resource type="Animation" id="Animation_n1hox"]
+resource_name = "destroy"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mom4g"]
 _data = {
+"destroy": SubResource("Animation_n1hox"),
 "fly": SubResource("2")
 }
 
-[node name="Plane" type="Area2D"]
-collision_layer = 8
-collision_mask = 2
+[node name="Plane" type="Node2D"]
 script = ExtResource("1_skl2x")
 
 [node name="plane" type="Sprite2D" parent="."]
 texture = ExtResource("2_gjhde")
 centered = false
 hframes = 3
-frame = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(36, 19)
 shape = SubResource("1")
 
@@ -60,5 +67,14 @@ position = Vector2(40, 25)
 [node name="AutoDeletable" type="Node" parent="."]
 script = ExtResource("4_snh2c")
 
-[connection signal="area_entered" from="." to="." method="_on_Plane_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_Plane_area_exited"]
+[node name="Destroyable" type="Node" parent="." node_paths=PackedStringArray("animation_player", "area_2d")]
+script = ExtResource("5_omss2")
+animation_player = NodePath("../AnimationPlayer")
+area_2d = NodePath("../Area2D")
+
+[node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("destroyable", "health_bar", "area_2d")]
+script = ExtResource("6_moyrp")
+destroyable = NodePath("../Destroyable")
+health_bar = NodePath("../HealthBar")
+area_2d = NodePath("../Area2D")
+laser_damage = 2

@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 class_name EnemyBuilding
 
@@ -26,19 +26,3 @@ func get_random_spawn_points(count):
 	var spawn_points = $Sprite2D/SpawnArea.get_children()
 	spawn_points.shuffle()
 	return spawn_points.slice(0, count-1)
-
-func kill():
-	queue_free()
-
-func _on_EnemyBuilding_area_entered(area: Area2D):
-	assert(area is Fist)
-	area.queue_free() # destroy fist
-	if is_destroyed:
-		return
-	is_destroyed = true
-	for soldier in soldiers:
-		soldier.die()
-	# turn off area detection
-	set_deferred("monitoring", false)
-	set_deferred("monitorable", false)
-	$AnimationPlayer.play("destroy")

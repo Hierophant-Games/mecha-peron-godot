@@ -405,8 +405,8 @@ position = Vector2(49.5, -85.5)
 shape = SubResource("8")
 
 [node name="DamageArea" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 64
+collision_layer = 64
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageArea"]
 position = Vector2(48, -112)
@@ -415,4 +415,3 @@ shape = SubResource("RectangleShape2D_c0708")
 [connection signal="area_entered" from="." to="." method="_on_Peron_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Peron_area_exited"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
-[connection signal="area_entered" from="DamageArea" to="." method="_on_damage_area_area_entered"]

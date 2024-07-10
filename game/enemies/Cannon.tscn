@@ -108,22 +108,6 @@ tracks/0/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_c6dwa"]
-resource_name = "shoot_top_left"
-length = 0.3333
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("CannonSprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3333),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [2, 3]
-}
-
 [sub_resource type="Animation" id="Animation_faxh4"]
 resource_name = "shoot_top"
 length = 0.3333
@@ -138,6 +122,22 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_c6dwa"]
+resource_name = "shoot_top_left"
+length = 0.3333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CannonSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3333),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [2, 3]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nuhau"]
@@ -155,18 +155,17 @@ _data = {
 script = ExtResource("1_nqgpx")
 
 [node name="CannonSprite" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(-2, -5)
 texture = ExtResource("2_v2xqr")
 hframes = 6
 
 [node name="ExplosionSprite" type="Sprite2D" parent="."]
-visible = false
 position = Vector2(-26, -33)
 texture = ExtResource("3_ns7hl")
 centered = false
 hframes = 6
 vframes = 2
-frame = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

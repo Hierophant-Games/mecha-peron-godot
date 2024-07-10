@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dv46uf7dwa1d4"]
+[gd_scene load_steps=11 format=3 uid="uid://dv46uf7dwa1d4"]
 
 [ext_resource type="Script" path="res://game/enemies/Soldier.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://on5k4bebfgjp" path="res://assets/soldier.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3"]
+[ext_resource type="Script" path="res://game/Damageable.gd" id="4_sqp6w"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(10, 9)
@@ -103,12 +104,14 @@ _data = {
 "shoot": SubResource("3")
 }
 
-[node name="Soldier" type="Area2D"]
-collision_layer = 0
-collision_mask = 2
+[node name="Soldier" type="Node2D"]
 script = ExtResource("1")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -0.5)
 shape = SubResource("1")
 
@@ -125,3 +128,8 @@ libraries = {
 position = Vector2(-5, -8)
 polygon = PackedVector2Array(0, 0, 10, 0, 10, 2, 0, 2)
 width = 10
+
+[node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("health_bar")]
+script = ExtResource("4_sqp6w")
+health_bar = NodePath("../HealthBar")
+laser_damage = 3

@@ -11,8 +11,14 @@ func _enter_tree():
 
 func _process(delta):
 	vel_y += Constants.FIST_GRAVITY * delta
-
 	distance += Constants.FIST_SPEED * delta
-
 	position.x += Constants.FIST_SPEED * delta
 	position.y += vel_y * delta
+
+func _on_area_entered(area):
+	var enemy_building = area.owner as EnemyBuilding
+	if enemy_building:
+		for soldier in enemy_building.soldiers:
+			soldier.die()
+		enemy_building.get_meta("destroyable").destroy()
+	queue_free()

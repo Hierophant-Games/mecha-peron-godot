@@ -63,4 +63,5 @@ func update_health(ratio: float):
 
 	$progress.color = Color(red, green, 0)
 	
-	owner_died.emit()
+	if ratio <= 0:
+		owner_died.emit()
