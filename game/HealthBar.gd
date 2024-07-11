@@ -24,6 +24,8 @@ func _ready():
 		visible = false # start hidden in game
 
 func _process(delta: float):
+	if Engine.is_editor_hint():
+		return
 	fade_timer += delta
 	var alpha = clamp(1 - (fade_timer / FADE_TIME), 0, 1)
 	modulate = Color(1, 1, 1, alpha)
