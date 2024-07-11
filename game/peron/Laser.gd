@@ -4,6 +4,9 @@ extends Area2D
 var _isOn: bool = false
 
 func _process(_delta):
+	if !_isOn:
+		return
+
 	for area in get_overlapping_areas():
 		var damageable: Damageable = area.owner.get_meta("damageable")
 		assert(damageable)
