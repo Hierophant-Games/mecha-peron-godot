@@ -5,6 +5,8 @@ extends Polygon2D
 @export var width: int = 20: set = set_width
 @export var height: int = 2: set = set_height
 
+var ratio: float: set = set_ratio
+
 const FADE_TIME: float = 0.4
 var fade_timer: float = 0.0
 
@@ -39,7 +41,7 @@ func update_geometry():
 	polygon = polygon_data
 	$progress.polygon = polygon_data
 
-func update_health(ratio: float):
+func set_ratio(ratio: float):
 	if is_equal_approx(ratio, $progress.scale.x):
 		return
 

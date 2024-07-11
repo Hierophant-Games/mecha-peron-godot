@@ -10,7 +10,7 @@ signal health_depleted
 @export var health: float = 100.0:
 	set(value):
 		health = value
-		health_bar.update_health(float(value) / 100)
+		health_bar.ratio = float(value) / 100
 		if value <= 0:
 			health_depleted.emit()
 
