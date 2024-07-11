@@ -26,3 +26,7 @@ func get_random_spawn_points(count):
 	var spawn_points = $Sprite2D/SpawnArea.get_children()
 	spawn_points.shuffle()
 	return spawn_points.slice(0, count-1)
+
+func on_destroy_invoked():
+	for soldier in soldiers:
+			soldier.die()

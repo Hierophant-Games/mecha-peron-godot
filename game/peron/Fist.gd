@@ -16,9 +16,7 @@ func _process(delta):
 	position.y += vel_y * delta
 
 func _on_area_entered(area):
-	var enemy_building = area.owner as EnemyBuilding
-	if enemy_building:
-		for soldier in enemy_building.soldiers:
-			soldier.die()
-		enemy_building.get_meta("destroyable").destroy()
+	var destroyable: Destroyable = area.owner.get_meta("destroyable")
+	assert(destroyable)
+	destroyable.destroy()
 	queue_free()

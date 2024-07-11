@@ -14,7 +14,6 @@ var dead: bool = false
 func _ready():
 	$Sprite2D.frame = 0
 	shoot_timer = randi() % SHOOT_TIME #randomize start time for shooting
-	health_bar.owner_died.connect(die)
 
 func _process(delta: float):
 	if dead:
@@ -35,7 +34,13 @@ func shoot():
 func reload():
 	$AnimationPlayer.play("reload")
 
+func on_health_depleted():
+	die()
+
 func die():
+	if dead:
+		return
 	health_bar.hide()
+	$Area2D.queue_free()
 	dead = true
 	$AnimationPlayer.play("die")

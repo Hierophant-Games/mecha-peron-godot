@@ -3,8 +3,6 @@ extends Polygon2D
 
 class_name HealthBar
 
-signal owner_died
-
 @export var width: int = 20: set = set_width
 @export var height: int = 2: set = set_height
 
@@ -62,6 +60,3 @@ func update_health(ratio: float):
 	green += influence
 
 	$progress.color = Color(red, green, 0)
-	
-	if ratio <= 0:
-		owner_died.emit()
