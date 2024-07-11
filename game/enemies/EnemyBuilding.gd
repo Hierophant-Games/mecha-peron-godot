@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name EnemyBuilding
+extends Entity
 
 const SoldierScene = preload("res://game/enemies/Soldier.tscn")
 
@@ -8,7 +7,6 @@ const MIN_SOLDIERS = 8
 const MAX_ADDITIONAL_SOLDIERS = 8
 
 var soldiers: Array[Soldier] = []
-var is_destroyed = false
 
 func _enter_tree():
 	$Sprite2D.frame = 0

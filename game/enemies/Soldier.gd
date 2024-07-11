@@ -1,6 +1,5 @@
-extends Node2D
-
 class_name Soldier
+extends Entity
 
 const SHOOT_TIME: int = 6
 
@@ -9,14 +8,13 @@ const SHOOT_TIME: int = 6
 
 var shoot_timer: float = 0
 var hurting: bool = false
-var dead: bool = false
 
 func _ready():
 	$Sprite2D.frame = 0
 	shoot_timer = randi() % SHOOT_TIME #randomize start time for shooting
 
 func _process(delta: float):
-	if dead:
+	if destroyed:
 		return
 	
 	if $Sprite2D.is_visible_in_tree():
@@ -38,9 +36,8 @@ func on_health_depleted():
 	die()
 
 func die():
-	if dead:
+	if destroyed:
 		return
-	health_bar.hide()
 	$Area2D.queue_free()
-	dead = true
+	destroyed = true
 	$AnimationPlayer.play("die")

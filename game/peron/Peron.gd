@@ -108,6 +108,6 @@ func _on_Peron_area_entered(area: Area2D):
 	blocked = true
 	idle()
 
-func _on_Peron_area_exited(area: Area2D):
+func _on_Peron_area_exited(_area: Area2D):
 	blocked = false
 	resume()

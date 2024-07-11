@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://game/enemies/Bomb.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3"]
 [ext_resource type="Texture2D" uid="uid://d0hiemg3b3jin" path="res://assets/explosion.png" id="3_nxdkl"]
-[ext_resource type="Script" path="res://game/AutoDeletable.gd" id="4"]
+[ext_resource type="Script" path="res://game/core/AutoDeletable.gd" id="5_i0oyr"]
 [ext_resource type="Script" path="res://game/EnemyProjectile.gd" id="6_fa8v8"]
-[ext_resource type="Script" path="res://game/Damageable.gd" id="7_nk6ns"]
+[ext_resource type="Script" path="res://game/core/Damageable.gd" id="7_1golj"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(10, 6)
@@ -88,7 +88,7 @@ width = 10
 height = 1
 
 [node name="AutoDeletable" type="Node" parent="."]
-script = ExtResource("4")
+script = ExtResource("5_i0oyr")
 
 [node name="EnemyProjectile" type="Node" parent="." node_paths=PackedStringArray("animation_player", "area_2d")]
 script = ExtResource("6_fa8v8")
@@ -96,9 +96,8 @@ velocity = Vector2(-120, 0)
 animation_player = NodePath("../AnimationPlayer")
 area_2d = NodePath("../Area2D")
 
-[node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("destroyable", "health_bar", "area_2d")]
-script = ExtResource("7_nk6ns")
+[node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("destroyable", "health_bar")]
+script = ExtResource("7_1golj")
 destroyable = NodePath("../EnemyProjectile")
 health_bar = NodePath("../HealthBar")
-area_2d = NodePath("../Area2D")
 laser_damage = 6

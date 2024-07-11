@@ -1,8 +1,7 @@
 class_name Cannon
-extends Node2D
+extends Entity
 
 var attack_timer: float = 0
-var destroyed: bool = false
 
 func _ready():
 	$CannonSprite.show()
@@ -34,7 +33,6 @@ func destroy():
 	$AnimationPlayer.play("explode")
 	await $AnimationPlayer.animation_finished
 	queue_free()
-
 
 func _on_animation_player_animation_finished(anim_name: String):
 	# if shooting is done, reset timer

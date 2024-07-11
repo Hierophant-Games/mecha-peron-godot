@@ -1,5 +1,5 @@
 class_name Bomb
-extends Node2D
+extends Entity
 
 func _ready():
 	$BombSprite.show()

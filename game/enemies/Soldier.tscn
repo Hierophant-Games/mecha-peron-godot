@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://game/enemies/Soldier.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://on5k4bebfgjp" path="res://assets/soldier.png" id="2"]
 [ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3"]
-[ext_resource type="Script" path="res://game/Damageable.gd" id="4_sqp6w"]
+[ext_resource type="Script" path="res://game/core/Damageable.gd" id="4_71esg"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(10, 9)
@@ -130,6 +130,6 @@ polygon = PackedVector2Array(0, 0, 10, 0, 10, 2, 0, 2)
 width = 10
 
 [node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("health_bar")]
-script = ExtResource("4_sqp6w")
+script = ExtResource("4_71esg")
 health_bar = NodePath("../HealthBar")
 laser_damage = 3

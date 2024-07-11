@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game/enemies/EnemyBuilding.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bg4vwpi8d11d8" path="res://assets/enemyBuilding.png" id="2"]
-[ext_resource type="Script" path="res://game/Destroyable.gd" id="3_xdjco"]
+[ext_resource type="Script" path="res://game/core/Destroyable.gd" id="3_dw8vc"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(79, 225)
@@ -139,6 +139,6 @@ libraries = {
 }
 
 [node name="Destroyable" type="Node" parent="." node_paths=PackedStringArray("animation_player", "area_2d")]
-script = ExtResource("3_xdjco")
+script = ExtResource("3_dw8vc")
 animation_player = NodePath("../AnimationPlayer")
 area_2d = NodePath("../Area2D")
