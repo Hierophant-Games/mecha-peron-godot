@@ -41,10 +41,11 @@ func update_geometry():
 	polygon = polygon_data
 	$progress.polygon = polygon_data
 
-func set_ratio(ratio: float):
-	if is_equal_approx(ratio, $progress.scale.x):
+func set_ratio(new_ratio: float):
+	if is_equal_approx(new_ratio, ratio):
 		return
 
+	ratio = new_ratio
 	fade_timer = 0.0
 	visible = true
 	modulate = Color(1, 1, 1, 1)
