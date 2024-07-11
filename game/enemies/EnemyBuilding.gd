@@ -29,4 +29,4 @@ func get_random_spawn_points(count):
 
 func on_destroy_invoked():
 	for soldier in soldiers:
-			soldier.die()
+		soldier.die()
