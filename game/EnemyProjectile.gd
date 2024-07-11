@@ -8,7 +8,7 @@ func _ready():
 	area_2d.area_entered.connect(_on_area_entered)
 
 func _process(delta):
-	if owner.get_meta("destroyed"):
+	if owner.get_meta("destroyed", false):
 		return
 	
 	velocity.y += gravity * delta
