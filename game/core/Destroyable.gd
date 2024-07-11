@@ -6,13 +6,13 @@ signal destroy_invoked
 @export var area_2d: Area2D
 
 func _enter_tree():
-	assert(owner is Node2D, "Owner must be Node2D")
-	owner.set_meta("destroyable", self)
+	assert(owner is Entity, "Owner must be an Entity")
+	owner.register_component("destroyable", self)
 	if owner.has_method("on_destroy_invoked"):
 		destroy_invoked.connect(owner.on_destroy_invoked)
 
 func destroy():
-	owner.set_meta("destroyed", true)
+	owner.destroyed = true
 	destroy_invoked.emit()
 	area_2d.queue_free()
 	animation_player.play("destroy")

@@ -1,5 +1,5 @@
-class_name AirPlane
-extends Node2D
+class_name Airplane
+extends Entity
 
 signal bomb_dropped
 
@@ -27,8 +27,9 @@ func _process(delta: float):
 	sin_accum = fmod(sin_accum + SIN_FACTOR, 2 * PI)
 	position.y = initial_y - SIN_HEIGHT * sin(sin_accum)
 
-	if get_meta("destroyed", false):
+	if destroyed:
 		return
+	
 	if !did_drop:
 		drop_bomb()
 

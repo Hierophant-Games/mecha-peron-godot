@@ -1,14 +1,17 @@
 [gd_scene load_steps=11 format=3 uid="uid://dpd5t3hw33ii1"]
 
-[ext_resource type="Script" path="res://game/enemies/AirPlane.gd" id="1_skl2x"]
-[ext_resource type="Texture2D" uid="uid://cb6lr1058llof" path="res://assets/plane.png" id="2_gjhde"]
-[ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3_ct571"]
-[ext_resource type="Script" path="res://game/AutoDeletable.gd" id="4_snh2c"]
-[ext_resource type="Script" path="res://game/Destroyable.gd" id="5_omss2"]
-[ext_resource type="Script" path="res://game/Damageable.gd" id="6_moyrp"]
+[ext_resource type="Script" path="res://game/enemies/Airplane.gd" id="1_b1jtt"]
+[ext_resource type="Texture2D" uid="uid://cb6lr1058llof" path="res://assets/plane.png" id="2_b8fyn"]
+[ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3_a0i6c"]
+[ext_resource type="Script" path="res://game/core/AutoDeletable.gd" id="4_2d0hv"]
+[ext_resource type="Script" path="res://game/core/Destroyable.gd" id="5_kaov3"]
+[ext_resource type="Script" path="res://game/core/Damageable.gd" id="6_dc3yr"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(72, 20)
+
+[sub_resource type="Animation" id="Animation_n1hox"]
+resource_name = "destroy"
 
 [sub_resource type="Animation" id="2"]
 resource_name = "fly"
@@ -27,20 +30,17 @@ tracks/0/keys = {
 "values": [0, 2]
 }
 
-[sub_resource type="Animation" id="Animation_n1hox"]
-resource_name = "destroy"
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mom4g"]
 _data = {
 "destroy": SubResource("Animation_n1hox"),
 "fly": SubResource("2")
 }
 
-[node name="Plane" type="Node2D"]
-script = ExtResource("1_skl2x")
+[node name="Airplane" type="Node2D"]
+script = ExtResource("1_b1jtt")
 
 [node name="plane" type="Sprite2D" parent="."]
-texture = ExtResource("2_gjhde")
+texture = ExtResource("2_b8fyn")
 centered = false
 hframes = 3
 
@@ -58,23 +58,22 @@ libraries = {
 }
 autoplay = "fly"
 
-[node name="HealthBar" parent="." instance=ExtResource("3_ct571")]
+[node name="HealthBar" parent="." instance=ExtResource("3_a0i6c")]
 position = Vector2(26, 2)
 
 [node name="BombOrigin" type="Node2D" parent="."]
 position = Vector2(40, 25)
 
 [node name="AutoDeletable" type="Node" parent="."]
-script = ExtResource("4_snh2c")
+script = ExtResource("4_2d0hv")
 
 [node name="Destroyable" type="Node" parent="." node_paths=PackedStringArray("animation_player", "area_2d")]
-script = ExtResource("5_omss2")
+script = ExtResource("5_kaov3")
 animation_player = NodePath("../AnimationPlayer")
 area_2d = NodePath("../Area2D")
 
-[node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("destroyable", "health_bar", "area_2d")]
-script = ExtResource("6_moyrp")
+[node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("destroyable", "health_bar")]
+script = ExtResource("6_dc3yr")
 destroyable = NodePath("../Destroyable")
 health_bar = NodePath("../HealthBar")
-area_2d = NodePath("../Area2D")
 laser_damage = 2

@@ -8,7 +8,8 @@ func _process(_delta):
 		return
 
 	for area in get_overlapping_areas():
-		var damageable: Damageable = area.owner.get_meta("damageable")
+		assert(area.owner is Entity)
+		var damageable: Damageable = area.owner.get_component("damageable")
 		assert(damageable)
 		damageable.damage()
 

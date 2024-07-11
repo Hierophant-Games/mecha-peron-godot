@@ -1,7 +1,7 @@
 class_name Level
 extends Node2D
 
-const AirPlaneScene = preload("res://game/enemies/AirPlane.tscn")
+const AirplaneScene = preload("res://game/enemies/Airplane.tscn")
 const BombScene = preload("res://game/enemies/Bomb.tscn")
 const EnemyBuildingScene = preload("res://game/enemies/EnemyBuilding.tscn")
 
@@ -85,7 +85,7 @@ func _on_AIDirector_enemy_needed(enemy_type, x):
 			foreground.prepare_cannon()
 
 func spawn_plane(x: float):
-	var plane: AirPlane = AirPlaneScene.instantiate() as AirPlane
+	var plane: Airplane = AirplaneScene.instantiate() as Airplane
 	plane.position.x = get_viewport_rect().size.x + x
 	plane.player = peron
 	plane.bomb_dropped.connect(_on_Plane_bomb_dropped)

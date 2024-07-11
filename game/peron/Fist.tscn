@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game/peron/Fist.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://rwlrbaqu0psh" path="res://assets/fist.png" id="2"]
-[ext_resource type="Script" path="res://game/AutoDeletable.gd" id="3_0sqys"]
+[ext_resource type="Script" path="res://game/core/AutoDeletable.gd" id="3_lhf1x"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(28, 28)
@@ -49,6 +49,6 @@ libraries = {
 }
 
 [node name="AutoDeletable" type="Node" parent="."]
-script = ExtResource("3_0sqys")
+script = ExtResource("3_lhf1x")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]

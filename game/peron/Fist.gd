@@ -16,7 +16,8 @@ func _process(delta):
 	position.y += vel_y * delta
 
 func _on_area_entered(area):
-	var destroyable: Destroyable = area.owner.get_meta("destroyable")
+	assert(area.owner is Entity)
+	var destroyable: Destroyable = area.owner.get_component("destroyable")
 	assert(destroyable)
 	destroyable.destroy()
 	queue_free()
