@@ -11,8 +11,12 @@ func _enter_tree():
 
 func _process(delta):
 	vel_y += Constants.FIST_GRAVITY * delta
-
 	distance += Constants.FIST_SPEED * delta
-
 	position.x += Constants.FIST_SPEED * delta
 	position.y += vel_y * delta
+
+func _on_area_entered(area):
+	var destroyable: Destroyable = area.owner.get_meta("destroyable")
+	assert(destroyable)
+	destroyable.destroy()
+	queue_free()

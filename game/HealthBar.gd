@@ -1,10 +1,11 @@
 @tool
-extends Polygon2D
-
 class_name HealthBar
+extends Polygon2D
 
 @export var width: int = 20: set = set_width
 @export var height: int = 2: set = set_height
+
+var ratio: float: set = set_ratio
 
 const FADE_TIME: float = 0.4
 var fade_timer: float = 0.0
@@ -22,6 +23,13 @@ func _ready():
 	if !Engine.is_editor_hint():
 		visible = false # start hidden in game
 
+func _process(delta: float):
+	fade_timer += delta
+	var alpha = clamp(1 - (fade_timer / FADE_TIME), 0, 1)
+	modulate = Color(1, 1, 1, alpha)
+	if is_zero_approx(alpha):
+		visible = false
+
 func update_geometry():
 	var polygon_data = PackedVector2Array([
 		Vector2(0, 0),
@@ -33,15 +41,11 @@ func update_geometry():
 	polygon = polygon_data
 	$progress.polygon = polygon_data
 
-func update_health(ratio: float):
-	if is_equal_approx(ratio, $progress.scale.x):
-		fade_timer += get_process_delta_time()
-		var alpha = clamp(1 - (fade_timer / FADE_TIME), 0, 1)
-		modulate = Color(1, 1, 1, alpha)
-		if is_zero_approx(alpha):
-			visible = false
+func set_ratio(new_ratio: float):
+	if is_equal_approx(new_ratio, ratio):
 		return
 
+	ratio = new_ratio
 	fade_timer = 0.0
 	visible = true
 	modulate = Color(1, 1, 1, 1)

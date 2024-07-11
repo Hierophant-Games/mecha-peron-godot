@@ -1,23 +1,85 @@
-[gd_scene load_steps=6 format=3 uid="uid://8lqwhgs6xne1"]
+[gd_scene load_steps=11 format=3 uid="uid://8lqwhgs6xne1"]
 
 [ext_resource type="Texture2D" uid="uid://i12q10ttsgri" path="res://assets/bomb.png" id="1"]
 [ext_resource type="Script" path="res://game/enemies/Bomb.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3"]
+[ext_resource type="Texture2D" uid="uid://d0hiemg3b3jin" path="res://assets/explosion.png" id="3_nxdkl"]
 [ext_resource type="Script" path="res://game/AutoDeletable.gd" id="4"]
+[ext_resource type="Script" path="res://game/EnemyProjectile.gd" id="6_fa8v8"]
+[ext_resource type="Script" path="res://game/Damageable.gd" id="7_nk6ns"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(10, 6)
 
-[node name="Bomb" type="Area2D"]
-collision_layer = 64
-collision_mask = 2
+[sub_resource type="Animation" id="Animation_5p5wc"]
+resource_name = "destroy"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExplosionSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExplosionSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("BombSprite:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xjdqy"]
+_data = {
+"destroy": SubResource("Animation_5p5wc")
+}
+
+[node name="Bomb" type="Node2D"]
 script = ExtResource("2")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="BombSprite" type="Sprite2D" parent="."]
 texture = ExtResource("1")
+metadata/_edit_lock_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="ExplosionSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_nxdkl")
+hframes = 6
+vframes = 2
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("1")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xjdqy")
+}
 
 [node name="HealthBar" parent="." instance=ExtResource("3")]
 position = Vector2(-5, -5)
@@ -28,5 +90,15 @@ height = 1
 [node name="AutoDeletable" type="Node" parent="."]
 script = ExtResource("4")
 
-[connection signal="area_entered" from="." to="." method="_on_Bomb_area_entered"]
-[connection signal="area_exited" from="." to="." method="_on_Bomb_area_exited"]
+[node name="EnemyProjectile" type="Node" parent="." node_paths=PackedStringArray("animation_player", "area_2d")]
+script = ExtResource("6_fa8v8")
+velocity = Vector2(-120, 0)
+animation_player = NodePath("../AnimationPlayer")
+area_2d = NodePath("../Area2D")
+
+[node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("destroyable", "health_bar", "area_2d")]
+script = ExtResource("7_nk6ns")
+destroyable = NodePath("../EnemyProjectile")
+health_bar = NodePath("../HealthBar")
+area_2d = NodePath("../Area2D")
+laser_damage = 6

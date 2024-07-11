@@ -88,18 +88,16 @@ func spawn_plane(x: float):
 	var plane: AirPlane = AirPlaneScene.instantiate() as AirPlane
 	plane.position.x = get_viewport_rect().size.x + x
 	plane.player = peron
-	var error_code: int = plane.connect("bomb_dropped", Callable(self, "_on_Plane_bomb_dropped"))
-	if error_code != 0:
-		print("ERROR: when connecting bomb_dropped signal", error_code)
+	plane.bomb_dropped.connect(_on_Plane_bomb_dropped)
 	main_layer.add_child(plane)
 
 func spawn_building(x: float):
-	var enemy_building = EnemyBuildingScene.instantiate() as EnemyBuilding
+	var enemy_building: EnemyBuilding = EnemyBuildingScene.instantiate() as EnemyBuilding
 	enemy_building.position.y = get_viewport_rect().size.y
 	enemy_building.position.x = get_viewport_rect().size.x + x
 	main_layer.add_child(enemy_building)
 
 func _on_Plane_bomb_dropped(bomb_position: Vector2):
-	var bomb: Bomb = BombScene.instantiate()
+	var bomb: Bomb = BombScene.instantiate() as Bomb
 	bomb.position = bomb_position
 	main_layer.add_child(bomb)

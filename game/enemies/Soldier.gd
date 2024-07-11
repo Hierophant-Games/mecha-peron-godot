@@ -1,4 +1,4 @@
-extends Area2D
+extends Node2D
 
 class_name Soldier
 
@@ -9,30 +9,18 @@ const SHOOT_TIME: int = 6
 
 var shoot_timer: float = 0
 var hurting: bool = false
-var health: int = 100
 var dead: bool = false
 
 func _ready():
 	$Sprite2D.frame = 0
-	health = 100
 	shoot_timer = randi() % SHOOT_TIME #randomize start time for shooting
 
 func _process(delta: float):
 	if dead:
 		return
-	process_damage()
-	health_bar.update_health(float(health) / 100)
-	if health <= 0:
-		die()
 	
 	if $Sprite2D.is_visible_in_tree():
 		aim(delta)
-
-func process_damage():
-	for area in self.get_overlapping_areas():
-		if area is Laser:
-			health -= Constants.LASER_SOLDIER_DAMAGE
-			return
 
 func aim(delta):
 	shoot_timer += delta
@@ -46,8 +34,13 @@ func shoot():
 func reload():
 	$AnimationPlayer.play("reload")
 
+func on_health_depleted():
+	die()
+
 func die():
-	health = 0
+	if dead:
+		return
 	health_bar.hide()
+	$Area2D.queue_free()
 	dead = true
 	$AnimationPlayer.play("die")
