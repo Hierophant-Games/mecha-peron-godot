@@ -53,7 +53,8 @@ motion_scale = Vector2(1.5, 1)
 texture = ExtResource("5")
 script = ExtResource("6")
 
-[node name="HUD" parent="GUILayer" instance=ExtResource("8_w6202")]
+[node name="HUD" parent="GUILayer" node_paths=PackedStringArray("player") instance=ExtResource("8_w6202")]
+player = NodePath("../../Camera2D/ParallaxBackground/MainLayer/Peron")
 
 [node name="AIDirector" type="Node2D" parent="."]
 script = ExtResource("7")

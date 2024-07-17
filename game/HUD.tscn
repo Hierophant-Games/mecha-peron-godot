@@ -1,6 +1,7 @@
-[gd_scene load_steps=7 format=3 uid="uid://bugffpvydnq64"]
+[gd_scene load_steps=8 format=3 uid="uid://bugffpvydnq64"]
 
 [ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_5inra"]
+[ext_resource type="Script" path="res://game/HUD.gd" id="2_h2fe7"]
 [ext_resource type="Texture2D" uid="uid://hsbv770oofon" path="res://assets/fistMini.png" id="2_pwux1"]
 [ext_resource type="Texture2D" uid="uid://bocx6xtqw127r" path="res://assets/hudGauge.png" id="2_yuei8"]
 
@@ -29,6 +30,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_5inra")
+script = ExtResource("2_h2fe7")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2

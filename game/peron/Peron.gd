@@ -11,6 +11,8 @@ var blocked: bool = false
 var shooting_laser: bool = false
 var current_speed: float = 0
 
+var health: int = 100
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready():
@@ -85,7 +87,8 @@ func point_laser(pos: Vector2):
 	right_laser.rotation = clamp(right_laser.rotation, Constants.LASER_ROTATION_MIN, Constants.LASER_ROTATION_MAX)
 	left_laser.rotation = right_laser.rotation
 
-func damage():
+func damage(amount: int):
+	health = max(0, health - amount)
 	animation_player.play("damage")
 	await animation_player.animation_finished
 	resume()
