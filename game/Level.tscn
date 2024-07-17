@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ca4febxsgjyyh"]
+[gd_scene load_steps=10 format=3 uid="uid://ca4febxsgjyyh"]
 
 [ext_resource type="Script" path="res://game/Level.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c0d1h3xba2j4e" path="res://assets/cityscape.png" id="2"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://game/Cursor.gd" id="6"]
 [ext_resource type="Script" path="res://game/AIDirector.gd" id="7"]
 [ext_resource type="PackedScene" uid="uid://c57bmno58duvi" path="res://game/Foreground.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://bugffpvydnq64" path="res://game/HUD.tscn" id="8_w6202"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1")
@@ -51,6 +52,8 @@ motion_scale = Vector2(1.5, 1)
 [node name="Cursor" type="Sprite2D" parent="GUILayer"]
 texture = ExtResource("5")
 script = ExtResource("6")
+
+[node name="HUD" parent="GUILayer" instance=ExtResource("8_w6202")]
 
 [node name="AIDirector" type="Node2D" parent="."]
 script = ExtResource("7")
