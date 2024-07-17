@@ -16,6 +16,8 @@ var laser_charge: int = Constants.LASER_MAX_CHARGE
 var laser_recharge_accum: float = 0.0
 var laser_overheat: bool = false
 
+var fist_timer: float = 0.0
+
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 func _ready():
@@ -30,6 +32,8 @@ func setup_laser(new_laser: Laser, laser_position: Vector2):
 
 func _process(delta: float):
 	update_laser(delta)
+
+	fist_timer = max(0.0, fist_timer - delta)
 	
 	if animation_player.current_animation == "walk":
 		position.x += current_speed * delta
@@ -39,6 +43,9 @@ func _process(delta: float):
 func get_laser_percentage() -> int:
 	@warning_ignore("integer_division")
 	return laser_charge * 100 / Constants.LASER_MAX_CHARGE
+
+func get_fist_percentage() -> float:
+	return (Constants.FIST_RELOAD_TIME - fist_timer) * 100 / Constants.FIST_RELOAD_TIME
 
 func is_attacking() -> bool:
 	return shooting_laser \
@@ -79,13 +86,18 @@ func resume():
 	else:
 		idle()
 
+func can_use_fist() -> bool:
+	return fist_timer <= 0.0
+
 func attack_fist():
-	animation_player.play("attack_left_arm")
+	if can_use_fist():
+		animation_player.play("attack_left_arm")
 
 func launch_fist():
 	var fist = FistScene.instantiate() as Fist
 	fist.position = $FistStart.position
 	add_child(fist)
+	fist_timer = Constants.FIST_RELOAD_TIME
 
 func attack_arm():
 	animation_player.play("attack_right_arm")

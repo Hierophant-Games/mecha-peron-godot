@@ -54,12 +54,9 @@ func input():
 	if Input.is_action_just_pressed("attack_fist"):
 		peron.attack_fist()
 	if Input.is_action_just_pressed("attack_arm"):
-		attack_arm()
+		peron.attack_arm()
 	if mouse_pressed:
 		laser()
-
-func attack_arm():
-	peron.attack_arm()
 
 func laser():
 	peron.laser()
