@@ -12,6 +12,9 @@ var shooting_laser: bool = false
 var current_speed: float = 0
 
 var health: int = 100
+var laser_charge: int = Constants.LASER_MAX_CHARGE
+var laser_recharge_accum: float = 0.0
+var laser_overheat: bool = false
 
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
@@ -26,15 +29,38 @@ func setup_laser(new_laser: Laser, laser_position: Vector2):
 	new_laser.position = laser_position
 
 func _process(delta: float):
+	update_laser(delta)
+	
 	if animation_player.current_animation == "walk":
 		position.x += current_speed * delta
 	elif animation_player.current_animation == "idle" and !blocked:
 		animation_player.play("walk") # makes sure walk is resumed if it got stuck on idle
 
+func get_laser_percentage() -> int:
+	@warning_ignore("integer_division")
+	return laser_charge * 100 / Constants.LASER_MAX_CHARGE
+
 func is_attacking() -> bool:
 	return shooting_laser \
 		or animation_player.current_animation == "attack_left_arm" \
 		or animation_player.current_animation == "attack_right_arm"
+		
+func update_laser(delta: float) -> void:
+	if shooting_laser:
+		laser_recharge_accum = 0
+		laser_charge -= Constants.LASER_CHARGE_STEP
+		if laser_charge <= 0:
+			laser_charge = 0
+			laser_overheat = true
+			laser_off()
+	else:
+		if laser_overheat:
+			laser_recharge_accum += delta
+		if !laser_overheat or laser_recharge_accum > Constants.LASER_RECHARGE_DELAY:
+			laser_charge += Constants.LASER_RECHARGE_STEP
+			if laser_charge >= Constants.LASER_MAX_CHARGE:
+				laser_charge = Constants.LASER_MAX_CHARGE
+				laser_overheat = false
 
 func play_and_set_next(anim: String):
 	animation_player.play(anim)

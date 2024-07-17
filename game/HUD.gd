@@ -9,3 +9,4 @@ extends MarginContainer
 
 func _process(_delta: float) -> void:
 	health_bar.value = player.health
+	laser_bar.value = player.get_laser_percentage()
