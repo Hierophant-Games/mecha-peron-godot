@@ -1,17 +1,17 @@
 class_name Airplane
 extends Entity
 
-signal bomb_dropped
+## Emitted when the Airplane should drop a bomb
+signal drop_bomb
 
 @onready var width: int = $plane.texture.get_width() / $plane.hframes
 @onready var health_bar: HealthBar = $HealthBar as HealthBar
 
 var health: int = 100
-var hurting = false
-var falling = false
-var did_drop = false
+var hurting: bool = false
+var bomb_dropped: bool = false
 
-var player: Peron
+var target: Area2D
 
 # sin movement
 const SIN_FACTOR: float = 0.03
@@ -20,6 +20,7 @@ var sin_accum: float = 0.0
 var initial_y: float = 0
 
 func _ready():
+	assert(target, "Target should be set")
 	initial_y = 10 + randi() % 50
 
 func _process(delta: float):
@@ -30,17 +31,18 @@ func _process(delta: float):
 	if destroyed:
 		return
 	
-	if !did_drop:
-		drop_bomb()
+	if !bomb_dropped:
+		try_drop_bomb()
 
-func drop_bomb():
+func try_drop_bomb():
 	var origin_pos = $BombOrigin.global_position
-	var target_pos = player.global_position # TODO: point to the center of the character
+	var target_size = (target.shape_owner_get_shape(0, 0) as RectangleShape2D).size
+	var target_pos = target.global_position + Vector2(target_size.x, -target_size.y) / 2
 
 	# dy = 1/2*g*t^2
 	# t = v(dy/(1/2*g))
 	var time_to_hit_target = sqrt((target_pos.y - origin_pos.y) / (0.5 * Constants.GRAVITY))
 	var pos_x_to_hit = origin_pos.x + Constants.PLANE_SPEED * time_to_hit_target
 	if pos_x_to_hit < target_pos.x:
-		did_drop = true
-		bomb_dropped.emit(position + $BombOrigin.position)
+		bomb_dropped = true
+		drop_bomb.emit(position + $BombOrigin.position)

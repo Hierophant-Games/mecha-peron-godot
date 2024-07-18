@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://game/Cursor.gd" id="6"]
 [ext_resource type="Script" path="res://game/AIDirector.gd" id="7"]
 [ext_resource type="PackedScene" uid="uid://c57bmno58duvi" path="res://game/Foreground.tscn" id="8"]
-[ext_resource type="PackedScene" uid="uid://bugffpvydnq64" path="res://game/HUD.tscn" id="8_w6202"]
+[ext_resource type="PackedScene" path="res://game/HUD.tscn" id="8_w6202"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1")
