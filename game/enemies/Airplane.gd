@@ -17,7 +17,10 @@ var target: Area2D
 const SIN_FACTOR: float = 0.03
 const SIN_HEIGHT: float = 5.0
 var sin_accum: float = 0.0
-var initial_y: float = 0
+var initial_y: float = 0.0
+
+# fall movement
+var vel_y: float = 0.0
 
 func _ready():
 	assert(target, "Target should be set")
@@ -25,14 +28,19 @@ func _ready():
 
 func _process(delta: float):
 	position.x += Constants.PLANE_SPEED * delta
-	sin_accum = fmod(sin_accum + SIN_FACTOR, 2 * PI)
-	position.y = initial_y - SIN_HEIGHT * sin(sin_accum)
-
-	if destroyed:
-		return
 	
-	if !bomb_dropped:
-		try_drop_bomb()
+	if !destroyed:
+		# sinewave fly pattern
+		sin_accum = fmod(sin_accum + SIN_FACTOR, TAU)
+		position.y = initial_y - SIN_HEIGHT * sin(sin_accum)
+		
+		if !bomb_dropped:
+			try_drop_bomb()
+	else:
+		# free falling
+		vel_y += Constants.PLANE_GRAVITY * delta
+		position.y += vel_y * delta
+		rotation = rotate_toward(rotation, PI, delta * 0.25)
 
 func try_drop_bomb():
 	var origin_pos = $BombOrigin.global_position

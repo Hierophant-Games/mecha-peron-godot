@@ -23,6 +23,7 @@ extends Node2D
 
 @export var PLANE_SPEED: float = -120.0
 @export var PLANE_BOMB_DAMAGE: int = 5
+@export var PLANE_GRAVITY: float = 140.0
 
 # how many seconds waits since it's visible to release bomb
 @export var CANNON_ATTACK_DELAY: float = 3.0
