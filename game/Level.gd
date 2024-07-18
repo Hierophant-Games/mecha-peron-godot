@@ -84,8 +84,8 @@ func _on_AIDirector_enemy_needed(enemy_type, x):
 func spawn_plane(x: float):
 	var plane: Airplane = AirplaneScene.instantiate() as Airplane
 	plane.position.x = get_viewport_rect().size.x + x
-	plane.player = peron
-	plane.bomb_dropped.connect(_on_Plane_bomb_dropped)
+	plane.target = peron
+	plane.drop_bomb.connect(_on_plane_drop_bomb)
 	main_layer.add_child(plane)
 
 func spawn_building(x: float):
@@ -94,7 +94,7 @@ func spawn_building(x: float):
 	enemy_building.position.x = get_viewport_rect().size.x + x
 	main_layer.add_child(enemy_building)
 
-func _on_Plane_bomb_dropped(bomb_position: Vector2):
+func _on_plane_drop_bomb(bomb_position: Vector2):
 	var bomb: Bomb = BombScene.instantiate() as Bomb
 	bomb.position = bomb_position
 	main_layer.add_child(bomb)
