@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://d3dm12hq5hnyd"]
 
-[ext_resource type="Script" path="res://game/enemies/Rocket.gd" id="1_65qkd"]
+[ext_resource type="Script" path="res://game/enemies/Rocket.gd" id="1_ci3ib"]
 [ext_resource type="Texture2D" uid="uid://tmqtcnotb12s" path="res://assets/rocket.png" id="2_e7x76"]
 [ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3_r24yk"]
 [ext_resource type="Script" path="res://game/EnemyProjectile.gd" id="4_7sae6"]
@@ -9,23 +9,6 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghiyq"]
 size = Vector2(6, 4)
-
-[sub_resource type="Animation" id="Animation_eyvjw"]
-resource_name = "fly"
-length = 0.1667
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1666),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
 
 [sub_resource type="Animation" id="Animation_3o6wd"]
 resource_name = "destroy"
@@ -42,6 +25,23 @@ tracks/0/keys = {
 "values": [3, 4, 5, 6, 7, 8]
 }
 
+[sub_resource type="Animation" id="Animation_eyvjw"]
+resource_name = "fly"
+length = 0.3
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1666),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1f7rn"]
 _data = {
 "destroy": SubResource("Animation_3o6wd"),
@@ -49,19 +49,16 @@ _data = {
 }
 
 [node name="Rocket" type="Node2D"]
-script = ExtResource("1_65qkd")
+script = ExtResource("1_ci3ib")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(-0.5, 0)
 texture = ExtResource("2_e7x76")
 hframes = 9
-frame = 8
-metadata/_edit_group_ = true
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
 collision_mask = 64
-metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(-2, 0)
@@ -70,8 +67,6 @@ shape = SubResource("RectangleShape2D_ghiyq")
 [node name="HealthBar" parent="." instance=ExtResource("3_r24yk")]
 position = Vector2(-5, -4.5)
 scale = Vector2(0.3, 0.5)
-polygon = PackedVector2Array(0, 0, 20, 0, 20, 2, 9.73108, 2, 0, 2)
-metadata/_edit_group_ = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 root_node = NodePath("../Sprite2D")
@@ -89,6 +84,7 @@ area_2d = NodePath("../Area2D")
 script = ExtResource("5_0ljut")
 destroyable = NodePath("../EnemyProjectile")
 health_bar = NodePath("../HealthBar")
+laser_damage = 6
 
 [node name="AutoDeletable" type="Node" parent="."]
 script = ExtResource("6_gxcgm")

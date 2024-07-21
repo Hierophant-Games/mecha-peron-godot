@@ -3,11 +3,13 @@ extends Entity
 
 const SHOOT_TIME: int = 6
 
+const RocketScene = preload("res://game/enemies/Rocket.tscn")
 @onready var width: int = $Sprite2D.texture.get_width() / $Sprite2D.hframes
 @onready var health_bar: HealthBar = $HealthBar as HealthBar
 
 var shoot_timer: float = 0
 var hurting: bool = false
+var main_layer: WeakRef
 
 func _ready():
 	$Sprite2D.frame = 0
@@ -31,6 +33,11 @@ func shoot():
 	
 func reload():
 	$AnimationPlayer.play("reload")
+
+func spawn_rocket():
+	var rocket: Rocket = RocketScene.instantiate() as Rocket
+	main_layer.get_ref().add_child(rocket)
+	rocket.global_position = $RocketSpawnNode.global_position
 
 func on_health_depleted():
 	die()

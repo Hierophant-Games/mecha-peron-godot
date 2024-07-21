@@ -90,6 +90,7 @@ func spawn_plane(x: float):
 
 func spawn_building(x: float):
 	var enemy_building: EnemyBuilding = EnemyBuildingScene.instantiate() as EnemyBuilding
+	enemy_building.main_layer = weakref(self.main_layer) 
 	enemy_building.position.y = get_viewport_rect().size.y
 	enemy_building.position.x = get_viewport_rect().size.x + x
 	main_layer.add_child(enemy_building)

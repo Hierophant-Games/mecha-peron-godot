@@ -88,9 +88,12 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.5),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
+"args": [],
+"method": &"spawn_rocket"
+}, {
 "args": [],
 "method": &"reload"
 }]
@@ -133,3 +136,5 @@ width = 10
 script = ExtResource("4_71esg")
 health_bar = NodePath("../HealthBar")
 laser_damage = 3
+
+[node name="RocketSpawnNode" type="Node2D" parent="."]
