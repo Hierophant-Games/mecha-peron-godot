@@ -90,7 +90,7 @@ attack_arm={
 2d_physics/layer_4="Airplane"
 2d_physics/layer_5="EnemyBuilding"
 2d_physics/layer_6="FrontBuilding"
-2d_physics/layer_7="Bomb"
+2d_physics/layer_7="EnemyProjectile"
 
 [rendering]
 
