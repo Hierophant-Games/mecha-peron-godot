@@ -144,8 +144,7 @@ func anim_callback_arm_landed():
 		if building and building.monitorable:
 			building.destroy()
 
-func _on_Peron_area_entered(area: Area2D):
-	assert(area.owner is EnemyBuilding)
+func _on_Peron_area_entered(_area: Area2D):
 	blocked = true
 	idle()
 
