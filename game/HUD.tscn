@@ -48,7 +48,6 @@ tint_under = Color(0, 0, 0, 0.501961)
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
-theme = ExtResource("1_5inra")
 
 [node name="HealthBar" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -63,7 +62,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_5inra")
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -71,7 +69,6 @@ theme_override_constants/margin_bottom = 4
 
 [node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer/HealthBar/MarginContainer"]
 layout_mode = 2
-theme = ExtResource("1_5inra")
 theme_override_styles/background = SubResource("StyleBoxLine_x6xe5")
 theme_override_styles/fill = SubResource("StyleBoxLine_p2d20")
 value = 50.0
@@ -90,7 +87,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("1_5inra")
 theme_override_constants/margin_left = 4
 theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
@@ -98,7 +94,6 @@ theme_override_constants/margin_bottom = 4
 
 [node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer/LaserBar/MarginContainer"]
 layout_mode = 2
-theme = ExtResource("1_5inra")
 theme_override_styles/background = SubResource("StyleBoxLine_x6xe5")
 theme_override_styles/fill = SubResource("StyleBoxLine_dd6el")
 value = 50.0

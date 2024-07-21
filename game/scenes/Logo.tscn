@@ -1,0 +1,48 @@
+[gd_scene load_steps=5 format=3 uid="uid://b4pdyhfm41jkf"]
+
+[ext_resource type="Texture2D" uid="uid://cvr2lhhvhj581" path="res://assets/logo/hierophant_logo.png" id="1_h23h6"]
+[ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="2_eialb"]
+[ext_resource type="Script" path="res://game/scenes/Logo.gd" id="2_oshde"]
+[ext_resource type="PackedScene" uid="uid://d0u268u2tja7g" path="res://game/scenes/SceneFader.tscn" id="4_pm6re"]
+
+[node name="Logo" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_eialb")
+script = ExtResource("2_oshde")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_h23h6")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Hierophant Games"
+horizontal_alignment = 1
+
+[node name="SceneFader" parent="." instance=ExtResource("4_pm6re")]
+visible = false
+layout_mode = 1
+next_scene = "res://game/scenes/MainMenu.tscn"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
