@@ -33,5 +33,6 @@ const CANNON_BOMB_DAMAGE: int = 10
 
 const SOLDIER_BULLET_SPEED: float = -50.0
 const SOLDIER_BULLET_DAMAGE: int = 2
+const SOLDIER_SHOOT_TIME: float = 6.0 # seconds
 
 const DELETION_THRESHOLD_MODIFIER: Vector2 = Vector2(2, 2)

@@ -1,8 +1,6 @@
 class_name Soldier
 extends Entity
 
-const SHOOT_TIME: int = 6
-
 const RocketScene = preload("res://game/enemies/Rocket.tscn")
 @onready var width: int = $Sprite2D.texture.get_width() / $Sprite2D.hframes
 @onready var health_bar: HealthBar = $HealthBar as HealthBar
@@ -13,7 +11,7 @@ var main_layer: WeakRef
 
 func _ready():
 	$Sprite2D.frame = 0
-	shoot_timer = randi() % SHOOT_TIME #randomize start time for shooting
+	shoot_timer = randf() * Constants.SOLDIER_SHOOT_TIME #randomize start time for shooting
 
 func _process(delta: float):
 	if destroyed:
@@ -24,8 +22,8 @@ func _process(delta: float):
 
 func aim(delta):
 	shoot_timer += delta
-	if shoot_timer >= SHOOT_TIME:
-		shoot_timer -= SHOOT_TIME
+	if shoot_timer >= Constants.SOLDIER_SHOOT_TIME:
+		shoot_timer -= Constants.SOLDIER_SHOOT_TIME
 		$AnimationPlayer.play("aim")
 	
 func shoot():
