@@ -90,14 +90,13 @@ height = 1
 [node name="AutoDeletable" type="Node" parent="."]
 script = ExtResource("5_i0oyr")
 
-[node name="EnemyProjectile" type="Node" parent="." node_paths=PackedStringArray("animation_player", "area_2d")]
-script = ExtResource("6_fa8v8")
-velocity = Vector2(-120, 0)
-animation_player = NodePath("../AnimationPlayer")
-area_2d = NodePath("../Area2D")
-
 [node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("destroyable", "health_bar")]
 script = ExtResource("7_1golj")
 destroyable = NodePath("../EnemyProjectile")
 health_bar = NodePath("../HealthBar")
-laser_damage = 6
+laser_damage = 5
+
+[node name="EnemyProjectile" type="Node" parent="." node_paths=PackedStringArray("animation_player", "area_2d")]
+script = ExtResource("6_fa8v8")
+animation_player = NodePath("../AnimationPlayer")
+area_2d = NodePath("../Area2D")

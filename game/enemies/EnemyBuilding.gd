@@ -6,6 +6,7 @@ const SoldierScene = preload("res://game/enemies/Soldier.tscn")
 const MIN_SOLDIERS = 8
 const MAX_ADDITIONAL_SOLDIERS = 8
 
+var main_layer: WeakRef
 var soldiers: Array[Soldier] = []
 
 func _enter_tree():
@@ -17,6 +18,7 @@ func populate():
 	
 	for node in get_random_spawn_points(soldier_count):
 		var soldier: Soldier = SoldierScene.instantiate() as Soldier
+		soldier.main_layer = main_layer
 		node.add_child(soldier)
 		soldiers.append(soldier)
 
