@@ -16,7 +16,9 @@ grow_vertical = 2
 theme = ExtResource("2_hh01c")
 script = ExtResource("2_i4i2b")
 play_scene = "res://game/scenes/Level.tscn"
+options_scene = "res://game/scenes/Options.tscn"
 credits_scene = "res://game/scenes/Credits.tscn"
+help_scene = "res://game/scenes/Help.tscn"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0

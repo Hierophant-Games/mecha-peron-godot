@@ -1,6 +1,8 @@
-[gd_resource type="Theme" load_steps=7 format=3 uid="uid://ct3h1jpn888ka"]
+[gd_resource type="Theme" load_steps=12 format=3 uid="uid://ct3h1jpn888ka"]
 
 [ext_resource type="FontFile" uid="uid://bmu8ajj5rs807" path="res://assets/fonts/nokiafc22.ttf" id="1_ocf5s"]
+[ext_resource type="Texture2D" uid="uid://cqvknu0vbfhhj" path="res://assets/grabber.png" id="1_vitdt"]
+[ext_resource type="Texture2D" uid="uid://b3oary3qxhtn1" path="res://assets/grabber_highlight.png" id="2_n8di6"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d5dyy"]
 
@@ -11,6 +13,16 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nifl0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eubig"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4xj6o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8fptw"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_26rne"]
+color = Color(0.8, 0.8, 0.8, 1)
+grow_begin = 0.0
+grow_end = 0.0
+thickness = 10
 
 [resource]
 default_font = ExtResource("1_ocf5s")
@@ -25,6 +37,13 @@ Button/styles/focus = SubResource("StyleBoxEmpty_ddm7g")
 Button/styles/hover = SubResource("StyleBoxEmpty_1q448")
 Button/styles/normal = SubResource("StyleBoxEmpty_nifl0")
 Button/styles/pressed = SubResource("StyleBoxEmpty_eubig")
+HSlider/icons/grabber = ExtResource("1_vitdt")
+HSlider/icons/grabber_disabled = null
+HSlider/icons/grabber_highlight = ExtResource("2_n8di6")
+HSlider/icons/tick = null
+HSlider/styles/grabber_area = SubResource("StyleBoxEmpty_4xj6o")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxEmpty_8fptw")
+HSlider/styles/slider = SubResource("StyleBoxLine_26rne")
 Label/constants/line_spacing = 0
 MarginContainer/constants/margin_bottom = 8
 MarginContainer/constants/margin_left = 10
