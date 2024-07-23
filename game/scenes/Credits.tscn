@@ -1,0 +1,105 @@
+[gd_scene load_steps=6 format=3 uid="uid://cguh6gahjklue"]
+
+[ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_eyxyp"]
+[ext_resource type="Script" path="res://game/scenes/Credits.gd" id="2_u6g58"]
+[ext_resource type="Texture2D" uid="uid://dds11eoi28xcv" path="res://assets/main_menu/bg.png" id="3_uu71t"]
+[ext_resource type="PackedScene" uid="uid://d0u268u2tja7g" path="res://game/scenes/SceneFader.tscn" id="4_6tx0f"]
+[ext_resource type="Script" path="res://game/scenes/ButtonList.gd" id="4_75kry"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_eyxyp")
+script = ExtResource("2_u6g58")
+back_scene = "res://game/scenes/MainMenu.tscn"
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_uu71t")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 3
+
+[node name="CreditsText" type="Label" parent="MarginContainer/ScrollContainer"]
+custom_minimum_size = Vector2(240, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 8
+text = "GODOT PORT BY
+
+Santiago Martín Vilar
+
+Nicolás Viegas Palermo
+
+
+Additional support from
+Lisandro \"NoidEXE\" Lorea
+
+
+
+
+ORIGINAL CREDITS
+
+BASED ON THE ORIGINAL IDEA BY Franco Stagni: flickr.com/photos/francostagni/3413073768
+
+
+HIEROPHANT GAMES
+
+Santiago Martín Vilar: code, music, sfx, design
+
+Nicolás Viegas Palermo: pixel art, design, code
+
+Fernando Martínez Herrera: code, music, sfx, design
+
+
+VOICE TALENT: Maximiliano Carrión
+
+
+\"Los muchachos peronistas\" (8-bit remix) by Santiago Martín Vilar
+
+\"Los muchachos peronistas\" (metal remix) by Fernando Martínez Herrera
+
+
+Thanks to all of you who sent feedback, friends, girlfriends, enemies, unknown people, etc.
+
+THANK YOU ADAM ATOMIC FOR THIS AWESOME FLIXEL
+
+WE <3 JAPAN, we're not making any joke with the latest events.
+
+
+This game was made for the ADVA's CODEAR \"Perón\" compo. ADVA is the Argentine Association of Videogame Developers. Thanks for playing!
+
+It was our first completed project as a team and we're very happy with the outcome. Viva Perón!"
+autowrap_mode = 2
+
+[node name="ButtonList" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+script = ExtResource("4_75kry")
+
+[node name="BackButton" type="Button" parent="MarginContainer/ButtonList"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Back"
+
+[node name="SceneFader" parent="." instance=ExtResource("4_6tx0f")]
+layout_mode = 1
+
+[connection signal="pressed" from="MarginContainer/ButtonList/BackButton" to="." method="_on_back_button_pressed"]
