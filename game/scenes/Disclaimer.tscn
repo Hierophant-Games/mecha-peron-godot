@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbc2gy2b3mes1"]
+
+[ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_y8p3w"]
+[ext_resource type="PackedScene" uid="uid://d0u268u2tja7g" path="res://game/scenes/SceneFader.tscn" id="2_5f2r5"]
+[ext_resource type="Script" path="res://game/scenes/Disclaimer.gd" id="2_kiqr4"]
+
+[node name="Disclaimer" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_y8p3w")
+script = ExtResource("2_kiqr4")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Disclaimer" type="Label" parent="CenterContainer"]
+custom_minimum_size = Vector2(320, 0)
+layout_mode = 2
+text = "Disclaimer:
+
+The events and characters depicted in this videogame are completely ficticious. Any similarity to actual people, living or dead, is purely coincidental."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -81.0
+offset_top = -36.0
+offset_right = 81.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="OfCourse" type="Label" parent="MarginContainer"]
+layout_mode = 2
+text = "Of course it is!"
+horizontal_alignment = 1
+
+[node name="SceneFader" parent="." instance=ExtResource("2_5f2r5")]
+visible = false
+layout_mode = 1
+next_scene = "res://game/scenes/MainMenu.tscn"
+
+[node name="DisclaimerTimer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[node name="TransitionTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="DisclaimerTimer" to="." method="_on_disclaimer_timer_timeout"]
+[connection signal="timeout" from="TransitionTimer" to="." method="_on_transition_timer_timeout"]

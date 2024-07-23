@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://dxq0rh1ltqjkq"]
+[gd_scene load_steps=6 format=3 uid="uid://dxq0rh1ltqjkq"]
 
 [ext_resource type="Texture2D" uid="uid://dds11eoi28xcv" path="res://assets/main_menu/bg.png" id="1_gjeu4"]
 [ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="2_hh01c"]
 [ext_resource type="Script" path="res://game/scenes/MainMenu.gd" id="2_i4i2b"]
 [ext_resource type="PackedScene" uid="uid://d0u268u2tja7g" path="res://game/scenes/SceneFader.tscn" id="4_7jkku"]
+[ext_resource type="Script" path="res://game/scenes/ButtonList.gd" id="4_mwlkc"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -15,6 +16,7 @@ grow_vertical = 2
 theme = ExtResource("2_hh01c")
 script = ExtResource("2_i4i2b")
 play_scene = "res://game/scenes/Level.tscn"
+credits_scene = "res://game/scenes/Credits.tscn"
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 0
@@ -38,28 +40,29 @@ size_flags_vertical = 0
 text = "The Rise and Fall of Mecha-Perón"
 autowrap_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="ButtonList" type="VBoxContainer" parent="MarginContainer"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
+script = ExtResource("4_mwlkc")
 
-[node name="PlayButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="MarginContainer/ButtonList"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../HelpButton")
 text = "Viva Mecha-Perón!"
 alignment = 2
 
-[node name="OptionsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="MarginContainer/ButtonList"]
 layout_mode = 2
 text = "Configure"
 alignment = 2
 
-[node name="CreditsButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="CreditsButton" type="Button" parent="MarginContainer/ButtonList"]
 layout_mode = 2
 text = "Credits"
 alignment = 2
 
-[node name="HelpButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="HelpButton" type="Button" parent="MarginContainer/ButtonList"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../PlayButton")
 text = "What the f*** is this all about?"
@@ -69,7 +72,7 @@ alignment = 2
 visible = false
 layout_mode = 1
 
-[connection signal="pressed" from="MarginContainer/VBoxContainer/PlayButton" to="." method="_on_play_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/OptionsButton" to="." method="_on_options_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/CreditsButton" to="." method="_on_credits_button_pressed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/HelpButton" to="." method="_on_help_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ButtonList/PlayButton" to="." method="_on_play_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ButtonList/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ButtonList/CreditsButton" to="." method="_on_credits_button_pressed"]
+[connection signal="pressed" from="MarginContainer/ButtonList/HelpButton" to="." method="_on_help_button_pressed"]
