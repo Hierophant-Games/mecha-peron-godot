@@ -100,6 +100,7 @@ size_flags_horizontal = 8
 text = "Back"
 
 [node name="SceneFader" parent="." instance=ExtResource("4_6tx0f")]
+visible = false
 layout_mode = 1
 
 [connection signal="pressed" from="MarginContainer/ButtonList/BackButton" to="." method="_on_back_button_pressed"]
