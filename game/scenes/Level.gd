@@ -14,6 +14,10 @@ var intro_state = PRE_INTRO
 @onready var peron: Peron = $Camera2D/ParallaxBackground/MainLayer/Peron as Peron
 @onready var camera = $Camera2D
 
+func _ready():
+	foreground.target = peron
+	foreground.main_layer = weakref(self.main_layer)
+
 func _process(_delta: float):
 	update_intro()
 	update_foreground()

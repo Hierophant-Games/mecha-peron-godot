@@ -1,7 +1,10 @@
 class_name Cannon
 extends Entity
 
+var CannonBombScene:= preload("res://game/enemies/CannonBomb.tscn")
 var attack_timer: float = 0
+var main_layer: WeakRef
+var target: Area2D
 
 func _ready():
 	$CannonSprite.show()
@@ -27,6 +30,13 @@ func _process(_delta):
 		$AnimationPlayer.play(prefix + "_top_left")
 	else:
 		$AnimationPlayer.play(prefix + "_top")
+
+func spawn_bomb():
+	var bomb: CannonBomb = CannonBombScene.instantiate() as CannonBomb
+	bomb.target = target
+	main_layer.get_ref().add_child(bomb)
+	bomb.global_position = $BombSpawnNode.global_position
+	bomb.fly()
 
 func destroy():
 	destroyed = true

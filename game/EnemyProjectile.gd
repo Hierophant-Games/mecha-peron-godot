@@ -16,6 +16,6 @@ func _process(delta):
 	owner.position += velocity * delta
 
 func _on_area_entered(area):
-	if area.owner is Peron:
+	if area.owner.has_method("damage"):
 		area.owner.damage(damage)
 	destroy()
