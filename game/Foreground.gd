@@ -3,10 +3,14 @@ extends Node2D
 
 var FrontBuildingScene = preload("res://game/FrontBuilding.tscn")
 
+var main_layer: WeakRef
+var target: Area2D
+
 @onready var next_building_spawn_pos_x = random_offset()
-var should_spawn_cannon = false
 @export var building_textures: Array[Texture2D]
+
 var last_texture_path = ""
+var should_spawn_cannon = false
 
 func update_buildings(screen_right):
 	while next_building_spawn_pos_x < screen_right:
@@ -19,7 +23,7 @@ func update_buildings(screen_right):
 		last_texture_path = texture.resource_path
 		
 		# setup building
-		new_building.setup(texture, should_spawn_cannon)
+		new_building.setup(texture, should_spawn_cannon, target, main_layer)
 		
 		# if spawning a cannon, we don't need to do so for a while
 		if should_spawn_cannon:

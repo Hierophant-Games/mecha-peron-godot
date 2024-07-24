@@ -1,0 +1,103 @@
+[gd_scene load_steps=11 format=3 uid="uid://l1qkrjpipmia"]
+
+[ext_resource type="Script" path="res://game/enemies/CannonBomb.gd" id="1_fu5bi"]
+[ext_resource type="Texture2D" uid="uid://pqhd2lo56vg8" path="res://assets/cannonBomb.png" id="2_ukl0k"]
+[ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="2_wlxlv"]
+[ext_resource type="Texture2D" uid="uid://d0hiemg3b3jin" path="res://assets/explosion.png" id="3_d6ebd"]
+[ext_resource type="Script" path="res://game/EnemyProjectile.gd" id="3_pf3mo"]
+[ext_resource type="Script" path="res://game/core/Damageable.gd" id="4_yn3pr"]
+[ext_resource type="Script" path="res://game/core/AutoDeletable.gd" id="5_yybm5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i4flo"]
+size = Vector2(18.4615, 19)
+
+[sub_resource type="Animation" id="Animation_5p5wc"]
+resource_name = "destroy"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ExplosionSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.04, 0.08, 0.12, 0.16, 0.2, 0.24, 0.28, 0.32, 0.36, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 8, 9, 10, 11]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ExplosionSprite:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xjdqy"]
+_data = {
+"destroy": SubResource("Animation_5p5wc")
+}
+
+[node name="CannonBomb" type="Node2D"]
+script = ExtResource("1_fu5bi")
+
+[node name="ExplosionSprite" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_d6ebd")
+hframes = 6
+vframes = 2
+metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ukl0k")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(-6, -12)
+scale = Vector2(0.26, 0.25)
+collision_layer = 2
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(21.5385, 46.5)
+shape = SubResource("RectangleShape2D_i4flo")
+
+[node name="HealthBar" parent="." instance=ExtResource("2_wlxlv")]
+position = Vector2(-3, -5)
+scale = Vector2(0.25, 0.5)
+polygon = PackedVector2Array(0, 0, 20, 0, 20, 0.992402, 20, 2, 9.96875, 2, 0, 2)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xjdqy")
+}
+
+[node name="EnemyProjectile" type="Node" parent="." node_paths=PackedStringArray("animation_player", "area_2d")]
+script = ExtResource("3_pf3mo")
+gravity = 0.0
+animation_player = NodePath("../AnimationPlayer")
+area_2d = NodePath("../Area2D")
+
+[node name="Damageable" type="Node" parent="." node_paths=PackedStringArray("destroyable", "health_bar")]
+script = ExtResource("4_yn3pr")
+destroyable = NodePath("../EnemyProjectile")
+health_bar = NodePath("../HealthBar")
+
+[node name="AutoDeletable" type="Node" parent="."]
+script = ExtResource("5_yybm5")
