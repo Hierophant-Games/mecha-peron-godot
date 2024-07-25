@@ -4,6 +4,7 @@ extends Entity
 const BombScene = preload("res://game/enemies/Bomb.tscn")
 
 @onready var main_layer := get_tree().current_scene.main_layer as Node
+@onready var target := get_tree().current_scene.peron as Area2D
 @onready var width: int = $plane.texture.get_width() / $plane.hframes
 @onready var health_bar := $HealthBar as HealthBar
 @onready var bomb_origin := $BombOrigin
@@ -12,20 +13,14 @@ var health := 100
 var hurting := false
 var bomb_dropped := false
 
-var target: Area2D
-
 # sin movement
 const SIN_FACTOR := 0.03
 const SIN_HEIGHT := 5.0
 var sin_accum := 0.0
-var initial_y := 0.0
+var initial_y := 10 + randi() % 50
 
 # fall movement
 var vel_y := 0.0
-
-func _ready():
-	target = get_tree().current_scene.peron
-	initial_y = 10 + randi() % 50
 
 func _process(delta: float):
 	position.x += Constants.PLANE_SPEED * delta

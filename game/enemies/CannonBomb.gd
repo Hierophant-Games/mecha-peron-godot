@@ -1,10 +1,7 @@
 class_name CannonBomb
 extends Entity
 
-var target: Area2D
-
-func _ready():
-	target = get_tree().current_scene.peron
+@onready var target := get_tree().current_scene.peron as Area2D
 
 func fly():
 	var projectile := $EnemyProjectile as EnemyProjectile
