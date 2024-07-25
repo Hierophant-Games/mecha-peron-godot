@@ -87,7 +87,6 @@ func _on_AIDirector_enemy_needed(enemy_type, x):
 func spawn_plane(x: float):
 	var plane: Airplane = AirplaneScene.instantiate() as Airplane
 	plane.position.x = get_viewport_rect().size.x + x
-	plane.target = peron
 	main_layer.add_child(plane)
 
 func spawn_building(x: float):

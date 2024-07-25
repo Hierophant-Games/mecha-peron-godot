@@ -14,16 +14,16 @@ var bomb_dropped := false
 var target: Area2D
 
 # sin movement
-const SIN_FACTOR: float = 0.03
-const SIN_HEIGHT: float = 5.0
-var sin_accum: float = 0.0
-var initial_y: float = 0.0
+const SIN_FACTOR := 0.03
+const SIN_HEIGHT := 5.0
+var sin_accum := 0.0
+var initial_y := 0.0
 
 # fall movement
-var vel_y: float = 0.0
+var vel_y := 0.0
 
 func _ready():
-	assert(target, "Target should be set")
+	target = get_tree().current_scene.peron
 	initial_y = 10 + randi() % 50
 
 func _process(delta: float):
