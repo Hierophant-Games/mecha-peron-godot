@@ -14,6 +14,7 @@ signal health_depleted
 			health_depleted.emit()
 
 func _ready():
+	assert(laser_damage > 0, "Laser Damage should be set and positive")
 	if destroyable:
 		health_depleted.connect(destroyable.destroy)
 

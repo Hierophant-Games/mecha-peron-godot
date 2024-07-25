@@ -97,6 +97,7 @@ area_2d = NodePath("../Area2D")
 script = ExtResource("4_yn3pr")
 destroyable = NodePath("../EnemyProjectile")
 health_bar = NodePath("../HealthBar")
+laser_damage = 4
 
 [node name="AutoDeletable" type="Node" parent="."]
 script = ExtResource("5_yybm5")
