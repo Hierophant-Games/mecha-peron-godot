@@ -3,6 +3,7 @@ extends Entity
 
 const BombScene = preload("res://game/enemies/Bomb.tscn")
 
+@onready var main_layer := get_tree().current_scene.main_layer as Node
 @onready var width: int = $plane.texture.get_width() / $plane.hframes
 @onready var health_bar := $HealthBar as HealthBar
 @onready var bomb_origin := $BombOrigin
@@ -58,5 +59,4 @@ func try_drop_bomb():
 func spawn_bomb(bomb_position: Vector2):
 	var bomb := BombScene.instantiate() as Bomb
 	bomb.position = bomb_position
-	var main_layer := get_tree().current_scene.main_layer as Node
 	main_layer.add_child(bomb)

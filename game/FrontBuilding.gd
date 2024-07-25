@@ -8,7 +8,7 @@ var width: int
 @onready var collision: CollisionShape2D = $CollisionShape2D
 var cannon: Cannon = null
 
-func setup(texture: Texture2D, should_spawn_cannon: bool, target: Area2D, main_layer: WeakRef):
+func setup(texture: Texture2D, should_spawn_cannon: bool):
 	sprite.texture = texture
 	
 	@warning_ignore("integer_division")
@@ -23,8 +23,6 @@ func setup(texture: Texture2D, should_spawn_cannon: bool, target: Area2D, main_l
 	
 	if should_spawn_cannon:
 		cannon = CannonScene.instantiate()
-		cannon.main_layer = main_layer
-		cannon.target = target
 		add_child(cannon)
 		cannon.position.y = sprite.position.y
 

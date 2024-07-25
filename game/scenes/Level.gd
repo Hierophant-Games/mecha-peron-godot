@@ -13,10 +13,6 @@ var intro_state := PRE_INTRO
 @onready var peron := $Camera2D/ParallaxBackground/MainLayer/Peron as Peron
 @onready var camera := $Camera2D
 
-func _ready():
-	foreground.target = peron
-	foreground.main_layer = weakref(self.main_layer)
-
 func _process(_delta: float):
 	update_intro()
 	update_foreground()
@@ -91,7 +87,6 @@ func spawn_plane(x: float):
 
 func spawn_building(x: float):
 	var enemy_building: EnemyBuilding = EnemyBuildingScene.instantiate() as EnemyBuilding
-	enemy_building.main_layer = weakref(self.main_layer) 
 	enemy_building.position.y = get_viewport_rect().size.y
 	enemy_building.position.x = get_viewport_rect().size.x + x
 	main_layer.add_child(enemy_building)
