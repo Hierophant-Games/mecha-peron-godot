@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://game/core/AutoDeletable.gd" id="5_yybm5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4flo"]
-size = Vector2(18.4615, 19)
+size = Vector2(5, 5)
 
 [sub_resource type="Animation" id="Animation_5p5wc"]
 resource_name = "destroy"
@@ -69,18 +69,18 @@ metadata/_edit_lock_ = true
 texture = ExtResource("2_ukl0k")
 
 [node name="Area2D" type="Area2D" parent="."]
-position = Vector2(-6, -12)
-scale = Vector2(0.26, 0.25)
 collision_layer = 2
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(21.5385, 46.5)
+position = Vector2(-1, -1)
 shape = SubResource("RectangleShape2D_i4flo")
 
 [node name="HealthBar" parent="." instance=ExtResource("2_wlxlv")]
 position = Vector2(-3, -5)
-scale = Vector2(0.25, 0.5)
+polygon = PackedVector2Array(0, 0, 5, 0, 5, 1, 0, 1)
+width = 5
+height = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
