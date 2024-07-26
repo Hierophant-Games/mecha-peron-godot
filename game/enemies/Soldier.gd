@@ -1,13 +1,13 @@
 class_name Soldier
 extends Entity
 
-const RocketScene = preload("res://game/enemies/Rocket.tscn")
-@onready var width: int = $Sprite2D.texture.get_width() / $Sprite2D.hframes
-@onready var health_bar: HealthBar = $HealthBar as HealthBar
+const RocketScene := preload("res://game/enemies/Rocket.tscn")
 
-var shoot_timer: float = 0
-var hurting: bool = false
-var main_layer: WeakRef
+@onready var width: int = $Sprite2D.texture.get_width() / $Sprite2D.hframes
+@onready var health_bar := $HealthBar as HealthBar
+@onready var main_layer := get_tree().current_scene.main_layer as Node
+
+var shoot_timer := 0.0
 
 func _ready():
 	$Sprite2D.frame = 0
@@ -20,7 +20,7 @@ func _process(delta: float):
 	if $Sprite2D.is_visible_in_tree():
 		aim(delta)
 
-func aim(delta):
+func aim(delta: float):
 	shoot_timer += delta
 	if shoot_timer >= Constants.SOLDIER_SHOOT_TIME:
 		shoot_timer -= Constants.SOLDIER_SHOOT_TIME
@@ -33,8 +33,8 @@ func reload():
 	$AnimationPlayer.play("reload")
 
 func spawn_rocket():
-	var rocket: Rocket = RocketScene.instantiate() as Rocket
-	main_layer.get_ref().add_child(rocket)
+	var rocket := RocketScene.instantiate() as Rocket
+	main_layer.add_child(rocket)
 	rocket.global_position = $RocketSpawnNode.global_position
 
 func on_health_depleted():

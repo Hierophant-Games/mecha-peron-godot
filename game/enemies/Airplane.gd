@@ -1,30 +1,26 @@
 class_name Airplane
 extends Entity
 
-## Emitted when the Airplane should drop a bomb
-signal drop_bomb
+const BombScene = preload("res://game/enemies/Bomb.tscn")
 
+@onready var main_layer := get_tree().current_scene.main_layer as Node
+@onready var target := get_tree().current_scene.peron as Area2D
 @onready var width: int = $plane.texture.get_width() / $plane.hframes
-@onready var health_bar: HealthBar = $HealthBar as HealthBar
+@onready var health_bar := $HealthBar as HealthBar
+@onready var bomb_origin := $BombOrigin
 
-var health: int = 100
-var hurting: bool = false
-var bomb_dropped: bool = false
-
-var target: Area2D
+var health := 100
+var hurting := false
+var bomb_dropped := false
 
 # sin movement
-const SIN_FACTOR: float = 0.03
-const SIN_HEIGHT: float = 5.0
-var sin_accum: float = 0.0
-var initial_y: float = 0.0
+const SIN_FACTOR := 0.03
+const SIN_HEIGHT := 5.0
+var sin_accum := 0.0
+var initial_y := 10 + randi() % 50
 
 # fall movement
-var vel_y: float = 0.0
-
-func _ready():
-	assert(target, "Target should be set")
-	initial_y = 10 + randi() % 50
+var vel_y := 0.0
 
 func _process(delta: float):
 	position.x += Constants.PLANE_SPEED * delta
@@ -43,7 +39,7 @@ func _process(delta: float):
 		rotation = rotate_toward(rotation, PI, delta * 0.25)
 
 func try_drop_bomb():
-	var origin_pos = $BombOrigin.global_position
+	var origin_pos = bomb_origin.global_position
 	var target_size = (target.shape_owner_get_shape(0, 0) as RectangleShape2D).size
 	var target_pos = target.global_position + Vector2(target_size.x, -target_size.y) / 2
 
@@ -53,4 +49,9 @@ func try_drop_bomb():
 	var pos_x_to_hit = origin_pos.x + Constants.PLANE_SPEED * time_to_hit_target
 	if pos_x_to_hit < target_pos.x:
 		bomb_dropped = true
-		drop_bomb.emit(position + $BombOrigin.position)
+		spawn_bomb(bomb_origin.position + position)
+
+func spawn_bomb(bomb_position: Vector2):
+	var bomb := BombScene.instantiate() as Bomb
+	bomb.position = bomb_position
+	main_layer.add_child(bomb)
