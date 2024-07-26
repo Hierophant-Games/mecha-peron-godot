@@ -5,6 +5,7 @@ extends ColorRect
 
 @onready var anim_player := $AnimationPlayer as AnimationPlayer
 
+var fading := false
 static var didnt_fade := false
 
 func _ready() -> void:
@@ -12,7 +13,10 @@ func _ready() -> void:
 	anim_player.play_backwards("fade")
 
 func transition_to(_next_scene := next_scene, fade := true) -> void:
+	if fading:
+		return
 	if fade:
+		fading = true
 		show()
 		anim_player.play("fade")
 		await anim_player.animation_finished
