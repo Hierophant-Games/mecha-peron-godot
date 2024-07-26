@@ -6,6 +6,7 @@ extends Control
 @export_file("*.tscn") var help_scene: String
 
 func _on_play_button_pressed():
+	VFX.flash(Color.WHITE, 1.0)
 	$SceneFader.transition_to(play_scene)
 
 func _on_options_button_pressed():

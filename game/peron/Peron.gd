@@ -107,6 +107,7 @@ func laser():
 	animation_player.play("laser")
 	left_laser.on()
 	right_laser.on()
+	VFX.flash(Color(Color.WHITE, 0.4), 0.5)
 
 func laser_reverse():
 	shooting_laser = false
