@@ -1,11 +1,11 @@
 class_name FrontBuilding
 extends Area2D
 
-var CannonScene = preload("res://game/enemies/Cannon.tscn")
+var CannonScene := preload("res://game/enemies/Cannon.tscn")
 
 var width: int
-@onready var sprite: Sprite2D = $Sprite2D
-@onready var collision: CollisionShape2D = $CollisionShape2D
+@onready var sprite := $Sprite2D as Sprite2D
+@onready var collision := $CollisionShape2D as CollisionShape2D
 var cannon: Cannon = null
 
 func setup(texture: Texture2D, should_spawn_cannon: bool):
@@ -27,6 +27,7 @@ func setup(texture: Texture2D, should_spawn_cannon: bool):
 		cannon.position.y = sprite.position.y
 
 func destroy():
+	VFX.shake(0.01)
 	monitorable = false
 	if cannon != null:
 		cannon.destroy()

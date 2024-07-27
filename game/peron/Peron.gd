@@ -38,7 +38,7 @@ func _process(delta: float):
 	if animation_player.current_animation == "walk":
 		position.x += current_speed * delta
 	elif animation_player.current_animation == "idle" and !blocked:
-		animation_player.play("walk") # makes sure walk is resumed if it got stuck on idle
+		walk()
 
 func get_laser_percentage() -> int:
 	@warning_ignore("integer_division")
@@ -75,9 +75,11 @@ func play_and_set_next(anim: String):
 	animation_player.animation_set_next("attack_right_arm", anim)
 
 func walk():
+	$StepTimer.start()
 	play_and_set_next("walk")
 
 func idle():
+	$StepTimer.stop()
 	play_and_set_next("idle")
 
 func resume():
@@ -103,10 +105,15 @@ func attack_arm():
 	animation_player.play("attack_right_arm")
 
 func laser():
+	if laser_overheat:
+		laser_off()
+		return
+	
 	shooting_laser = true
 	animation_player.play("laser")
 	left_laser.on()
 	right_laser.on()
+	VFX.flash(Color(Color.WHITE, 0.4), 0.5)
 
 func laser_reverse():
 	shooting_laser = false
@@ -118,7 +125,11 @@ func laser_reverse():
 
 func laser_off():
 	shooting_laser = false
+	left_laser.off()
+	right_laser.off()
 	animation_player.play("laser_off")
+	await animation_player.animation_finished
+	resume()
 
 func point_laser(pos: Vector2):
 	right_laser.look_at(pos)
@@ -151,3 +162,6 @@ func _on_Peron_area_entered(_area: Area2D):
 func _on_Peron_area_exited(_area: Area2D):
 	blocked = false
 	resume()
+
+func _on_step_timer_timeout() -> void:
+	VFX.shake(0.01, 0.2)
