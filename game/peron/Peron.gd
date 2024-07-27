@@ -105,6 +105,10 @@ func attack_arm():
 	animation_player.play("attack_right_arm")
 
 func laser():
+	if laser_overheat:
+		laser_off()
+		return
+	
 	shooting_laser = true
 	animation_player.play("laser")
 	left_laser.on()
@@ -121,7 +125,11 @@ func laser_reverse():
 
 func laser_off():
 	shooting_laser = false
+	left_laser.off()
+	right_laser.off()
 	animation_player.play("laser_off")
+	await animation_player.animation_finished
+	resume()
 
 func point_laser(pos: Vector2):
 	right_laser.look_at(pos)
