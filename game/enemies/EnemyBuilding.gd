@@ -26,5 +26,6 @@ func get_random_spawn_points(count) -> Array[Node]:
 	return spawn_points.slice(0, count-1)
 
 func on_destroy_invoked() -> void:
+	VFX.shake(0.01, 10)
 	for soldier in soldiers:
 		soldier.die()
