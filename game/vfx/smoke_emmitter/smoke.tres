@@ -1,0 +1,8 @@
+[gd_resource type="CanvasItemMaterial" format=3 uid="uid://cgkc3cbvyafa8"]
+
+[resource]
+resource_name = "smoke"
+particles_animation = true
+particles_anim_h_frames = 7
+particles_anim_v_frames = 1
+particles_anim_loop = false
