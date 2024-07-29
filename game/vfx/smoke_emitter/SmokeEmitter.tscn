@@ -1,11 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://buyc70hdc4bal"]
 
-[ext_resource type="Material" uid="uid://cgkc3cbvyafa8" path="res://game/vfx/smoke_emmitter/smoke.tres" id="1_unlo3"]
+[ext_resource type="Material" uid="uid://cgkc3cbvyafa8" path="res://game/vfx/smoke_emitter/smoke.tres" id="1_unlo3"]
 [ext_resource type="Texture2D" uid="uid://dqj4sd7e4njic" path="res://assets/smoke.png" id="2_kqo3f"]
-[ext_resource type="Script" path="res://game/vfx/smoke_emmitter/SmokeEmitter.gd" id="3_lbb6c"]
+[ext_resource type="Script" path="res://game/vfx/smoke_emitter/SmokeEmitter.gd" id="3_lbb6c"]
 
 [node name="SmokeEmitter" type="CPUParticles2D"]
-modulate = Color(0.588235, 0.45098, 0.517647, 1)
 material = ExtResource("1_unlo3")
 amount = 15
 lifetime = 4.0
