@@ -1,0 +1,111 @@
+[gd_scene load_steps=6 format=3 uid="uid://cvx6g6u1ytgd7"]
+
+[ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_iof84"]
+[ext_resource type="Script" path="res://game/scenes/ButtonList.gd" id="2_8ofis"]
+[ext_resource type="Script" path="res://game/scenes/GameOver.gd" id="2_tq0pw"]
+
+[sub_resource type="Animation" id="Animation_7ilqy"]
+resource_name = "appear"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 0),
+"update": 0,
+"values": [Vector2(170, -240), Vector2(170, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_gsnde"]
+_data = {
+"appear": SubResource("Animation_7ilqy")
+}
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_iof84")
+script = ExtResource("2_tq0pw")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -150.0
+offset_top = -240.0
+offset_bottom = -240.0
+grow_horizontal = 0
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="LabelPath" type="Label" parent="ColorRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 2
+size_flags_vertical = 0
+text = "Your path of destruction ends at:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="LabelDistance" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
+text = "0.0km"
+horizontal_alignment = 1
+
+[node name="LabelDestruction" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 8
+text = "Total Destruction: 0"
+horizontal_alignment = 1
+
+[node name="ButtonList" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("2_8ofis")
+
+[node name="TryAgainButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/ButtonList"]
+layout_mode = 2
+text = "Try again"
+
+[node name="MainMenuButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/ButtonList"]
+layout_mode = 2
+text = "Go to main menu"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_gsnde")
+}
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/ButtonList/TryAgainButton" to="." method="_on_try_again_button_pressed"]
+[connection signal="pressed" from="ColorRect/MarginContainer/VBoxContainer/ButtonList/MainMenuButton" to="." method="_on_main_menu_button_pressed"]
