@@ -365,7 +365,7 @@ position = Vector2(75, -135)
 texture = ExtResource("2")
 centered = false
 hframes = 7
-frame = 3
+frame = 1
 
 [node name="torso" type="Sprite2D" parent="."]
 position = Vector2(0, -164)
@@ -377,7 +377,6 @@ position = Vector2(14, -224)
 texture = ExtResource("4")
 centered = false
 hframes = 7
-frame = 1
 region_rect = Rect2(0, 0, 68, 100)
 
 [node name="rightArm" type="Sprite2D" parent="."]
@@ -385,7 +384,7 @@ position = Vector2(-1, -166)
 texture = ExtResource("5")
 centered = false
 hframes = 11
-frame = 3
+frame = 1
 
 [node name="FistStart" type="Node2D" parent="."]
 position = Vector2(135, -132)

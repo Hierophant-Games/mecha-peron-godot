@@ -30,7 +30,7 @@ func _process(_delta: float):
 	camera.position.x = peron.position.x
 	input()
 	
-	if peron.health <= 0:
+	if !game_over.visible and peron.dying:
 		game_over.show()
 
 func update_intro():
@@ -49,6 +49,9 @@ func update_intro():
 				peron.walk()
 
 func input():
+	if peron.dying:
+		return
+	
 	var mouse_pressed := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 
 	if peron.shooting_laser:

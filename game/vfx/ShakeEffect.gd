@@ -9,6 +9,11 @@ var _accum := 0.0
 @onready var camera := get_tree().root.get_camera_2d()
 
 func _process(delta: float) -> void:
+	# if the scene was destroyed with the camera, cancel this effect
+	if !camera:
+		queue_free()
+		return
+	
 	_accum += delta
 	
 	if _accum < duration:
