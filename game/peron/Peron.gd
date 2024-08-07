@@ -1,26 +1,29 @@
 class_name Peron
 extends Area2D
 
-const FistScene = preload("res://game/peron/Fist.tscn")
-const LaserScene = preload("res://game/peron/Laser.tscn")
+const FistScene := preload("res://game/peron/Fist.tscn")
+const LaserScene := preload("res://game/peron/Laser.tscn")
+const ExplosionScene := preload("res://game/vfx/Explosion.tscn")
 
-var left_laser: Laser = LaserScene.instantiate() as Laser
-var right_laser: Laser = LaserScene.instantiate() as Laser
+var left_laser := LaserScene.instantiate() as Laser
+var right_laser := LaserScene.instantiate() as Laser
 
-var blocked: bool = false
-var shooting_laser: bool = false
-var current_speed: float = 0
+var blocked := false
+var shooting_laser := false
+var dying := false
 
-var health: int = 100
-var laser_charge: int = Constants.LASER_MAX_CHARGE
-var laser_recharge_accum: float = 0.0
-var laser_overheat: bool = false
+var current_speed := 0.0
 
-var fist_timer: float = 0.0
+var health := 100
+var laser_charge := Constants.LASER_MAX_CHARGE
+var laser_recharge_accum := 0.0
+var laser_overheat := false
 
-@onready var animation_player: AnimationPlayer = $AnimationPlayer
+var fist_timer := 0.0
 
-func _ready():
+@onready var animation_player := $AnimationPlayer as AnimationPlayer
+
+func _ready() -> void:
 	setup_laser(left_laser, $LeftEye.position)
 	setup_laser(right_laser, $RightEye.position)
 	walk()
@@ -31,8 +34,18 @@ func setup_laser(new_laser: Laser, laser_position: Vector2):
 	new_laser.position = laser_position
 
 func _process(delta: float):
+	if !dying and health <= 0:
+		dying = true
+		idle()
+		VFX.shake(0.01, 100)
+		$DyingExplosionsTimer.start()
+	
+	if dying:
+		position.y += Constants.PERON_DYING_SPEED * delta
+		return
+	
 	update_laser(delta)
-
+	
 	fist_timer = max(0.0, fist_timer - delta)
 	
 	if animation_player.current_animation == "walk":
@@ -138,6 +151,11 @@ func point_laser(pos: Vector2):
 
 func damage(amount: int):
 	health = max(0, health - amount)
+	
+	# don't interrupt attacks or dying
+	if animation_player.current_animation != "walk":
+		return
+	
 	animation_player.play("damage")
 	await animation_player.animation_finished
 	resume()
@@ -165,3 +183,11 @@ func _on_Peron_area_exited(_area: Area2D):
 
 func _on_step_timer_timeout() -> void:
 	VFX.shake(0.01, 0.2)
+
+func _on_dying_explosions_timer_timeout() -> void:
+	var spawn_rect := shape_owner_get_shape(0, 0).get_rect()
+	var x := randf_range(spawn_rect.position.x, spawn_rect.end.x)
+	var y := randf_range(spawn_rect.position.y, spawn_rect.end.y)
+	var explosion := ExplosionScene.instantiate()
+	explosion.position = Vector2(x, y)
+	add_child(explosion)

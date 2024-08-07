@@ -7,11 +7,18 @@ const EnemyBuildingScene = preload("res://game/enemies/EnemyBuilding.tscn")
 enum { PRE_INTRO, INTRO, POST_INTRO }
 var intro_state := PRE_INTRO
 
+@export_file("*.tscn") var main_menu_scene: String
+
 @onready var main_layer := $Camera2D/ParallaxBackground/MainLayer
 @onready var front_layer := $Camera2D/ParallaxBackground/FrontLayer
 @onready var foreground := $Camera2D/ParallaxBackground/FrontLayer/Foreground
 @onready var peron := $Camera2D/ParallaxBackground/MainLayer/Peron as Peron
 @onready var camera := $Camera2D
+@onready var scene_fader := $GUILayer/SceneFader as SceneFader
+@onready var game_over := $GUILayer/GameOver as GameOver
+
+func _ready() -> void:
+	game_over.hide()
 
 func _process(_delta: float):
 	update_intro()
@@ -22,6 +29,9 @@ func _process(_delta: float):
 
 	camera.position.x = peron.position.x
 	input()
+	
+	if !game_over.visible and peron.dying:
+		game_over.show()
 
 func update_intro():
 	match intro_state:
@@ -39,6 +49,9 @@ func update_intro():
 				peron.walk()
 
 func input():
+	if peron.dying:
+		return
+	
 	var mouse_pressed := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
 
 	if peron.shooting_laser:
@@ -56,6 +69,11 @@ func input():
 		peron.attack_arm()
 	if mouse_pressed:
 		laser()
+	
+	# CHEATS
+	if OS.has_feature('debug'):
+		if Input.is_key_pressed(KEY_G):
+			peron.health = 0
 
 func laser():
 	peron.laser()
@@ -90,3 +108,9 @@ func spawn_building(x: float):
 	enemy_building.position.y = get_viewport_rect().size.y
 	enemy_building.position.x = get_viewport_rect().size.x + x
 	main_layer.add_child(enemy_building)
+
+func _on_game_over_main_menu_pressed() -> void:
+	scene_fader.transition_to(main_menu_scene)
+
+func _on_game_over_try_again_pressed() -> void:
+	get_tree().reload_current_scene()
