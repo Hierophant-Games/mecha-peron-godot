@@ -414,7 +414,11 @@ shape = SubResource("RectangleShape2D_c0708")
 [node name="StepTimer" type="Timer" parent="."]
 wait_time = 1.5
 
+[node name="DyingExplosionsTimer" type="Timer" parent="."]
+wait_time = 0.8
+
 [connection signal="area_entered" from="." to="." method="_on_Peron_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Peron_area_exited"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
 [connection signal="timeout" from="StepTimer" to="." method="_on_step_timer_timeout"]
+[connection signal="timeout" from="DyingExplosionsTimer" to="." method="_on_dying_explosions_timer_timeout"]

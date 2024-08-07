@@ -3,6 +3,7 @@ extends Area2D
 
 const FistScene := preload("res://game/peron/Fist.tscn")
 const LaserScene := preload("res://game/peron/Laser.tscn")
+const ExplosionScene := preload("res://game/vfx/Explosion.tscn")
 
 var left_laser := LaserScene.instantiate() as Laser
 var right_laser := LaserScene.instantiate() as Laser
@@ -37,6 +38,7 @@ func _process(delta: float):
 		dying = true
 		idle()
 		VFX.shake(0.01, 100)
+		$DyingExplosionsTimer.start()
 	
 	if dying:
 		position.y += Constants.PERON_DYING_SPEED * delta
@@ -181,3 +183,11 @@ func _on_Peron_area_exited(_area: Area2D):
 
 func _on_step_timer_timeout() -> void:
 	VFX.shake(0.01, 0.2)
+
+func _on_dying_explosions_timer_timeout() -> void:
+	var spawn_rect := shape_owner_get_shape(0, 0).get_rect()
+	var x := randf_range(spawn_rect.position.x, spawn_rect.end.x)
+	var y := randf_range(spawn_rect.position.y, spawn_rect.end.y)
+	var explosion := ExplosionScene.instantiate()
+	explosion.position = Vector2(x, y)
+	add_child(explosion)
