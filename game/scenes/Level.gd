@@ -18,6 +18,7 @@ var intro_state := PRE_INTRO
 @onready var game_over := $GUILayer/GameOver as GameOver
 
 func _ready() -> void:
+	ScoreTracker.reset()
 	game_over.hide()
 
 func _process(_delta: float):
@@ -28,6 +29,8 @@ func _process(_delta: float):
 		return
 
 	camera.position.x = peron.position.x
+	var distance = peron.position.x
+	ScoreTracker.set_distance(distance)
 	input()
 	
 	if !game_over.visible and peron.dying:

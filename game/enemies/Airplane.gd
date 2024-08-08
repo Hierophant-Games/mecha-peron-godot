@@ -55,3 +55,6 @@ func spawn_bomb(bomb_position: Vector2):
 	var bomb := BombScene.instantiate() as Bomb
 	bomb.position = bomb_position
 	main_layer.add_child(bomb)
+
+func on_destroy_invoked() -> void:
+	ScoreTracker.track_killed(ScoreTracker.EnemyType.PLANE)
