@@ -185,9 +185,9 @@ func _on_step_timer_timeout() -> void:
 	VFX.shake(0.01, 0.2)
 
 func _on_dying_explosions_timer_timeout() -> void:
-	var spawn_rect := shape_owner_get_shape(0, 0).get_rect()
-	var x := randf_range(spawn_rect.position.x, spawn_rect.end.x)
-	var y := randf_range(spawn_rect.position.y, spawn_rect.end.y)
+	var spawn_area_size := ($DamageArea as Area2D).shape_owner_get_shape(0, 0).get_rect().size
+	var x := randf_range(0, spawn_area_size.x)
+	var y := randf_range((spawn_area_size.y * 0.5), spawn_area_size.y) #take top half only
 	var explosion := ExplosionScene.instantiate()
-	explosion.position = Vector2(x, y)
+	explosion.position = Vector2(x, -y)
 	add_child(explosion)
