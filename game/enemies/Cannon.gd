@@ -41,6 +41,7 @@ func spawn_bomb():
 
 func destroy():
 	destroyed = true
+	ScoreTracker.track_killed(ScoreTracker.EnemyType.CANNON)
 	$AnimationPlayer.play("explode")
 	await $AnimationPlayer.animation_finished
 	queue_free()

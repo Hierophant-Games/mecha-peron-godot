@@ -29,3 +29,4 @@ func on_destroy_invoked() -> void:
 	VFX.shake(0.01, 10)
 	for soldier in soldiers:
 		soldier.die()
+	ScoreTracker.track_killed(ScoreTracker.EnemyType.BUILDING)

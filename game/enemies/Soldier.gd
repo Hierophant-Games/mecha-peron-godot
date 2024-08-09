@@ -46,3 +46,4 @@ func die():
 	$Area2D.queue_free()
 	destroyed = true
 	$AnimationPlayer.play("die")
+	ScoreTracker.track_killed(ScoreTracker.EnemyType.SOLDIER)
