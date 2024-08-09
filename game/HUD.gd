@@ -3,11 +3,15 @@ extends MarginContainer
 
 @export var player:Peron
 
-@onready var fist:TextureProgressBar = $HBoxContainer/Fist
-@onready var health_bar:ProgressBar = $HBoxContainer/VBoxContainer/HealthBar/MarginContainer/ProgressBar
-@onready var laser_bar:ProgressBar = $HBoxContainer/VBoxContainer/LaserBar/MarginContainer/ProgressBar
+@onready var fist := $Meters/Fist as TextureProgressBar
+@onready var health_bar := $Meters/Bars/HealthBar/MarginContainer/ProgressBar as ProgressBar
+@onready var laser_bar := $Meters/Bars/LaserBar/MarginContainer/ProgressBar as ProgressBar
+@onready var destruction_label := $Score/DestructionLabel as Label
+@onready var distance_label := $Score/DistanceLabel as Label
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	health_bar.value = player.health
 	laser_bar.value = player.get_laser_percentage()
 	fist.value = player.get_fist_percentage()
+	distance_label.text = ScoreTracker.get_distance_text()
+	destruction_label.text = ScoreTracker.get_interpolated_score_text(delta)

@@ -15,7 +15,6 @@ func _on_main_menu_button_pressed() -> void:
 
 func _on_visibility_changed() -> void:
 	if visible:
-		var formattedDistance := str(ScoreTracker.distanceTraveled).pad_decimals(2)
-		distance.text = str(formattedDistance, " km")
-		destruction.text = str("Total Destruction: ", ScoreTracker.score)
+		distance.text = ScoreTracker.get_distance_text()
+		destruction.text = ScoreTracker.get_score_text()
 		$AnimationPlayer.play("appear")

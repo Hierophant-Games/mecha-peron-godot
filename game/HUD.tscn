@@ -32,29 +32,54 @@ grow_vertical = 2
 theme = ExtResource("1_5inra")
 script = ExtResource("2_h2fe7")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="Score" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+
+[node name="DestructionLabel" type="Label" parent="Score"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 8
+text = "Destruction: 0"
+horizontal_alignment = 2
+
+[node name="DistanceLabel" type="Label" parent="Score"]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 0
+theme_override_font_sizes/font_size = 8
+text = "0.00 km"
+horizontal_alignment = 2
+
+[node name="Meters" type="HBoxContainer" parent="."]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="Fist" type="TextureProgressBar" parent="HBoxContainer"]
+[node name="Fist" type="TextureProgressBar" parent="Meters"]
 layout_mode = 2
 value = 50.0
 texture_under = ExtResource("2_pwux1")
 texture_progress = ExtResource("2_pwux1")
 tint_under = Color(0, 0, 0, 0.501961)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+[node name="Bars" type="VBoxContainer" parent="Meters"]
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 8
 
-[node name="HealthBar" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+[node name="HealthBar" type="TextureRect" parent="Meters/Bars"]
 layout_mode = 2
 texture = ExtResource("2_yuei8")
 stretch_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/HealthBar"]
+[node name="MarginContainer" type="MarginContainer" parent="Meters/Bars/HealthBar"]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -67,19 +92,19 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer/HealthBar/MarginContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="Meters/Bars/HealthBar/MarginContainer"]
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxLine_x6xe5")
 theme_override_styles/fill = SubResource("StyleBoxLine_p2d20")
 value = 50.0
 show_percentage = false
 
-[node name="LaserBar" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+[node name="LaserBar" type="TextureRect" parent="Meters/Bars"]
 layout_mode = 2
 texture = ExtResource("2_yuei8")
 stretch_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer/LaserBar"]
+[node name="MarginContainer" type="MarginContainer" parent="Meters/Bars/LaserBar"]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -92,7 +117,7 @@ theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 4
 theme_override_constants/margin_bottom = 4
 
-[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer/VBoxContainer/LaserBar/MarginContainer"]
+[node name="ProgressBar" type="ProgressBar" parent="Meters/Bars/LaserBar/MarginContainer"]
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxLine_x6xe5")
 theme_override_styles/fill = SubResource("StyleBoxLine_dd6el")
