@@ -17,54 +17,55 @@
 script = ExtResource("1")
 main_menu_scene = "res://game/scenes/MainMenu.tscn"
 
-[node name="Camera2D" type="Camera2D" parent="."]
-anchor_mode = 0
-position_smoothing_enabled = true
+[node name="ParallaxBackground" type="Node2D" parent="."]
 
-[node name="ParallaxBackground" type="ParallaxBackground" parent="Camera2D"]
+[node name="BackLayer" type="Parallax2D" parent="ParallaxBackground"]
+scroll_scale = Vector2(0.2, 1)
+repeat_size = Vector2(480, 0)
 
-[node name="BackLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
-motion_scale = Vector2(0.2, 1)
-motion_mirroring = Vector2(480, 0)
-
-[node name="cityscape" type="Sprite2D" parent="Camera2D/ParallaxBackground/BackLayer"]
+[node name="cityscape" type="Sprite2D" parent="ParallaxBackground/BackLayer"]
 texture = ExtResource("2")
 centered = false
 region_rect = Rect2(0, 0, 1280, 240)
 
-[node name="MiddleLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
-motion_scale = Vector2(0.5, 1)
-motion_mirroring = Vector2(480, 0)
+[node name="MiddleLayer" type="Parallax2D" parent="ParallaxBackground"]
+scroll_scale = Vector2(0.5, 1)
+repeat_size = Vector2(480, 0)
 
-[node name="buildings" type="Sprite2D" parent="Camera2D/ParallaxBackground/MiddleLayer"]
+[node name="buildings" type="Sprite2D" parent="ParallaxBackground/MiddleLayer"]
 texture = ExtResource("3")
 centered = false
 region_rect = Rect2(0, 0, 1280, 240)
 
-[node name="smoke1" parent="Camera2D/ParallaxBackground/MiddleLayer" instance=ExtResource("4_hb282")]
+[node name="smoke1" parent="ParallaxBackground/MiddleLayer" instance=ExtResource("4_hb282")]
 modulate = Color(0.588235, 0.45098, 0.517647, 1)
 position = Vector2(134, 73)
 local_coords = true
 
-[node name="smoke2" parent="Camera2D/ParallaxBackground/MiddleLayer" instance=ExtResource("4_hb282")]
+[node name="smoke2" parent="ParallaxBackground/MiddleLayer" instance=ExtResource("4_hb282")]
 modulate = Color(0.588235, 0.45098, 0.517647, 1)
 position = Vector2(395, 131)
 local_coords = true
 
-[node name="MainLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
+[node name="MainLayer" type="Parallax2D" parent="ParallaxBackground"]
 
-[node name="Peron" parent="Camera2D/ParallaxBackground/MainLayer" instance=ExtResource("4")]
+[node name="Peron" parent="ParallaxBackground/MainLayer" instance=ExtResource("4")]
 position = Vector2(-160, 240)
 
-[node name="FrontLayer" type="ParallaxLayer" parent="Camera2D/ParallaxBackground"]
-motion_scale = Vector2(1.5, 1)
+[node name="Camera2D" type="Camera2D" parent="ParallaxBackground/MainLayer/Peron"]
+position = Vector2(160, -240)
+anchor_mode = 0
+position_smoothing_enabled = true
 
-[node name="Foreground" parent="Camera2D/ParallaxBackground/FrontLayer" instance=ExtResource("8")]
+[node name="FrontLayer" type="Parallax2D" parent="ParallaxBackground"]
+scroll_scale = Vector2(1.5, 1)
+
+[node name="Foreground" parent="ParallaxBackground/FrontLayer" instance=ExtResource("8")]
 
 [node name="GUILayer" type="CanvasLayer" parent="."]
 
 [node name="HUD" parent="GUILayer" node_paths=PackedStringArray("player") instance=ExtResource("8_w6202")]
-player = NodePath("../../Camera2D/ParallaxBackground/MainLayer/Peron")
+player = NodePath("../../ParallaxBackground/MainLayer/Peron")
 
 [node name="SceneFader" parent="GUILayer" instance=ExtResource("10_ir7ax")]
 visible = false
