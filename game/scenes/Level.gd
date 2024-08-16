@@ -9,11 +9,11 @@ var intro_state := PRE_INTRO
 
 @export_file("*.tscn") var main_menu_scene: String
 
-@onready var main_layer := $Camera2D/ParallaxBackground/MainLayer
-@onready var front_layer := $Camera2D/ParallaxBackground/FrontLayer
-@onready var foreground := $Camera2D/ParallaxBackground/FrontLayer/Foreground
-@onready var peron := $Camera2D/ParallaxBackground/MainLayer/Peron as Peron
-@onready var camera := $Camera2D
+@onready var main_layer := $ParallaxBackground/MainLayer
+@onready var front_layer := $ParallaxBackground/FrontLayer
+@onready var foreground := $ParallaxBackground/FrontLayer/Foreground
+@onready var peron := $ParallaxBackground/MainLayer/Peron as Peron
+@onready var camera := $ParallaxBackground/MainLayer/Peron/Camera2D
 @onready var scene_fader := $GUILayer/SceneFader as SceneFader
 @onready var game_over := $GUILayer/GameOver as GameOver
 
@@ -28,7 +28,6 @@ func _process(_delta: float):
 	if intro_state != POST_INTRO:
 		return
 
-	camera.position.x = peron.position.x
 	var distance = peron.position.x
 	ScoreTracker.set_distance(distance)
 	input()
@@ -39,6 +38,7 @@ func _process(_delta: float):
 func update_intro():
 	match intro_state:
 		PRE_INTRO:
+			camera.global_position.x = global_position.x
 			if peron.position.x > 0:
 				intro_state = INTRO
 				Engine.time_scale = 1
@@ -59,9 +59,9 @@ func input():
 
 	if peron.shooting_laser:
 		if mouse_pressed:
-			rotate_laser()
+			peron.aim_laser()
 		else:
-			end_laser()
+			peron.laser_reverse()
 
 	if peron.is_attacking():
 		return
@@ -80,16 +80,10 @@ func input():
 
 func laser():
 	peron.laser()
-	rotate_laser()
-
-func end_laser():
-	peron.laser_reverse()
-
-func rotate_laser():
-	peron.point_laser(get_viewport().get_mouse_position())
+	peron.aim_laser()
 
 func update_foreground():
-	var screen_right = (camera.position.x + get_viewport_rect().size.x) *  front_layer.motion_scale.x
+	var screen_right = (camera.global_position.x + get_viewport_rect().size.x) *  front_layer.scroll_scale.x
 	foreground.update_buildings(screen_right)
 
 func _on_AIDirector_enemy_needed(enemy_type, x):

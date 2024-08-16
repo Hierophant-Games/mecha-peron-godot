@@ -144,8 +144,8 @@ func laser_off():
 	await animation_player.animation_finished
 	resume()
 
-func point_laser(pos: Vector2):
-	right_laser.look_at(pos)
+func aim_laser():
+	right_laser.look_at(get_global_mouse_position())
 	right_laser.rotation = clamp(right_laser.rotation, Constants.LASER_ROTATION_MIN, Constants.LASER_ROTATION_MAX)
 	left_laser.rotation = right_laser.rotation
 
