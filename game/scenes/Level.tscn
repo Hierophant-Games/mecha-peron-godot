@@ -55,6 +55,8 @@ position = Vector2(-160, 240)
 [node name="Camera2D" type="Camera2D" parent="ParallaxBackground/MainLayer/Peron"]
 position = Vector2(160, -240)
 anchor_mode = 0
+limit_top = 0
+limit_bottom = 0
 position_smoothing_enabled = true
 
 [node name="FrontLayer" type="Parallax2D" parent="ParallaxBackground"]
