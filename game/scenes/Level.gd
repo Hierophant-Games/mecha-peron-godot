@@ -58,6 +58,7 @@ func update_intro():
 				peron.blocked = false
 				peron.walk()
 				init_screen.hide()
+				$ThemePlayer.play()
 				hud.show()
 
 func input():
