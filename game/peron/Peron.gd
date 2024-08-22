@@ -1,10 +1,6 @@
 class_name Peron
 extends Area2D
 
-const sfx_laser_shoot := preload("res://game/sfx/mecha_peron_laser_shoot.mp3")
-const sfx_laser_depleted := preload("res://game/sfx/mecha_peron_laser_depleted.mp3")
-const sfx_laser_shout := preload("res://game/sfx/mecha_peron_laser_shout.mp3")
-
 const FistScene := preload("res://game/peron/Fist.tscn")
 const LaserScene := preload("res://game/peron/Laser.tscn")
 const ExplosionScene := preload("res://game/vfx/Explosion.tscn")
@@ -26,9 +22,10 @@ var laser_overheat := false
 var fist_timer := 0.0
 
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
+
+# Sound effects and players ------------
 @onready var laser_sfx_player := $SFX/Laser as AudioStreamPlayer
 @onready var voice_sfx_player := $SFX/Voice as AudioStreamPlayer
-
 @onready var sfx_hits: Array[AudioStream] = [preload("res://game/sfx/mecha_peron_hit_1.mp3"),
 											preload("res://game/sfx/mecha_peron_hit_2.mp3"),
 											preload("res://game/sfx/mecha_peron_hit_3.mp3")]
@@ -39,6 +36,11 @@ var fist_timer := 0.0
 												preload("res://game/sfx/mecha_peron_phrase_2.mp3"),
 												preload("res://game/sfx/mecha_peron_phrase_3.mp3"),
 												preload("res://game/sfx/mecha_peron_phrase_4.mp3")]
+const sfx_laser_shoot := preload("res://game/sfx/mecha_peron_laser_shoot.mp3")
+const sfx_laser_depleted := preload("res://game/sfx/mecha_peron_laser_depleted.mp3")
+const sfx_laser_shout := preload("res://game/sfx/mecha_peron_laser_shout.mp3")
+const sfx_rocket_putnch := preload("res://game/sfx/mecha_peron_rocket_punch.mp3")
+const sfx_hammer_fist := preload("res://game/sfx/mecha_peron_hammer_fist.mp3")
 
 func _ready() -> void:
 	setup_laser(left_laser, $LeftEye.position)
@@ -128,6 +130,8 @@ func can_use_fist() -> bool:
 func attack_fist():
 	if can_use_fist():
 		animation_player.play("attack_left_arm")
+		voice_sfx_player.set_stream(sfx_rocket_putnch)
+		voice_sfx_player.play()
 
 func launch_fist():
 	var fist = FistScene.instantiate() as Fist
@@ -137,6 +141,8 @@ func launch_fist():
 
 func attack_arm():
 	animation_player.play("attack_right_arm")
+	voice_sfx_player.set_stream(sfx_hammer_fist)
+	voice_sfx_player.play()
 
 func laser():
 	if laser_overheat:
