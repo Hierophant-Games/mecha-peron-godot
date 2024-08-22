@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://bbvwu8gdowkdb"]
+[gd_scene load_steps=4 format=3 uid="uid://bbvwu8gdowkdb"]
 
 [ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_0ujwh"]
 [ext_resource type="Script" path="res://game/scenes/InitScreen.gd" id="2_hvih0"]
+[ext_resource type="AudioStream" uid="uid://cfcrk6byeh6h3" path="res://game/sfx/console_blip.mp3" id="3_ijuut"]
 
 [node name="InitScreen" type="ColorRect"]
 anchors_preset = 15
@@ -37,3 +38,6 @@ text = "> MECHA-PERON INITIALIZING
 > Justicialist arm ready............PRESS Z TO ACTIVATE
 >
 > Click to continue"
+
+[node name="Blip" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ijuut")
