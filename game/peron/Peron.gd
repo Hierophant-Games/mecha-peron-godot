@@ -29,6 +29,17 @@ var fist_timer := 0.0
 @onready var laser_sfx_player := $SFX/Laser as AudioStreamPlayer
 @onready var voice_sfx_player := $SFX/Voice as AudioStreamPlayer
 
+@onready var sfx_hits: Array[AudioStream] = [preload("res://game/sfx/mecha_peron_hit_1.mp3"),
+											preload("res://game/sfx/mecha_peron_hit_2.mp3"),
+											preload("res://game/sfx/mecha_peron_hit_3.mp3")]
+@onready var sfx_phrases: Array[AudioStream] = [preload("res://game/sfx/mecha_peron_companieros.mp3"),
+												preload("res://game/sfx/mecha_peron_justicia_social.mp3"),
+												preload("res://game/sfx/mecha_peron_tercera_posicion.mp3"),
+												preload("res://game/sfx/mecha_peron_phrase_1.mp3"),
+												preload("res://game/sfx/mecha_peron_phrase_2.mp3"),
+												preload("res://game/sfx/mecha_peron_phrase_3.mp3"),
+												preload("res://game/sfx/mecha_peron_phrase_4.mp3")]
+
 func _ready() -> void:
 	setup_laser(left_laser, $LeftEye.position)
 	setup_laser(right_laser, $RightEye.position)
@@ -97,10 +108,12 @@ func play_and_set_next(anim: String):
 
 func walk():
 	$StepTimer.start()
+	$TalkTimer.set_paused(false)
 	play_and_set_next("walk")
 
 func idle():
 	$StepTimer.stop()
+	$TalkTimer.set_paused(true)
 	play_and_set_next("idle")
 
 func resume():
@@ -171,6 +184,8 @@ func damage(amount: int):
 		return
 	
 	animation_player.play("damage")
+	voice_sfx_player.set_stream(sfx_hits.pick_random())
+	voice_sfx_player.play()
 	await animation_player.animation_finished
 	resume()
 
@@ -198,6 +213,10 @@ func _on_Peron_area_exited(_area: Area2D):
 func _on_step_timer_timeout() -> void:
 	VFX.shake(0.01, 0.2)
 	$SFX/FootStep.play()
+	
+func _on_talk_timer_timeout() -> void:
+	voice_sfx_player.set_stream(sfx_phrases.pick_random())
+	voice_sfx_player.play()
 
 func _on_dying_explosions_timer_timeout() -> void:
 	var spawn_area_size := ($DamageArea as Area2D).shape_owner_get_shape(0, 0).get_rect().size

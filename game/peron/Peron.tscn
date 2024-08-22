@@ -412,6 +412,10 @@ collision_mask = 0
 position = Vector2(48, -112)
 shape = SubResource("RectangleShape2D_c0708")
 
+[node name="TalkTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [node name="StepTimer" type="Timer" parent="."]
 wait_time = 1.5
 
@@ -430,5 +434,6 @@ stream = ExtResource("6_sa5xk")
 [connection signal="area_entered" from="." to="." method="_on_Peron_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Peron_area_exited"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
+[connection signal="timeout" from="TalkTimer" to="." method="_on_talk_timer_timeout"]
 [connection signal="timeout" from="StepTimer" to="." method="_on_step_timer_timeout"]
 [connection signal="timeout" from="DyingExplosionsTimer" to="." method="_on_dying_explosions_timer_timeout"]
