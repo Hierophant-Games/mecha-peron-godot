@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bugffpvydnq64" path="res://game/HUD.tscn" id="8_w6202"]
 [ext_resource type="PackedScene" uid="uid://d0u268u2tja7g" path="res://game/scenes/SceneFader.tscn" id="10_ir7ax"]
 [ext_resource type="PackedScene" uid="uid://cvx6g6u1ytgd7" path="res://game/scenes/GameOver.tscn" id="11_tf1bq"]
+[ext_resource type="AudioStream" uid="uid://lvnjsdkmeyvi" path="res://game/sfx/game_theme.mp3" id="13_1tplj"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1")
@@ -85,6 +86,11 @@ script = ExtResource("6")
 
 [node name="AIDirector" type="Node2D" parent="."]
 script = ExtResource("7")
+
+[node name="ThemePlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_1tplj")
+autoplay = true
+parameters/looping = true
 
 [connection signal="main_menu_pressed" from="GUILayer/GameOver" to="." method="_on_game_over_main_menu_pressed"]
 [connection signal="try_again_pressed" from="GUILayer/GameOver" to="." method="_on_game_over_try_again_pressed"]

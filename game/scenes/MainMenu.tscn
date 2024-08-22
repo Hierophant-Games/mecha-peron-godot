@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dxq0rh1ltqjkq"]
+[gd_scene load_steps=7 format=3 uid="uid://dxq0rh1ltqjkq"]
 
 [ext_resource type="Texture2D" uid="uid://dds11eoi28xcv" path="res://assets/main_menu/bg.png" id="1_gjeu4"]
 [ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="2_hh01c"]
 [ext_resource type="Script" path="res://game/scenes/MainMenu.gd" id="2_i4i2b"]
 [ext_resource type="PackedScene" uid="uid://d0u268u2tja7g" path="res://game/scenes/SceneFader.tscn" id="4_7jkku"]
 [ext_resource type="Script" path="res://game/scenes/ButtonList.gd" id="4_mwlkc"]
+[ext_resource type="AudioStream" uid="uid://msn4cg7jg0sb" path="res://game/sfx/los_muchachos_8bit.mp3" id="6_klh10"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -73,6 +74,11 @@ alignment = 2
 [node name="SceneFader" parent="." instance=ExtResource("4_7jkku")]
 visible = false
 layout_mode = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_klh10")
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="MarginContainer/ButtonList/PlayButton" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="MarginContainer/ButtonList/OptionsButton" to="." method="_on_options_button_pressed"]
