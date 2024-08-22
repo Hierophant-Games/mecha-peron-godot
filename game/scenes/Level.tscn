@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ca4febxsgjyyh"]
+[gd_scene load_steps=14 format=3 uid="uid://ca4febxsgjyyh"]
 
 [ext_resource type="Script" path="res://game/scenes/Level.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c0d1h3xba2j4e" path="res://assets/cityscape.png" id="2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://game/Cursor.gd" id="6"]
 [ext_resource type="Script" path="res://game/AIDirector.gd" id="7"]
 [ext_resource type="PackedScene" uid="uid://c57bmno58duvi" path="res://game/Foreground.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://bbvwu8gdowkdb" path="res://game/scenes/InitScreen.tscn" id="8_iodud"]
 [ext_resource type="PackedScene" uid="uid://bugffpvydnq64" path="res://game/HUD.tscn" id="8_w6202"]
 [ext_resource type="PackedScene" uid="uid://d0u268u2tja7g" path="res://game/scenes/SceneFader.tscn" id="10_ir7ax"]
 [ext_resource type="PackedScene" uid="uid://cvx6g6u1ytgd7" path="res://game/scenes/GameOver.tscn" id="11_tf1bq"]
@@ -69,10 +70,13 @@ scroll_scale = Vector2(1.5, 1)
 [node name="HUD" parent="GUILayer" node_paths=PackedStringArray("player") instance=ExtResource("8_w6202")]
 player = NodePath("../../ParallaxBackground/MainLayer/Peron")
 
-[node name="SceneFader" parent="GUILayer" instance=ExtResource("10_ir7ax")]
+[node name="InitScreen" parent="GUILayer" instance=ExtResource("8_iodud")]
 visible = false
 
 [node name="GameOver" parent="GUILayer" instance=ExtResource("11_tf1bq")]
+visible = false
+
+[node name="SceneFader" parent="GUILayer" instance=ExtResource("10_ir7ax")]
 visible = false
 
 [node name="Cursor" type="Sprite2D" parent="GUILayer"]

@@ -10,15 +10,19 @@ var intro_state := PRE_INTRO
 @export_file("*.tscn") var main_menu_scene: String
 
 @onready var main_layer := $ParallaxBackground/MainLayer
-@onready var front_layer := $ParallaxBackground/FrontLayer
-@onready var foreground := $ParallaxBackground/FrontLayer/Foreground
+@onready var front_layer := $ParallaxBackground/FrontLayer as Parallax2D
+@onready var foreground := $ParallaxBackground/FrontLayer/Foreground as Foreground
 @onready var peron := $ParallaxBackground/MainLayer/Peron as Peron
-@onready var camera := $ParallaxBackground/MainLayer/Peron/Camera2D
-@onready var scene_fader := $GUILayer/SceneFader as SceneFader
+@onready var camera := $ParallaxBackground/MainLayer/Peron/Camera2D as Camera2D
+@onready var hud := $GUILayer/HUD as HUD
+@onready var init_screen := $GUILayer/InitScreen as InitScreen
 @onready var game_over := $GUILayer/GameOver as GameOver
+@onready var scene_fader := $GUILayer/SceneFader as SceneFader
 
 func _ready() -> void:
 	ScoreTracker.reset()
+	hud.hide()
+	init_screen.hide()
 	game_over.hide()
 
 func _process(_delta: float):
@@ -28,7 +32,7 @@ func _process(_delta: float):
 	if intro_state != POST_INTRO:
 		return
 
-	var distance = peron.position.x
+	var distance := peron.position.x
 	ScoreTracker.set_distance(distance)
 	input()
 	
@@ -39,17 +43,22 @@ func update_intro():
 	match intro_state:
 		PRE_INTRO:
 			camera.global_position.x = global_position.x
+			if Input.is_action_just_pressed("ui_accept"):
+				Engine.time_scale = 4;
 			if peron.position.x > 0:
 				intro_state = INTRO
 				Engine.time_scale = 1
+				peron.blocked = true
 				peron.idle()
-			if Input.is_action_just_pressed("ui_accept"):
-				Engine.time_scale = 4;
+				init_screen.show()
 		INTRO:
-			if Input.is_action_just_pressed("ui_accept"):
+			# The InitScreen auto-hides when done, that's our cue to continue
+			if !init_screen.visible:
 				intro_state = POST_INTRO
-				Engine.time_scale = 1
+				peron.blocked = false
 				peron.walk()
+				init_screen.hide()
+				hud.show()
 
 func input():
 	if peron.dying:
@@ -83,10 +92,10 @@ func laser():
 	peron.aim_laser()
 
 func update_foreground():
-	var screen_right = (camera.global_position.x + get_viewport_rect().size.x) *  front_layer.scroll_scale.x
-	foreground.update_buildings(screen_right)
+	var screen_right := (camera.global_position.x + get_viewport_rect().size.x) * front_layer.scroll_scale.x
+	foreground.update_buildings(int(screen_right))
 
-func _on_AIDirector_enemy_needed(enemy_type, x):
+func _on_AIDirector_enemy_needed(enemy_type: String, x: float):
 	match enemy_type:
 		"plane":
 			spawn_plane(x)
