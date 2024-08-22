@@ -1,0 +1,39 @@
+[gd_scene load_steps=3 format=3 uid="uid://bbvwu8gdowkdb"]
+
+[ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_0ujwh"]
+[ext_resource type="Script" path="res://game/scenes/InitScreen.gd" id="2_hvih0"]
+
+[node name="InitScreen" type="ColorRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_0ujwh")
+color = Color(0, 0, 0, 0.4)
+script = ExtResource("2_hvih0")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 8
+text = "> MECHA-PERON INITIALIZING
+> -------------------------------
+> Preparing weaponry...........
+> Laser eye aiming system ready.........USE MOUSE TO CONTROL
+> Fist rocket ready......PRESS X TO DEPLOY
+> Justicialist arm ready............PRESS Z TO ACTIVATE
+>
+> Click to continue"
