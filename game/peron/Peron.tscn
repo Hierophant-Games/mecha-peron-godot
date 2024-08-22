@@ -1,10 +1,11 @@
-[gd_scene load_steps=17 format=3 uid="uid://ck7uiqcyaf6j2"]
+[gd_scene load_steps=18 format=3 uid="uid://ck7uiqcyaf6j2"]
 
 [ext_resource type="Script" path="res://game/peron/Peron.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://du45m3pa52xc6" path="res://assets/peron/leftArm.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://blmhj48ipcqb8" path="res://assets/peron/torso.png" id="3"]
 [ext_resource type="Texture2D" uid="uid://cien0yvjbnlc0" path="res://assets/peron/head.png" id="4"]
 [ext_resource type="Texture2D" uid="uid://c0yh76r81yxuu" path="res://assets/peron/rightArm.png" id="5"]
+[ext_resource type="AudioStream" uid="uid://fm0743aa2s27" path="res://game/sfx/mecha_peron_foot_step.mp3" id="6_sa5xk"]
 
 [sub_resource type="RectangleShape2D" id="9"]
 size = Vector2(167, 224)
@@ -416,6 +417,15 @@ wait_time = 1.5
 
 [node name="DyingExplosionsTimer" type="Timer" parent="."]
 wait_time = 0.8
+
+[node name="SFX" type="Node" parent="."]
+
+[node name="FootStep" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_sa5xk")
+
+[node name="Laser" type="AudioStreamPlayer" parent="SFX"]
+
+[node name="Voice" type="AudioStreamPlayer" parent="SFX"]
 
 [connection signal="area_entered" from="." to="." method="_on_Peron_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Peron_area_exited"]

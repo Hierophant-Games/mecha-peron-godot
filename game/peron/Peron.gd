@@ -1,6 +1,10 @@
 class_name Peron
 extends Area2D
 
+const sfx_laser_shoot := preload("res://game/sfx/mecha_peron_laser_shoot.mp3")
+const sfx_laser_depleted := preload("res://game/sfx/mecha_peron_laser_depleted.mp3")
+const sfx_laser_shout := preload("res://game/sfx/mecha_peron_laser_shout.mp3")
+
 const FistScene := preload("res://game/peron/Fist.tscn")
 const LaserScene := preload("res://game/peron/Laser.tscn")
 const ExplosionScene := preload("res://game/vfx/Explosion.tscn")
@@ -22,6 +26,8 @@ var laser_overheat := false
 var fist_timer := 0.0
 
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
+@onready var laser_sfx_player := $SFX/Laser as AudioStreamPlayer
+@onready var voice_sfx_player := $SFX/Voice as AudioStreamPlayer
 
 func _ready() -> void:
 	setup_laser(left_laser, $LeftEye.position)
@@ -72,6 +78,8 @@ func update_laser(delta: float) -> void:
 		if laser_charge <= 0:
 			laser_charge = 0
 			laser_overheat = true
+			laser_sfx_player.set_stream(sfx_laser_depleted)
+			laser_sfx_player.play()
 			laser_off()
 	else:
 		if laser_overheat:
@@ -124,6 +132,10 @@ func laser():
 	
 	shooting_laser = true
 	animation_player.play("laser")
+	voice_sfx_player.set_stream(sfx_laser_shout)
+	voice_sfx_player.play()
+	laser_sfx_player.set_stream(sfx_laser_shoot)
+	laser_sfx_player.play()
 	left_laser.on()
 	right_laser.on()
 	VFX.flash(Color(Color.WHITE, 0.4), 0.5)
@@ -133,6 +145,8 @@ func laser_reverse():
 	left_laser.off()
 	right_laser.off()
 	animation_player.play_backwards("laser")
+	if laser_sfx_player.stream == sfx_laser_shoot:
+		laser_sfx_player.stop()
 	await animation_player.animation_finished
 	resume()
 
@@ -183,6 +197,7 @@ func _on_Peron_area_exited(_area: Area2D):
 
 func _on_step_timer_timeout() -> void:
 	VFX.shake(0.01, 0.2)
+	$SFX/FootStep.play()
 
 func _on_dying_explosions_timer_timeout() -> void:
 	var spawn_area_size := ($DamageArea as Area2D).shape_owner_get_shape(0, 0).get_rect().size
