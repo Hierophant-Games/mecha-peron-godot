@@ -7,3 +7,6 @@ func _ready():
 	
 	$EnemyProjectile.damage = Constants.PLANE_BOMB_DAMAGE
 	$EnemyProjectile.velocity = Vector2(Constants.PLANE_SPEED, 0)
+
+func on_destroy_invoked() -> void:
+	$AudioStreamPlayer.play()

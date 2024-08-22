@@ -57,4 +57,5 @@ func spawn_bomb(bomb_position: Vector2):
 	main_layer.add_child(bomb)
 
 func on_destroy_invoked() -> void:
+	$AudioStreamPlayer.play()
 	ScoreTracker.track_killed(ScoreTracker.EnemyType.PLANE)

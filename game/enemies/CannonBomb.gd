@@ -11,3 +11,6 @@ func fly():
 	var target_pos := target.global_position - Vector2(0, target_size.y)
 	
 	projectile.velocity = (target_pos - global_position).normalized() * Constants.CANNON_BOMB_SPEED
+
+func on_destroy_invoked() -> void:
+	$AudioStreamPlayer.play()
