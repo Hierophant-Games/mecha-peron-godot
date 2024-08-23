@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://d0hiemg3b3jin" path="res://assets/explosion.png" id="1_7b04f"]
 [ext_resource type="Script" path="res://game/vfx/Explosion.gd" id="1_l7v07"]
-[ext_resource type="AudioStream" uid="uid://wl8bce6ubbh2" path="res://game/sfx/explosion.mp3" id="3_022qo"]
+[ext_resource type="AudioStream" uid="uid://wl8bce6ubbh2" path="res://assets/sfx/explosion.mp3" id="3_022qo"]
 
 [sub_resource type="Animation" id="Animation_dyje3"]
 resource_name = "explode"

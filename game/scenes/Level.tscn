@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bugffpvydnq64" path="res://game/HUD.tscn" id="8_w6202"]
 [ext_resource type="PackedScene" uid="uid://d0u268u2tja7g" path="res://game/scenes/SceneFader.tscn" id="10_ir7ax"]
 [ext_resource type="PackedScene" uid="uid://cvx6g6u1ytgd7" path="res://game/scenes/GameOver.tscn" id="11_tf1bq"]
-[ext_resource type="AudioStream" uid="uid://lvnjsdkmeyvi" path="res://game/sfx/game_theme.mp3" id="13_1tplj"]
+[ext_resource type="AudioStream" uid="uid://lvnjsdkmeyvi" path="res://assets/sfx/game_theme.mp3" id="13_1tplj"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1")

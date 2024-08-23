@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://game/EnemyProjectile.gd" id="3_pf3mo"]
 [ext_resource type="Script" path="res://game/core/Damageable.gd" id="4_yn3pr"]
 [ext_resource type="Script" path="res://game/core/AutoDeletable.gd" id="5_yybm5"]
-[ext_resource type="AudioStream" uid="uid://wl8bce6ubbh2" path="res://game/sfx/explosion.mp3" id="8_hji61"]
+[ext_resource type="AudioStream" uid="uid://wl8bce6ubbh2" path="res://assets/sfx/explosion.mp3" id="8_hji61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4flo"]
 size = Vector2(5, 5)

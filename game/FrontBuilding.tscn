@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://game/FrontBuilding.gd" id="1"]
 [ext_resource type="Script" path="res://game/core/AutoDeletable.gd" id="2_fxod5"]
-[ext_resource type="AudioStream" uid="uid://wl8bce6ubbh2" path="res://game/sfx/explosion.mp3" id="3_wr3ft"]
+[ext_resource type="AudioStream" uid="uid://wl8bce6ubbh2" path="res://assets/sfx/explosion.mp3" id="3_wr3ft"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "destroy_building"

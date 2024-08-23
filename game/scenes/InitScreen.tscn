@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_0ujwh"]
 [ext_resource type="Script" path="res://game/scenes/InitScreen.gd" id="2_hvih0"]
-[ext_resource type="AudioStream" uid="uid://cfcrk6byeh6h3" path="res://game/sfx/console_blip.mp3" id="3_ijuut"]
+[ext_resource type="AudioStream" uid="uid://cfcrk6byeh6h3" path="res://assets/sfx/console_blip.mp3" id="3_ijuut"]
 
 [node name="InitScreen" type="ColorRect"]
 anchors_preset = 15
