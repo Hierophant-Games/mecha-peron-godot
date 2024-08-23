@@ -8,19 +8,6 @@ const MAX_ADDITIONAL_SOLDIERS := 8
 
 var soldiers: Array[Soldier] = []
 
-const sfx_shoot: Array[AudioStream] = [preload("res://game/sfx/soldier_fire_1.mp3"),
-										preload("res://game/sfx/soldier_fire_2.mp3"),
-										preload("res://game/sfx/soldier_fire_3.mp3")]
-const sfx_reload: Array[AudioStream] = [preload("res://game/sfx/soldier_reload_1.mp3"),
-										preload("res://game/sfx/soldier_reload_2.mp3"),
-										preload("res://game/sfx/soldier_reload_3.mp3")]
-const sfx_death: Array[AudioStream] = [preload("res://game/sfx/soldier_death_1.mp3"),
-									preload("res://game/sfx/soldier_death_2.mp3"),
-									preload("res://game/sfx/soldier_death_3.mp3"),
-									preload("res://game/sfx/soldier_death_4.mp3"),
-									preload("res://game/sfx/soldier_death_5.mp3"),
-									preload("res://game/sfx/soldier_death_6.mp3"),]
-
 func _enter_tree() -> void:
 	$Sprite2D.frame = 0
 	populate()
@@ -30,7 +17,6 @@ func populate() -> void:
 	
 	for node in get_random_spawn_points(soldier_count):
 		var soldier := SoldierScene.instantiate() as Soldier
-		soldier.setup(sfx_shoot, sfx_reload, sfx_death)
 		node.add_child(soldier)
 		soldiers.append(soldier)
 
