@@ -1,7 +1,7 @@
 class_name InitScreen
 extends ColorRect
 
-const CHAR_TYPING_TIME := 0.12
+const CHAR_TYPING_TIME := 0.06
 const CURSOR_TIME := 0.5
 
 @onready var label := $MarginContainer/Label as Label

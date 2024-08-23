@@ -41,3 +41,4 @@ text = "> MECHA-PERON INITIALIZING
 
 [node name="Blip" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ijuut")
+max_polyphony = 3
