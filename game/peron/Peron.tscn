@@ -1,10 +1,26 @@
-[gd_scene load_steps=17 format=3 uid="uid://ck7uiqcyaf6j2"]
+[gd_scene load_steps=33 format=3 uid="uid://ck7uiqcyaf6j2"]
 
 [ext_resource type="Script" path="res://game/peron/Peron.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://du45m3pa52xc6" path="res://assets/peron/leftArm.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://bqu267yqcldvn" path="res://assets/sfx/mecha_peron_hit_1.mp3" id="2_ornvx"]
 [ext_resource type="Texture2D" uid="uid://blmhj48ipcqb8" path="res://assets/peron/torso.png" id="3"]
+[ext_resource type="AudioStream" uid="uid://dbs8a6ayi0rg8" path="res://assets/sfx/mecha_peron_hit_2.mp3" id="3_ukmhv"]
 [ext_resource type="Texture2D" uid="uid://cien0yvjbnlc0" path="res://assets/peron/head.png" id="4"]
+[ext_resource type="AudioStream" uid="uid://bs3mt2aur3rv4" path="res://assets/sfx/mecha_peron_hit_3.mp3" id="4_5i7rw"]
 [ext_resource type="Texture2D" uid="uid://c0yh76r81yxuu" path="res://assets/peron/rightArm.png" id="5"]
+[ext_resource type="AudioStream" uid="uid://pryshwo2d0x6" path="res://assets/sfx/mecha_peron_companieros.mp3" id="5_btaca"]
+[ext_resource type="AudioStream" uid="uid://dul2bio1kdatt" path="res://assets/sfx/mecha_peron_justicia_social.mp3" id="6_gc010"]
+[ext_resource type="AudioStream" uid="uid://bjsnfuk7pc8w8" path="res://assets/sfx/mecha_peron_laser_shoot.mp3" id="6_i85ar"]
+[ext_resource type="AudioStream" uid="uid://fm0743aa2s27" path="res://assets/sfx/mecha_peron_foot_step.mp3" id="6_sa5xk"]
+[ext_resource type="AudioStream" uid="uid://bwuy8qph36112" path="res://assets/sfx/mecha_peron_tercera_posicion.mp3" id="7_ptg2q"]
+[ext_resource type="AudioStream" uid="uid://b77sg8yiefjem" path="res://assets/sfx/mecha_peron_laser_depleted.mp3" id="7_sfgec"]
+[ext_resource type="AudioStream" uid="uid://cdimcxos7pj3l" path="res://assets/sfx/mecha_peron_phrase_1.mp3" id="8_b4yua"]
+[ext_resource type="AudioStream" uid="uid://80kilccsecrf" path="res://assets/sfx/mecha_peron_laser_shout.mp3" id="8_cmrae"]
+[ext_resource type="AudioStream" uid="uid://dwhvdhmyhp4rd" path="res://assets/sfx/mecha_peron_phrase_2.mp3" id="9_habgd"]
+[ext_resource type="AudioStream" uid="uid://coyysi5c3euuh" path="res://assets/sfx/mecha_peron_hammer_fist.mp3" id="9_odkip"]
+[ext_resource type="AudioStream" uid="uid://d2app630dlrd" path="res://assets/sfx/mecha_peron_phrase_3.mp3" id="10_wp1cg"]
+[ext_resource type="AudioStream" uid="uid://b8plmmrwnlmbm" path="res://assets/sfx/mecha_peron_phrase_4.mp3" id="11_nsalu"]
+[ext_resource type="AudioStream" uid="uid://c7uurlxk4truw" path="res://assets/sfx/mecha_peron_rocket_punch.mp3" id="15_gsis2"]
 
 [sub_resource type="RectangleShape2D" id="9"]
 size = Vector2(167, 224)
@@ -349,6 +365,13 @@ size = Vector2(66, 224)
 [node name="Peron" type="Area2D"]
 collision_mask = 16
 script = ExtResource("1")
+hit_sounds = Array[AudioStream]([ExtResource("2_ornvx"), ExtResource("3_ukmhv"), ExtResource("4_5i7rw")])
+phrases = Array[AudioStream]([ExtResource("5_btaca"), ExtResource("6_gc010"), ExtResource("7_ptg2q"), ExtResource("8_b4yua"), ExtResource("9_habgd"), ExtResource("10_wp1cg"), ExtResource("11_nsalu")])
+sfx_laser_shoot = ExtResource("6_i85ar")
+sfx_laser_depleted = ExtResource("7_sfgec")
+sfx_laser_shout = ExtResource("8_cmrae")
+sfx_rocket_punch = ExtResource("15_gsis2")
+sfx_hammer_fist = ExtResource("9_odkip")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(82.5, -112)
@@ -411,14 +434,28 @@ collision_mask = 0
 position = Vector2(48, -112)
 shape = SubResource("RectangleShape2D_c0708")
 
+[node name="TalkTimer" type="Timer" parent="."]
+wait_time = 10.0
+autostart = true
+
 [node name="StepTimer" type="Timer" parent="."]
 wait_time = 1.5
 
 [node name="DyingExplosionsTimer" type="Timer" parent="."]
 wait_time = 0.8
 
+[node name="SFX" type="Node" parent="."]
+
+[node name="FootStep" type="AudioStreamPlayer" parent="SFX"]
+stream = ExtResource("6_sa5xk")
+
+[node name="Laser" type="AudioStreamPlayer" parent="SFX"]
+
+[node name="Voice" type="AudioStreamPlayer" parent="SFX"]
+
 [connection signal="area_entered" from="." to="." method="_on_Peron_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Peron_area_exited"]
 [connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]
+[connection signal="timeout" from="TalkTimer" to="." method="_on_talk_timer_timeout"]
 [connection signal="timeout" from="StepTimer" to="." method="_on_step_timer_timeout"]
 [connection signal="timeout" from="DyingExplosionsTimer" to="." method="_on_dying_explosions_timer_timeout"]

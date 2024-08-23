@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://b1ph7ubpc2r11"]
+[gd_scene load_steps=8 format=3 uid="uid://b1ph7ubpc2r11"]
 
 [ext_resource type="Script" path="res://game/enemies/EnemyBuilding.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bg4vwpi8d11d8" path="res://assets/enemyBuilding.png" id="2"]
 [ext_resource type="Script" path="res://game/core/Destroyable.gd" id="3_dw8vc"]
+[ext_resource type="AudioStream" uid="uid://btd05oe5xsa4o" path="res://assets/sfx/explosion_big.mp3" id="4_nlv65"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(79, 225)
@@ -142,3 +143,6 @@ libraries = {
 script = ExtResource("3_dw8vc")
 animation_player = NodePath("../AnimationPlayer")
 area_2d = NodePath("../Area2D")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_nlv65")

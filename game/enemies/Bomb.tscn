@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://8lqwhgs6xne1"]
+[gd_scene load_steps=12 format=3 uid="uid://8lqwhgs6xne1"]
 
 [ext_resource type="Texture2D" uid="uid://i12q10ttsgri" path="res://assets/bomb.png" id="1"]
 [ext_resource type="Script" path="res://game/enemies/Bomb.gd" id="2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://game/core/AutoDeletable.gd" id="5_i0oyr"]
 [ext_resource type="Script" path="res://game/EnemyProjectile.gd" id="6_fa8v8"]
 [ext_resource type="Script" path="res://game/core/Damageable.gd" id="7_1golj"]
+[ext_resource type="AudioStream" uid="uid://wl8bce6ubbh2" path="res://assets/sfx/explosion.mp3" id="8_aw6aq"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(10, 6)
@@ -101,3 +102,6 @@ laser_damage = 5
 script = ExtResource("6_fa8v8")
 animation_player = NodePath("../AnimationPlayer")
 area_2d = NodePath("../Area2D")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_aw6aq")

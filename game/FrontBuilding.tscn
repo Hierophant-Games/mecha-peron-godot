@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dqyyvmnjldxta"]
+[gd_scene load_steps=8 format=3 uid="uid://dqyyvmnjldxta"]
 
 [ext_resource type="Script" path="res://game/FrontBuilding.gd" id="1"]
 [ext_resource type="Script" path="res://game/core/AutoDeletable.gd" id="2_fxod5"]
+[ext_resource type="AudioStream" uid="uid://wl8bce6ubbh2" path="res://assets/sfx/explosion.mp3" id="3_wr3ft"]
 
 [sub_resource type="Animation" id="1"]
 resource_name = "destroy_building"
@@ -64,3 +65,6 @@ script = ExtResource("2_fxod5")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_75ih8")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_wr3ft")

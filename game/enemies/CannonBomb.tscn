@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://l1qkrjpipmia"]
+[gd_scene load_steps=12 format=3 uid="uid://l1qkrjpipmia"]
 
 [ext_resource type="Script" path="res://game/enemies/CannonBomb.gd" id="1_fu5bi"]
 [ext_resource type="Texture2D" uid="uid://pqhd2lo56vg8" path="res://assets/cannonBomb.png" id="2_ukl0k"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://game/EnemyProjectile.gd" id="3_pf3mo"]
 [ext_resource type="Script" path="res://game/core/Damageable.gd" id="4_yn3pr"]
 [ext_resource type="Script" path="res://game/core/AutoDeletable.gd" id="5_yybm5"]
+[ext_resource type="AudioStream" uid="uid://wl8bce6ubbh2" path="res://assets/sfx/explosion.mp3" id="8_hji61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4flo"]
 size = Vector2(5, 5)
@@ -102,3 +103,6 @@ laser_damage = 4
 
 [node name="AutoDeletable" type="Node" parent="."]
 script = ExtResource("5_yybm5")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_hji61")

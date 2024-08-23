@@ -1,9 +1,21 @@
-[gd_scene load_steps=11 format=3 uid="uid://dv46uf7dwa1d4"]
+[gd_scene load_steps=23 format=3 uid="uid://dv46uf7dwa1d4"]
 
 [ext_resource type="Script" path="res://game/enemies/Soldier.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://on5k4bebfgjp" path="res://assets/soldier.png" id="2"]
+[ext_resource type="AudioStream" uid="uid://c2881x11oorxo" path="res://assets/sfx/soldier_fire_1.mp3" id="2_w0vlk"]
 [ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3"]
+[ext_resource type="AudioStream" uid="uid://b1uwyqnlhctdc" path="res://assets/sfx/soldier_fire_2.mp3" id="3_o8e85"]
 [ext_resource type="Script" path="res://game/core/Damageable.gd" id="4_71esg"]
+[ext_resource type="AudioStream" uid="uid://bwdishepfkdv8" path="res://assets/sfx/soldier_fire_3.mp3" id="4_ycakt"]
+[ext_resource type="AudioStream" uid="uid://ise8iaf2odij" path="res://assets/sfx/soldier_reload_1.mp3" id="5_gjn4r"]
+[ext_resource type="AudioStream" uid="uid://bs4e5gcdqt8yb" path="res://assets/sfx/soldier_reload_2.mp3" id="6_krtce"]
+[ext_resource type="AudioStream" uid="uid://c50ujxbkgmr1a" path="res://assets/sfx/soldier_reload_3.mp3" id="7_fd481"]
+[ext_resource type="AudioStream" uid="uid://u3at7bbwfkgh" path="res://assets/sfx/soldier_death_1.mp3" id="8_qat1u"]
+[ext_resource type="AudioStream" uid="uid://c8dnpgro65m6g" path="res://assets/sfx/soldier_death_2.mp3" id="9_fqsu2"]
+[ext_resource type="AudioStream" uid="uid://ccqb05t4wxi15" path="res://assets/sfx/soldier_death_3.mp3" id="10_s2tiy"]
+[ext_resource type="AudioStream" uid="uid://dvjniiqs338lt" path="res://assets/sfx/soldier_death_4.mp3" id="11_kx615"]
+[ext_resource type="AudioStream" uid="uid://1ppruuesjqco" path="res://assets/sfx/soldier_death_5.mp3" id="12_7vp4u"]
+[ext_resource type="AudioStream" uid="uid://qitnx73xr3dm" path="res://assets/sfx/soldier_death_6.mp3" id="13_msj72"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(10, 9)
@@ -109,6 +121,9 @@ _data = {
 
 [node name="Soldier" type="Node2D"]
 script = ExtResource("1")
+shoot_sounds = Array[AudioStream]([ExtResource("2_w0vlk"), ExtResource("3_o8e85"), ExtResource("4_ycakt")])
+reload_sounds = Array[AudioStream]([ExtResource("5_gjn4r"), ExtResource("6_krtce"), ExtResource("7_fd481")])
+death_sounds = Array[AudioStream]([ExtResource("8_qat1u"), ExtResource("9_fqsu2"), ExtResource("10_s2tiy"), ExtResource("11_kx615"), ExtResource("12_7vp4u"), ExtResource("13_msj72")])
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 2
@@ -138,3 +153,5 @@ health_bar = NodePath("../HealthBar")
 laser_damage = 3
 
 [node name="RocketSpawnNode" type="Node2D" parent="."]
+
+[node name="Voice" type="AudioStreamPlayer" parent="."]

@@ -35,6 +35,7 @@ func _process(delta: float) -> void:
 			_cursor_visible = !_cursor_visible
 			if _cursor_visible:
 				label.text += "_"
+				$Blip.play()
 			else:
 				label.text = label.text.trim_suffix("_")
 		return
@@ -44,6 +45,7 @@ func _process(delta: float) -> void:
 		type_text()
 
 func type_text() -> void:
+	$Blip.play()
 	if _skip:
 		var next_line_break := full_text.find("\n", _text_accum)
 		_text_accum = next_line_break + 1 if next_line_break > 0 else full_text_count

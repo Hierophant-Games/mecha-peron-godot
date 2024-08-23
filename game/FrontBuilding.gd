@@ -32,4 +32,6 @@ func destroy():
 	if cannon != null:
 		cannon.destroy()
 	$AnimationPlayer.play("destroy_building")
+	$AudioStreamPlayer.play()
+	
 	ScoreTracker.track_killed(ScoreTracker.EnemyType.BUILDING)

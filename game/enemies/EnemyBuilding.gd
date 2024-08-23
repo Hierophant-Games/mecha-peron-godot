@@ -27,6 +27,7 @@ func get_random_spawn_points(count) -> Array[Node]:
 
 func on_destroy_invoked() -> void:
 	VFX.shake(0.01, 10)
+	$AudioStreamPlayer.play()
 	for soldier in soldiers:
 		soldier.die()
 	ScoreTracker.track_killed(ScoreTracker.EnemyType.BUILDING)

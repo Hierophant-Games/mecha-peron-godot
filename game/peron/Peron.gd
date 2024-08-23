@@ -5,6 +5,14 @@ const FistScene := preload("res://game/peron/Fist.tscn")
 const LaserScene := preload("res://game/peron/Laser.tscn")
 const ExplosionScene := preload("res://game/vfx/Explosion.tscn")
 
+@export var hit_sounds: Array[AudioStream]
+@export var phrases: Array[AudioStream]
+@export var sfx_laser_shoot: AudioStream
+@export var sfx_laser_depleted: AudioStream
+@export var sfx_laser_shout: AudioStream
+@export var sfx_rocket_punch: AudioStream
+@export var sfx_hammer_fist: AudioStream
+
 var left_laser := LaserScene.instantiate() as Laser
 var right_laser := LaserScene.instantiate() as Laser
 
@@ -22,6 +30,10 @@ var laser_overheat := false
 var fist_timer := 0.0
 
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
+
+# Sound effects and players ------------
+@onready var laser_sfx_player := $SFX/Laser as AudioStreamPlayer
+@onready var voice_sfx_player := $SFX/Voice as AudioStreamPlayer
 
 func _ready() -> void:
 	setup_laser(left_laser, $LeftEye.position)
@@ -72,6 +84,8 @@ func update_laser(delta: float) -> void:
 		if laser_charge <= 0:
 			laser_charge = 0
 			laser_overheat = true
+			laser_sfx_player.set_stream(sfx_laser_depleted)
+			laser_sfx_player.play()
 			laser_off()
 	else:
 		if laser_overheat:
@@ -89,10 +103,12 @@ func play_and_set_next(anim: String):
 
 func walk():
 	$StepTimer.start()
+	$TalkTimer.set_paused(false)
 	play_and_set_next("walk")
 
 func idle():
 	$StepTimer.stop()
+	$TalkTimer.set_paused(true)
 	play_and_set_next("idle")
 
 func resume():
@@ -107,6 +123,8 @@ func can_use_fist() -> bool:
 func attack_fist():
 	if can_use_fist():
 		animation_player.play("attack_left_arm")
+		voice_sfx_player.set_stream(sfx_rocket_punch)
+		voice_sfx_player.play()
 
 func launch_fist():
 	var fist = FistScene.instantiate() as Fist
@@ -116,6 +134,8 @@ func launch_fist():
 
 func attack_arm():
 	animation_player.play("attack_right_arm")
+	voice_sfx_player.set_stream(sfx_hammer_fist)
+	voice_sfx_player.play()
 
 func laser():
 	if laser_overheat:
@@ -124,6 +144,10 @@ func laser():
 	
 	shooting_laser = true
 	animation_player.play("laser")
+	voice_sfx_player.set_stream(sfx_laser_shout)
+	voice_sfx_player.play()
+	laser_sfx_player.set_stream(sfx_laser_shoot)
+	laser_sfx_player.play()
 	left_laser.on()
 	right_laser.on()
 	VFX.flash(Color(Color.WHITE, 0.4), 0.5)
@@ -133,6 +157,8 @@ func laser_reverse():
 	left_laser.off()
 	right_laser.off()
 	animation_player.play_backwards("laser")
+	if laser_sfx_player.stream == sfx_laser_shoot:
+		laser_sfx_player.stop()
 	await animation_player.animation_finished
 	resume()
 
@@ -157,6 +183,8 @@ func damage(amount: int):
 		return
 	
 	animation_player.play("damage")
+	voice_sfx_player.set_stream(hit_sounds.pick_random())
+	voice_sfx_player.play()
 	await animation_player.animation_finished
 	resume()
 
@@ -183,6 +211,11 @@ func _on_Peron_area_exited(_area: Area2D):
 
 func _on_step_timer_timeout() -> void:
 	VFX.shake(0.01, 0.2)
+	$SFX/FootStep.play()
+	
+func _on_talk_timer_timeout() -> void:
+	voice_sfx_player.set_stream(phrases.pick_random())
+	voice_sfx_player.play()
 
 func _on_dying_explosions_timer_timeout() -> void:
 	var spawn_area_size := ($DamageArea as Area2D).shape_owner_get_shape(0, 0).get_rect().size
