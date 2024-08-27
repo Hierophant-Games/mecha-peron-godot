@@ -87,7 +87,6 @@ attack_arm={
 [internationalization]
 
 locale/translations=PackedStringArray("res://assets/texts/localized_texts.en.translation", "res://assets/texts/localized_texts.es.translation")
-locale/test="es"
 
 [layer_names]
 
