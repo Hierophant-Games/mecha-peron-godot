@@ -448,10 +448,13 @@ wait_time = 0.8
 
 [node name="FootStep" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("6_sa5xk")
+bus = &"Sfx"
 
 [node name="Laser" type="AudioStreamPlayer" parent="SFX"]
+bus = &"Sfx"
 
 [node name="Voice" type="AudioStreamPlayer" parent="SFX"]
+bus = &"Voice"
 
 [connection signal="area_entered" from="." to="." method="_on_Peron_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_Peron_area_exited"]

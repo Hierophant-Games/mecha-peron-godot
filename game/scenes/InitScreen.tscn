@@ -41,3 +41,4 @@ label_settings = SubResource("LabelSettings_7g3hj")
 [node name="Blip" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ijuut")
 max_polyphony = 3
+bus = &"Sfx"

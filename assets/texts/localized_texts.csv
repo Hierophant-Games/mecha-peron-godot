@@ -39,6 +39,7 @@ GO_TO_MAIN_MENU_BUTTON_TEXT,Go to main menu,Menú principal
 HUD_DESTRUCTION_TEXT,Destruction: {interpolated_score},Destrucción: {interpolated_score}
 MUSIC_VOLUME_TEXT,Music volume,Volumen de la música
 SOUND_VOLUME_TEXT,Sound volume,Volumen del sonido
+VOICE_VOLUME_TEXT,Voices volume,Volumen de voces
 START_GAME_BUTTON_TEXT,Viva Mecha-Perón!,Viva Mecha-Perón!
 OPTIONS_BUTTON_TEXT,Configure,Configurar
 CREDITS_BUTTON_TEXT,Credits,Créditos
