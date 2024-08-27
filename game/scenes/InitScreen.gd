@@ -5,7 +5,7 @@ const CHAR_TYPING_TIME := 0.06
 const CURSOR_TIME := 0.5
 
 @onready var label := $MarginContainer/Label as Label
-@onready var full_text := label.text
+@onready var full_text := tr("INITIALIZING_TEXT")
 @onready var full_text_count := full_text.length()
 
 var _time_accum := 0.0

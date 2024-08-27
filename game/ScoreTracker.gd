@@ -33,11 +33,11 @@ func set_distance(value: float):
 	_distance_traveled = value / DISTANCE_SCALE_FACTOR
 
 func get_distance_text() -> String:
-	return str(_distance_traveled).pad_decimals(2) + " km"
+	return tr("SCORE_DISTANCE_TEXT").format({"distance_score": str(_distance_traveled).pad_decimals(2)})
 
 func get_score_text() -> String:
-	return str("Total Destruction: ", _score)
+	return tr("SCORE_DESTRUCTION_TEXT").format({"destruction_score": _score})
 
 func get_interpolated_score_text(delta: float) -> String:
 	_interpolated_score = minf(_score, _interpolated_score + delta * 10)
-	return str("Destruction: ", int(_interpolated_score))
+	return tr("HUD_DESTRUCTION_TEXT").format({"interpolated_score": int(_interpolated_score)})

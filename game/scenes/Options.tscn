@@ -38,7 +38,7 @@ custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "The Rise and Fall of Mecha-Perón"
+text = "GAME_TITLE_TEXT"
 autowrap_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
@@ -53,7 +53,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MusicSettings"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-text = "Music volume"
+text = "MUSIC_VOLUME_TEXT"
 
 [node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/MusicSettings"]
 layout_mode = 2
@@ -66,7 +66,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SoundSettings"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-text = "Sound volume"
+text = "SOUND_VOLUME_TEXT"
 
 [node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/SoundSettings"]
 layout_mode = 2
@@ -96,7 +96,7 @@ script = ExtResource("4_b1wvi")
 [node name="BackButton" type="Button" parent="MarginContainer/ButtonList"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Back"
+text = "BACK_BUTTON_TEXT"
 
 [node name="SceneFader" parent="." instance=ExtResource("5_vlvlw")]
 visible = false

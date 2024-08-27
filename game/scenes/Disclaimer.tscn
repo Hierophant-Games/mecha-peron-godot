@@ -34,9 +34,7 @@ grow_vertical = 2
 [node name="Disclaimer" type="Label" parent="CenterContainer"]
 custom_minimum_size = Vector2(320, 0)
 layout_mode = 2
-text = "Disclaimer:
-
-The events and characters depicted in this videogame are completely ficticious. Any similarity to actual people, living or dead, is purely coincidental."
+text = "DISCLAIMER_TEXT"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -55,7 +53,7 @@ grow_vertical = 0
 
 [node name="OfCourse" type="Label" parent="MarginContainer"]
 layout_mode = 2
-text = "Of course it is!"
+text = "OF_COURSE_TEXT"
 horizontal_alignment = 1
 
 [node name="SceneFader" parent="." instance=ExtResource("2_5f2r5")]

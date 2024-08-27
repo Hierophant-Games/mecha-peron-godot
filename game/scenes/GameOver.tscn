@@ -66,7 +66,7 @@ theme_override_constants/separation = 20
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_vertical = 0
-text = "Your path of destruction ends at:"
+text = "PATH_OF_DESTRUCTION_TEXT"
 horizontal_alignment = 1
 autowrap_mode = 2
 
@@ -78,14 +78,14 @@ theme_override_constants/separation = 8
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 24
-text = "0.0km"
+text = "SCORE_DISTANCE_TEXT"
 horizontal_alignment = 1
 
 [node name="LabelDestruction" type="Label" parent="ColorRect/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 8
-text = "Total Destruction: 0"
+text = "SCORE_DESTRUCTION_TEXT"
 horizontal_alignment = 1
 
 [node name="ButtonList" type="VBoxContainer" parent="ColorRect/MarginContainer/VBoxContainer"]
@@ -95,11 +95,11 @@ script = ExtResource("2_8ofis")
 
 [node name="TryAgainButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/ButtonList"]
 layout_mode = 2
-text = "Try again"
+text = "TRY_AGAIN_BUTTON_TEXT"
 
 [node name="MainMenuButton" type="Button" parent="ColorRect/MarginContainer/VBoxContainer/ButtonList"]
 layout_mode = 2
-text = "Go to main menu"
+text = "GO_TO_MAIN_MENU_BUTTON_TEXT"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
