@@ -155,3 +155,4 @@ laser_damage = 3
 [node name="RocketSpawnNode" type="Node2D" parent="."]
 
 [node name="Voice" type="AudioStreamPlayer" parent="."]
+bus = &"Voice"

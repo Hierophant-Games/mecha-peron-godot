@@ -68,3 +68,4 @@ shape = SubResource("RectangleShape2D_75ih8")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_wr3ft")
+bus = &"Sfx"

@@ -89,6 +89,7 @@ script = ExtResource("7")
 
 [node name="ThemePlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_1tplj")
+bus = &"Music"
 parameters/looping = true
 
 [connection signal="main_menu_pressed" from="GUILayer/GameOver" to="." method="_on_game_over_main_menu_pressed"]

@@ -40,7 +40,7 @@ custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "The Rise and Fall of Mecha-Perón"
+text = "GAME_TITLE_TEXT"
 autowrap_mode = 2
 
 [node name="ButtonList" type="VBoxContainer" parent="MarginContainer"]
@@ -52,23 +52,23 @@ script = ExtResource("4_mwlkc")
 [node name="PlayButton" type="Button" parent="MarginContainer/ButtonList"]
 layout_mode = 2
 focus_neighbor_top = NodePath("../HelpButton")
-text = "Viva Mecha-Perón!"
+text = "START_GAME_BUTTON_TEXT"
 alignment = 2
 
 [node name="OptionsButton" type="Button" parent="MarginContainer/ButtonList"]
 layout_mode = 2
-text = "Configure"
+text = "OPTIONS_BUTTON_TEXT"
 alignment = 2
 
 [node name="CreditsButton" type="Button" parent="MarginContainer/ButtonList"]
 layout_mode = 2
-text = "Credits"
+text = "CREDITS_BUTTON_TEXT"
 alignment = 2
 
 [node name="HelpButton" type="Button" parent="MarginContainer/ButtonList"]
 layout_mode = 2
 focus_neighbor_bottom = NodePath("../PlayButton")
-text = "What the f*** is this all about?"
+text = "HELP_BUTTON_TEXT"
 alignment = 2
 
 [node name="SceneFader" parent="." instance=ExtResource("4_7jkku")]
@@ -78,6 +78,7 @@ layout_mode = 1
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_klh10")
 autoplay = true
+bus = &"Music"
 parameters/looping = true
 
 [connection signal="pressed" from="MarginContainer/ButtonList/PlayButton" to="." method="_on_play_button_pressed"]

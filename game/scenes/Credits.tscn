@@ -41,51 +41,7 @@ custom_minimum_size = Vector2(240, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 8
-text = "GODOT PORT BY
-
-Santiago Martín Vilar
-
-Nicolás Viegas Palermo
-
-
-Additional support from
-Lisandro \"NoidEXE\" Lorea
-
-
-
-
-ORIGINAL CREDITS
-
-BASED ON THE ORIGINAL IDEA BY Franco Stagni: flickr.com/photos/francostagni/3413073768
-
-
-HIEROPHANT GAMES
-
-Santiago Martín Vilar: code, music, sfx, design
-
-Nicolás Viegas Palermo: pixel art, design, code
-
-Fernando Martínez Herrera: code, music, sfx, design
-
-
-VOICE TALENT: Maximiliano Carrión
-
-
-\"Los muchachos peronistas\" (8-bit remix) by Santiago Martín Vilar
-
-\"Los muchachos peronistas\" (metal remix) by Fernando Martínez Herrera
-
-
-Thanks to all of you who sent feedback, friends, girlfriends, enemies, unknown people, etc.
-
-THANK YOU ADAM ATOMIC FOR THIS AWESOME FLIXEL
-
-WE <3 JAPAN, we're not making any joke with the latest events.
-
-
-This game was made for the ADVA's CODEAR \"Perón\" compo. ADVA is the Argentine Association of Videogame Developers. Thanks for playing!
-
-It was our first completed project as a team and we're very happy with the outcome. Viva Perón!"
+text = "CREDITS_TEXT"
 autowrap_mode = 2
 
 [node name="ButtonList" type="VBoxContainer" parent="MarginContainer"]
@@ -97,7 +53,7 @@ script = ExtResource("4_75kry")
 [node name="BackButton" type="Button" parent="MarginContainer/ButtonList"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Back"
+text = "BACK_BUTTON_TEXT"
 
 [node name="SceneFader" parent="." instance=ExtResource("4_6tx0f")]
 visible = false

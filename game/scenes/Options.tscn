@@ -38,7 +38,7 @@ custom_minimum_size = Vector2(220, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
-text = "The Rise and Fall of Mecha-Perón"
+text = "GAME_TITLE_TEXT"
 autowrap_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
@@ -53,7 +53,7 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MusicSettings"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-text = "Music volume"
+text = "MUSIC_VOLUME_TEXT"
 
 [node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/MusicSettings"]
 layout_mode = 2
@@ -66,9 +66,22 @@ layout_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/SoundSettings"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
-text = "Sound volume"
+text = "SOUND_VOLUME_TEXT"
 
 [node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/SoundSettings"]
+layout_mode = 2
+max_value = 1.0
+step = 0.01
+
+[node name="VoiceSettings" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/VoiceSettings"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "VOICE_VOLUME_TEXT"
+
+[node name="Slider" type="HSlider" parent="MarginContainer/VBoxContainer/VoiceSettings"]
 layout_mode = 2
 max_value = 1.0
 step = 0.01
@@ -96,7 +109,7 @@ script = ExtResource("4_b1wvi")
 [node name="BackButton" type="Button" parent="MarginContainer/ButtonList"]
 layout_mode = 2
 size_flags_horizontal = 8
-text = "Back"
+text = "BACK_BUTTON_TEXT"
 
 [node name="SceneFader" parent="." instance=ExtResource("5_vlvlw")]
 visible = false
@@ -104,4 +117,5 @@ layout_mode = 1
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MusicSettings/Slider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/SoundSettings/Slider" to="." method="_on_sound_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/VBoxContainer/VoiceSettings/Slider" to="." method="_on_voice_slider_value_changed"]
 [connection signal="pressed" from="MarginContainer/ButtonList/BackButton" to="." method="_on_back_button_pressed"]

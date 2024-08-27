@@ -14,7 +14,7 @@ func _ready():
 	var line_height := credits_text.get_line_height()
 	var needed_lines := ceili(get_viewport_rect().size.y / line_height)
 	var new_lines := "\n".repeat(needed_lines)
-	credits_text.text = new_lines + credits_text.text + new_lines
+	credits_text.text = new_lines + tr("CREDITS_TEXT") + new_lines
 
 func _process(delta: float):
 	# we need to store the current scroll value in a float because the

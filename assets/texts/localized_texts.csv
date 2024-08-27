@@ -1,0 +1,141 @@
+key,en,es
+GAME_TITLE_TEXT,The Rise and Fall of Mecha-Perón,El auge y la caída de Mecha-Perón
+HELP_TEXT,"After losing WWII, mad Japanese scientists built a giant automaton. It was created after Argentinean rising leader, Juan D. Perón.
+
+Sadly, the AI implanted in the Mecha went rogue and started to wreak havoc on the Japanese capital city.
+
+You command the path of destruction of Mecha-Perón. Have fun.","Luego de perder la II Guerra Mundial, científicos locos japoneses construyeron un autómata gigante. Fue creado en homenaje al flamante líder argentino, Juan D. Perón.
+
+Lamentablemente, la IA implantada en el Mecha se descontroló y empezó a destruir la capital japonesa.
+
+Controlás el camino de destrucción de Mecha-Perón. Divertite."
+INITIALIZING_TEXT,"> MECHA-PERON INITIALIZING
+> -------------------------------
+> Preparing weaponry...........
+> Laser eye aiming system ready.........USE MOUSE TO CONTROL
+> Rocket punch ready......PRESS X TO DEPLOY
+> Justicialist arm ready............PRESS Z TO ACTIVATE
+>
+> Click to continue","> INICIALIZANDO A MECHA-PERON
+> -------------------------------
+> Preparando el armamento...........
+> Láser ocular listo....CONTROLE CON EL MOUSE
+> Puño misil listo......PRESIONE X PARA DESPLEGAR
+> Brazo justicialista listo.....PRESIONE Z PARA ACCIONAR
+> 
+> Clic para continuar"
+BACK_BUTTON_TEXT,Back,Atrás
+DISCLAIMER_TEXT,"Disclaimer:
+
+The events and characters depicted in this videogame are completely ficticious. Any similarity to actual people, living or dead, is purely coincidental.","Aviso:
+
+Los eventos y personajes que aparecen en este videojuego son completamente ficticios. Cualquier semejanza con personas reales, vivas o muertas, es coincidencia pura."
+OF_COURSE_TEXT,Of course it is!,Claro que sí!
+PATH_OF_DESTRUCTION_TEXT,Your path of destruction ends at:,Tu camino de destrucción termina a los:
+SCORE_DISTANCE_TEXT,{distance_score}km,{distance_score}km
+SCORE_DESTRUCTION_TEXT,Total Destruction: {destruction_score},Destrucción Total: {destruction_score}
+TRY_AGAIN_BUTTON_TEXT,Try again,Intentar de nuevo
+GO_TO_MAIN_MENU_BUTTON_TEXT,Go to main menu,Menú principal
+HUD_DESTRUCTION_TEXT,Destruction: {interpolated_score},Destrucción: {interpolated_score}
+MUSIC_VOLUME_TEXT,Music volume,Volumen de la música
+SOUND_VOLUME_TEXT,Sound volume,Volumen del sonido
+VOICE_VOLUME_TEXT,Voices volume,Volumen de voces
+START_GAME_BUTTON_TEXT,Viva Mecha-Perón!,Viva Mecha-Perón!
+OPTIONS_BUTTON_TEXT,Configure,Configurar
+CREDITS_BUTTON_TEXT,Credits,Créditos
+HELP_BUTTON_TEXT,What the f*** is this all about?,¿Qué carajo es todo esto?
+CREDITS_TEXT,"GODOT PORT BY
+
+Santiago Martín Vilar
+
+Nicolás Viegas Palermo
+
+
+Additional support
+Lisandro ""NoidEXE"" Lorea
+
+
+
+
+ORIGINAL CREDITS
+
+BASED ON THE ORIGINAL IDEA BY Franco Stagni: flickr.com/photos/francostagni/3413073768
+
+
+HIEROPHANT GAMES
+
+Santiago Martín Vilar: code, music, sfx, design
+
+Nicolás Viegas Palermo: pixel art, design, code
+
+Fernando Martínez Herrera: code, music, sfx, design
+
+
+VOICE TALENT: Maximiliano Carrión
+
+
+""Los muchachos peronistas""(8-bit remix) by Santiago Martín Vilar
+
+""Los muchachos peronistas""(metal remix) by Fernando Martínez Herrera
+
+
+Thanks to all of you who sent feedback, friends, girlfriends, enemies, unknown people, etc.
+
+THANK YOU ADAM ATOMIC FOR THIS AWESOME FLIXEL
+
+WE <3 JAPAN, we're not making any joke with the latest events.*
+
+*(Refers to 2011's Fukushima earthquake, when the game was originally released)
+
+
+
+This game was made for the ADVA's CODEAR ""Perón""compo. ADVA is the Argentine Association of Videogame Developers. Thanks for playing!
+
+It was our first completed project as a team and we're very happy with the outcome. Viva Perón!","PORT A GODOT POR
+
+Santiago Martin Vilar
+
+Nicolás Viegas Palermo
+
+Soporte Adicional
+Lisandro ""NoidEXE"" Lorea
+
+
+
+
+CREDITOS ORIGINALES
+
+BASADO EN LA IDEA ORIGINAL DE Franco Stagni: flickr.com/photos/francostagni/3413073768
+
+
+HIEROPHANT GAMES
+
+Santiago Martín Vilar: código, música, sonidos, diseño
+
+Nicolás Viegas Palermo: pixel art, diseño, código
+
+Fernando Martínez Herrera: código, música, sonidos, diseño
+
+
+LA VOZ DEL PUEBLO: Maximiliano Carrión
+
+
+""Los muchachos peronistas""(8-bit remix) por Santiago Martín Vilar
+
+""Los muchachos peronistas""(metal remix) por Fernando Martínez Herrera
+
+
+
+Gracias a todos los que mandaron feedback, amigos, amigas, enemigos, desconocidos, etc.
+
+GRACIAS ADAM ATOMIC POR FLIXEL
+
+WE <3 JAPAN, no estamos burlándonos de los últimos sucesos acontecidos.*
+
+*(Refiere al terremoto de Fukushima en 2011, cuando el juego fue lanzado originalmente)
+
+
+
+Este juego fue hecho para el concurso CODEAR ""Perón""de la Asociación de Desarolladores de Videojuegos Argentinos (ADVA). Gracias por jugarlo!
+
+Fue nuestro primer proyecto como equipo y estamos muy contentos con el resultado. Viva Perón!"

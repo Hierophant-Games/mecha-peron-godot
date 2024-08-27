@@ -82,3 +82,4 @@ laser_damage = 2
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_cyhjj")
+bus = &"Sfx"

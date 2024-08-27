@@ -1,8 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://bbvwu8gdowkdb"]
+[gd_scene load_steps=6 format=3 uid="uid://bbvwu8gdowkdb"]
 
 [ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_0ujwh"]
 [ext_resource type="Script" path="res://game/scenes/InitScreen.gd" id="2_hvih0"]
 [ext_resource type="AudioStream" uid="uid://cfcrk6byeh6h3" path="res://assets/sfx/console_blip.mp3" id="3_ijuut"]
+[ext_resource type="FontFile" uid="uid://bmu8ajj5rs807" path="res://assets/fonts/nokiafc22.ttf" id="3_rvbcg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7g3hj"]
+font = ExtResource("3_rvbcg")
+font_size = 8
 
 [node name="InitScreen" type="ColorRect"]
 anchors_preset = 15
@@ -30,15 +35,10 @@ theme_override_constants/margin_bottom = 4
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_font_sizes/font_size = 8
-text = "> MECHA-PERON INITIALIZING
-> -------------------------------
-> Preparing weaponry...........
-> Laser eye aiming system ready.........USE MOUSE TO CONTROL
-> Fist rocket ready......PRESS X TO DEPLOY
-> Justicialist arm ready............PRESS Z TO ACTIVATE
->
-> Click to continue"
+text = "INITIALIZING_TEXT"
+label_settings = SubResource("LabelSettings_7g3hj")
 
 [node name="Blip" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ijuut")
 max_polyphony = 3
+bus = &"Sfx"
