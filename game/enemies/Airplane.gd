@@ -66,3 +66,10 @@ func _on_damaged() -> void:
 	sparks_emitter.emitting = true
 	await get_tree().create_timer(0.2).timeout
 	sparks_emitter.emitting = false
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	if destroyed:
+		# no need to call queue_free because the Destroyable component will
+		smoke_emitter.emitting = false
+	else:
+		queue_free()
