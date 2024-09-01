@@ -5,6 +5,7 @@
 [ext_resource type="Script" path="res://game/vfx/smoke_emitter/SmokeEmitter.gd" id="3_lbb6c"]
 
 [node name="SmokeEmitter" type="CPUParticles2D"]
+modulate = Color(0.588235, 0.45098, 0.517647, 1)
 material = ExtResource("1_unlo3")
 amount = 15
 lifetime = 4.0

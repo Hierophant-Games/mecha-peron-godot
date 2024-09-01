@@ -8,9 +8,10 @@ const BombScene = preload("res://game/enemies/Bomb.tscn")
 @onready var width: int = $plane.texture.get_width() / $plane.hframes
 @onready var health_bar := $HealthBar as HealthBar
 @onready var bomb_origin := $BombOrigin
+@onready var smoke_emitter := $SmokeEmitter as CPUParticles2D
+@onready var sparks_emitter := $SparksEmitter as CPUParticles2D
 
 var health := 100
-var hurting := false
 var bomb_dropped := false
 
 # sin movement
@@ -59,3 +60,16 @@ func spawn_bomb(bomb_position: Vector2):
 func on_destroy_invoked() -> void:
 	$AudioStreamPlayer.play()
 	ScoreTracker.track_killed(ScoreTracker.EnemyType.PLANE)
+	smoke_emitter.emitting = true
+
+func _on_damaged() -> void:
+	sparks_emitter.emitting = true
+	await get_tree().create_timer(0.2).timeout
+	sparks_emitter.emitting = false
+
+func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
+	if destroyed:
+		# no need to call queue_free because the Destroyable component will
+		smoke_emitter.emitting = false
+	else:
+		queue_free()

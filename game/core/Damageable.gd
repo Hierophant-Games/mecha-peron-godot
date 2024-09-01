@@ -1,6 +1,7 @@
 class_name Damageable
 extends Node
 
+signal damaged
 signal health_depleted
 
 @export var destroyable: Destroyable = null
@@ -27,3 +28,4 @@ func _enter_tree():
 
 func damage():
 	health -= laser_damage
+	damaged.emit()

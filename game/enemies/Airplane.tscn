@@ -1,19 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://dpd5t3hw33ii1"]
+[gd_scene load_steps=14 format=3 uid="uid://dpd5t3hw33ii1"]
 
 [ext_resource type="Script" path="res://game/enemies/Airplane.gd" id="1_b1jtt"]
 [ext_resource type="Texture2D" uid="uid://cb6lr1058llof" path="res://assets/plane.png" id="2_b8fyn"]
 [ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3_a0i6c"]
-[ext_resource type="Script" path="res://game/core/AutoDeletable.gd" id="4_2d0hv"]
 [ext_resource type="Script" path="res://game/core/Destroyable.gd" id="5_kaov3"]
 [ext_resource type="Script" path="res://game/core/Damageable.gd" id="6_dc3yr"]
 [ext_resource type="AudioStream" uid="uid://wl8bce6ubbh2" path="res://assets/sfx/explosion.mp3" id="7_cyhjj"]
+[ext_resource type="PackedScene" uid="uid://buyc70hdc4bal" path="res://game/vfx/smoke_emitter/SmokeEmitter.tscn" id="8_n6b0o"]
+[ext_resource type="Gradient" uid="uid://c5ii5malnx2lf" path="res://game/vfx/smoke_emitter/smoke_gradient.tres" id="9_ahxrg"]
+[ext_resource type="Texture2D" uid="uid://455cb5mlc3o7" path="res://assets/spark.png" id="10_7u6gm"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(72, 20)
 
 [sub_resource type="Animation" id="Animation_n1hox"]
 resource_name = "destroy"
-length = 3.0
+length = 5.0
 
 [sub_resource type="Animation" id="2"]
 resource_name = "fly"
@@ -66,9 +68,6 @@ position = Vector2(26, 2)
 [node name="BombOrigin" type="Node2D" parent="."]
 position = Vector2(40, 25)
 
-[node name="AutoDeletable" type="Node" parent="."]
-script = ExtResource("4_2d0hv")
-
 [node name="Destroyable" type="Node" parent="." node_paths=PackedStringArray("animation_player", "area_2d")]
 script = ExtResource("5_kaov3")
 animation_player = NodePath("../AnimationPlayer")
@@ -83,3 +82,24 @@ laser_damage = 2
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("7_cyhjj")
 bus = &"Sfx"
+
+[node name="SmokeEmitter" parent="." instance=ExtResource("8_n6b0o")]
+position = Vector2(36, 19)
+emitting = false
+amount = 30
+color_initial_ramp = ExtResource("9_ahxrg")
+type = 2
+
+[node name="SparksEmitter" type="CPUParticles2D" parent="."]
+position = Vector2(36, 19)
+emitting = false
+amount = 6
+texture = ExtResource("10_7u6gm")
+gravity = Vector2(0, 200)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+position = Vector2(36, 19)
+scale = Vector2(3.6, 1)
+
+[connection signal="damaged" from="Damageable" to="." method="_on_damaged"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
