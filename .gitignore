@@ -5,6 +5,9 @@
 .import/
 export.cfg
 
+# Ignore exports
+bin/
+
 # Imported translations (automatically generated from CSV files)
 *.translation
 
