@@ -38,7 +38,7 @@ horizontal_alignment = 1
 [node name="SceneFader" parent="." instance=ExtResource("4_pm6re")]
 visible = false
 layout_mode = 1
-next_scene = "res://game/scenes/Disclaimer.tscn"
+next_scene = "res://game/scenes/LanguageSelection.tscn"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
