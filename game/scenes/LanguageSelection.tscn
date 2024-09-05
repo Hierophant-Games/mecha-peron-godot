@@ -21,6 +21,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
@@ -37,9 +39,9 @@ offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="English" type="Button" parent="HBoxContainer"]
+[node name="Spanish" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-icon = ExtResource("2_myhdv")
+icon = ExtResource("3_5rwgf")
 flat = true
 
 [node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
@@ -47,16 +49,20 @@ visibility_layer = 0
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
-[node name="Spanish" type="Button" parent="HBoxContainer"]
+[node name="English" type="Button" parent="HBoxContainer"]
 layout_mode = 2
-icon = ExtResource("3_5rwgf")
+icon = ExtResource("2_myhdv")
 flat = true
 
 [node name="SceneFader" parent="." instance=ExtResource("4_mrfbt")]
 visible = false
 layout_mode = 0
 anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 next_scene = "res://game/scenes/Disclaimer.tscn"
 
-[connection signal="pressed" from="HBoxContainer/English" to="." method="_on_english_pressed"]
 [connection signal="pressed" from="HBoxContainer/Spanish" to="." method="_on_spanish_pressed"]
+[connection signal="pressed" from="HBoxContainer/English" to="." method="_on_english_pressed"]

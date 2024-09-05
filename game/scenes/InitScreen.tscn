@@ -15,6 +15,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_default_cursor_shape = 3
 theme = ExtResource("1_0ujwh")
 color = Color(0, 0, 0, 0.4)
 script = ExtResource("2_hvih0")

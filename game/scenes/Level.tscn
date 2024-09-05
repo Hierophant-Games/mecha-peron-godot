@@ -1,12 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://ca4febxsgjyyh"]
+[gd_scene load_steps=13 format=3 uid="uid://ca4febxsgjyyh"]
 
 [ext_resource type="Script" path="res://game/scenes/Level.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c0d1h3xba2j4e" path="res://assets/cityscape.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://dsaiijkscvrfw" path="res://assets/buildings.png" id="3"]
 [ext_resource type="PackedScene" uid="uid://ck7uiqcyaf6j2" path="res://game/peron/Peron.tscn" id="4"]
 [ext_resource type="PackedScene" uid="uid://buyc70hdc4bal" path="res://game/vfx/smoke_emitter/SmokeEmitter.tscn" id="4_hb282"]
-[ext_resource type="Texture2D" uid="uid://cbwwes1f88d7d" path="res://assets/crosshair.png" id="5"]
-[ext_resource type="Script" path="res://game/Cursor.gd" id="6"]
 [ext_resource type="Script" path="res://game/AIDirector.gd" id="7"]
 [ext_resource type="PackedScene" uid="uid://c57bmno58duvi" path="res://game/Foreground.tscn" id="8"]
 [ext_resource type="PackedScene" uid="uid://bbvwu8gdowkdb" path="res://game/scenes/InitScreen.tscn" id="8_iodud"]
@@ -40,10 +38,12 @@ centered = false
 region_rect = Rect2(0, 0, 1280, 240)
 
 [node name="smoke1" parent="ParallaxBackground/MiddleLayer" instance=ExtResource("4_hb282")]
+modulate = Color(0.588235, 0.45098, 0.517647, 1)
 position = Vector2(134, 73)
 local_coords = true
 
 [node name="smoke2" parent="ParallaxBackground/MiddleLayer" instance=ExtResource("4_hb282")]
+modulate = Color(0.588235, 0.45098, 0.517647, 1)
 position = Vector2(395, 131)
 local_coords = true
 
@@ -77,10 +77,6 @@ visible = false
 
 [node name="SceneFader" parent="GUILayer" instance=ExtResource("10_ir7ax")]
 visible = false
-
-[node name="Cursor" type="Sprite2D" parent="GUILayer"]
-texture = ExtResource("5")
-script = ExtResource("6")
 
 [node name="AIDirector" type="Node2D" parent="."]
 script = ExtResource("7")
