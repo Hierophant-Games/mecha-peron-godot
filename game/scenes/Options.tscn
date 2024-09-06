@@ -1,10 +1,12 @@
-[gd_scene load_steps=7 format=3 uid="uid://bjvkfrogc566e"]
+[gd_scene load_steps=9 format=3 uid="uid://bjvkfrogc566e"]
 
 [ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_cdxlw"]
 [ext_resource type="Script" path="res://game/scenes/Options.gd" id="2_jk7h8"]
 [ext_resource type="Texture2D" uid="uid://dds11eoi28xcv" path="res://assets/main_menu/bg.png" id="3_yfpgp"]
 [ext_resource type="Script" path="res://game/scenes/ButtonList.gd" id="4_b1wvi"]
 [ext_resource type="PackedScene" uid="uid://d0u268u2tja7g" path="res://game/scenes/SceneFader.tscn" id="5_vlvlw"]
+[ext_resource type="AudioStream" uid="uid://cfcrk6byeh6h3" path="res://assets/sfx/console_blip.mp3" id="6_1dvkk"]
+[ext_resource type="AudioStream" uid="uid://pryshwo2d0x6" path="res://assets/sfx/mecha_peron_companieros.mp3" id="7_hs4md"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f0wmo"]
 
@@ -114,6 +116,14 @@ text = "BACK_BUTTON_TEXT"
 [node name="SceneFader" parent="." instance=ExtResource("5_vlvlw")]
 visible = false
 layout_mode = 1
+
+[node name="SoundSample" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_1dvkk")
+bus = &"Sfx"
+
+[node name="VoiceSample" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_hs4md")
+bus = &"Voice"
 
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MusicSettings/Slider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/SoundSettings/Slider" to="." method="_on_sound_slider_value_changed"]
