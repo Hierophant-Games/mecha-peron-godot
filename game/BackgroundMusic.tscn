@@ -1,0 +1,11 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxyic6ey50xlw"]
+
+[ext_resource type="Script" path="res://game/BackgroundMusic.gd" id="1_revi8"]
+[ext_resource type="AudioStream" uid="uid://msn4cg7jg0sb" path="res://assets/sfx/los_muchachos_8bit.mp3" id="2_yt5io"]
+[ext_resource type="AudioStream" uid="uid://lvnjsdkmeyvi" path="res://assets/sfx/game_theme.mp3" id="3_qh4aj"]
+
+[node name="BackgroundMusic" type="AudioStreamPlayer"]
+bus = &"Music"
+script = ExtResource("1_revi8")
+menu_music = ExtResource("2_yt5io")
+ingame_music = ExtResource("3_qh4aj")

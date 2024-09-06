@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://ca4febxsgjyyh"]
+[gd_scene load_steps=12 format=3 uid="uid://ca4febxsgjyyh"]
 
 [ext_resource type="Script" path="res://game/scenes/Level.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://c0d1h3xba2j4e" path="res://assets/cityscape.png" id="2"]
@@ -11,7 +11,6 @@
 [ext_resource type="PackedScene" uid="uid://bugffpvydnq64" path="res://game/HUD.tscn" id="8_w6202"]
 [ext_resource type="PackedScene" uid="uid://d0u268u2tja7g" path="res://game/scenes/SceneFader.tscn" id="10_ir7ax"]
 [ext_resource type="PackedScene" uid="uid://cvx6g6u1ytgd7" path="res://game/scenes/GameOver.tscn" id="11_tf1bq"]
-[ext_resource type="AudioStream" uid="uid://lvnjsdkmeyvi" path="res://assets/sfx/game_theme.mp3" id="13_1tplj"]
 
 [node name="Level" type="Node2D"]
 script = ExtResource("1")
@@ -38,12 +37,10 @@ centered = false
 region_rect = Rect2(0, 0, 1280, 240)
 
 [node name="smoke1" parent="ParallaxBackground/MiddleLayer" instance=ExtResource("4_hb282")]
-modulate = Color(0.588235, 0.45098, 0.517647, 1)
 position = Vector2(134, 73)
 local_coords = true
 
 [node name="smoke2" parent="ParallaxBackground/MiddleLayer" instance=ExtResource("4_hb282")]
-modulate = Color(0.588235, 0.45098, 0.517647, 1)
 position = Vector2(395, 131)
 local_coords = true
 
@@ -80,11 +77,6 @@ visible = false
 
 [node name="AIDirector" type="Node2D" parent="."]
 script = ExtResource("7")
-
-[node name="ThemePlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("13_1tplj")
-bus = &"Music"
-parameters/looping = true
 
 [connection signal="main_menu_pressed" from="GUILayer/GameOver" to="." method="_on_game_over_main_menu_pressed"]
 [connection signal="try_again_pressed" from="GUILayer/GameOver" to="." method="_on_game_over_try_again_pressed"]
