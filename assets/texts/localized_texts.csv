@@ -40,6 +40,7 @@ HUD_DESTRUCTION_TEXT,Destruction: {interpolated_score},Destrucción: {interpolat
 MUSIC_VOLUME_TEXT,Music volume,Volumen de la música
 SOUND_VOLUME_TEXT,Sound volume,Volumen del sonido
 VOICE_VOLUME_TEXT,Voices volume,Volumen de voces
+LANGUAGE_TEXT,Language,Idioma
 START_GAME_BUTTON_TEXT,Viva Mecha-Perón!,Viva Mecha-Perón!
 OPTIONS_BUTTON_TEXT,Configure,Configurar
 CREDITS_BUTTON_TEXT,Credits,Créditos
@@ -74,9 +75,9 @@ Fernando Martínez Herrera: code, music, sfx, design
 VOICE TALENT: Maximiliano Carrión
 
 
-""Los muchachos peronistas""(8-bit remix) by Santiago Martín Vilar
+""Los muchachos peronistas"" (8-bit remix) by Santiago Martín Vilar
 
-""Los muchachos peronistas""(metal remix) by Fernando Martínez Herrera
+""Los muchachos peronistas"" (metal remix) by Fernando Martínez Herrera
 
 
 Thanks to all of you who sent feedback, friends, girlfriends, enemies, unknown people, etc.
@@ -96,6 +97,7 @@ It was our first completed project as a team and we're very happy with the outco
 Santiago Martin Vilar
 
 Nicolás Viegas Palermo
+
 
 Soporte Adicional
 Lisandro ""NoidEXE"" Lorea
@@ -120,9 +122,9 @@ Fernando Martínez Herrera: código, música, sonidos, diseño
 LA VOZ DEL PUEBLO: Maximiliano Carrión
 
 
-""Los muchachos peronistas""(8-bit remix) por Santiago Martín Vilar
+""Los muchachos peronistas"" (8-bit remix) por Santiago Martín Vilar
 
-""Los muchachos peronistas""(metal remix) por Fernando Martínez Herrera
+""Los muchachos peronistas"" (metal remix) por Fernando Martínez Herrera
 
 
 

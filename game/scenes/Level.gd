@@ -20,6 +20,7 @@ var intro_state := PRE_INTRO
 @onready var scene_fader := $GUILayer/SceneFader as SceneFader
 
 func _ready() -> void:
+	BackgroundMusic.stop()
 	ScoreTracker.reset()
 	hud.hide()
 	init_screen.hide()
@@ -58,8 +59,8 @@ func update_intro():
 				peron.blocked = false
 				peron.walk()
 				init_screen.hide()
-				$ThemePlayer.play()
 				hud.show()
+				BackgroundMusic.play_ingame_music()
 
 func input():
 	if peron.dying:

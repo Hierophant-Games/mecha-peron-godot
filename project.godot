@@ -20,6 +20,7 @@ config/icon="res://icon.png"
 GameSettings="*res://game/GameSettings.gd"
 VFX="*res://game/vfx/VFX.gd"
 ScoreTracker="*res://game/ScoreTracker.gd"
+BackgroundMusic="*res://game/BackgroundMusic.tscn"
 
 [display]
 

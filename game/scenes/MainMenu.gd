@@ -5,6 +5,9 @@ extends Control
 @export_file("*.tscn") var credits_scene: String
 @export_file("*.tscn") var help_scene: String
 
+func _ready() -> void:
+	BackgroundMusic.play_menu_music()
+
 func _on_play_button_pressed():
 	VFX.flash(Color.WHITE, 1.0)
 	$SceneFader.transition_to(play_scene)
