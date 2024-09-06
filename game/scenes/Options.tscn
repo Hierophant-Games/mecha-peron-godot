@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bjvkfrogc566e"]
+[gd_scene load_steps=11 format=3 uid="uid://bjvkfrogc566e"]
 
 [ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_cdxlw"]
 [ext_resource type="Script" path="res://game/scenes/Options.gd" id="2_jk7h8"]
 [ext_resource type="Texture2D" uid="uid://dds11eoi28xcv" path="res://assets/main_menu/bg.png" id="3_yfpgp"]
 [ext_resource type="Script" path="res://game/scenes/ButtonList.gd" id="4_b1wvi"]
+[ext_resource type="Texture2D" uid="uid://cdqhy3gm081ag" path="res://assets/es.png" id="4_k28v4"]
+[ext_resource type="Texture2D" uid="uid://c6k0cxykqfytw" path="res://assets/en.png" id="5_8s8wn"]
 [ext_resource type="PackedScene" uid="uid://d0u268u2tja7g" path="res://game/scenes/SceneFader.tscn" id="5_vlvlw"]
 [ext_resource type="AudioStream" uid="uid://cfcrk6byeh6h3" path="res://assets/sfx/console_blip.mp3" id="6_1dvkk"]
 [ext_resource type="AudioStream" uid="uid://pryshwo2d0x6" path="res://assets/sfx/mecha_peron_companieros.mp3" id="7_hs4md"]
@@ -48,6 +50,25 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 8
 theme_override_constants/separation = 8
+
+[node name="Language" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Language"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "LANGUAGE_TEXT"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Language"]
+layout_mode = 2
+
+[node name="Spanish" type="Button" parent="MarginContainer/VBoxContainer/Language/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("4_k28v4")
+
+[node name="English" type="Button" parent="MarginContainer/VBoxContainer/Language/HBoxContainer"]
+layout_mode = 2
+icon = ExtResource("5_8s8wn")
 
 [node name="MusicSettings" type="VBoxContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -125,6 +146,8 @@ bus = &"Sfx"
 stream = ExtResource("7_hs4md")
 bus = &"Voice"
 
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Language/HBoxContainer/Spanish" to="." method="_on_spanish_pressed"]
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Language/HBoxContainer/English" to="." method="_on_english_pressed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/MusicSettings/Slider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/SoundSettings/Slider" to="." method="_on_sound_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/VBoxContainer/VoiceSettings/Slider" to="." method="_on_voice_slider_value_changed"]

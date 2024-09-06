@@ -33,3 +33,9 @@ func _on_voice_slider_value_changed(value: float):
 	GameSettings.voice_volume = value
 	if should_play_samples:
 		voice_sample.play()
+
+func _on_spanish_pressed() -> void:
+	TranslationServer.set_locale("es")
+
+func _on_english_pressed() -> void:
+	TranslationServer.set_locale("en")
