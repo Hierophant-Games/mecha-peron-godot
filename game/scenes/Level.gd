@@ -20,13 +20,14 @@ var intro_state := PRE_INTRO
 @onready var scene_fader := $GUILayer/SceneFader as SceneFader
 
 func _ready() -> void:
+	Cursor.analog_cursor_enabled = true
 	BackgroundMusic.stop()
 	ScoreTracker.reset()
 	hud.hide()
 	init_screen.hide()
 	game_over.hide()
 
-func _process(_delta: float):
+func _process(delta: float):
 	update_intro()
 	update_foreground()
 
@@ -35,9 +36,10 @@ func _process(_delta: float):
 
 	var distance := peron.position.x
 	ScoreTracker.set_distance(distance)
-	input()
+	input(delta)
 	
 	if !game_over.visible and peron.dying:
+		Cursor.analog_cursor_enabled = false
 		game_over.show()
 
 func update_intro():
@@ -62,14 +64,14 @@ func update_intro():
 				hud.show()
 				BackgroundMusic.play_ingame_music()
 
-func input():
+func input(delta: float):
 	if peron.dying:
 		return
-	
-	var mouse_pressed := Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT)
+
+	var shoot_laser_pressed := Input.is_action_pressed("shoot_laser")
 
 	if peron.shooting_laser:
-		if mouse_pressed:
+		if shoot_laser_pressed:
 			peron.aim_laser()
 		else:
 			peron.laser_reverse()
@@ -81,7 +83,7 @@ func input():
 		peron.attack_fist()
 	if Input.is_action_just_pressed("attack_arm"):
 		peron.attack_arm()
-	if mouse_pressed:
+	if shoot_laser_pressed:
 		laser()
 	
 	# CHEATS

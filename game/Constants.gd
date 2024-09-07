@@ -3,6 +3,8 @@ extends Node
 
 const GRAVITY := 200.0
 
+const CURSOR_SPEED := 300
+
 const PERON_SPEED := 30.0
 const PERON_DYING_SPEED := 6.0 # falling down
 
