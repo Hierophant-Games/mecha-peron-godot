@@ -30,6 +30,7 @@ var laser_overheat := false
 var fist_timer := 0.0
 
 @onready var animation_player := $AnimationPlayer as AnimationPlayer
+@onready var smoke_emitters : Array[CPUParticles2D] = [$RightEye/SmokeEmitter, $LeftEye/SmokeEmitter]
 
 # Sound effects and players ------------
 @onready var laser_sfx_player := $SFX/Laser as AudioStreamPlayer
@@ -86,6 +87,8 @@ func update_laser(delta: float) -> void:
 			laser_overheat = true
 			laser_sfx_player.set_stream(sfx_laser_depleted)
 			laser_sfx_player.play()
+			for emitter in smoke_emitters:
+				emitter.emitting = true
 			laser_off()
 	else:
 		if laser_overheat:
@@ -95,6 +98,8 @@ func update_laser(delta: float) -> void:
 			if laser_charge >= Constants.LASER_MAX_CHARGE:
 				laser_charge = Constants.LASER_MAX_CHARGE
 				laser_overheat = false
+				for emitter in smoke_emitters:
+					emitter.emitting = false
 
 func play_and_set_next(anim: String):
 	animation_player.play(anim)
