@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://cj4xnjs204pbe"]
+[gd_scene load_steps=7 format=3 uid="uid://cj4xnjs204pbe"]
 
 [ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_ky36s"]
 [ext_resource type="Script" path="res://game/scenes/language_selection.gd" id="1_rkj6c"]
 [ext_resource type="Texture2D" uid="uid://c6k0cxykqfytw" path="res://assets/en.png" id="2_myhdv"]
 [ext_resource type="Texture2D" uid="uid://cdqhy3gm081ag" path="res://assets/es.png" id="3_5rwgf"]
+[ext_resource type="Script" path="res://game/scenes/ButtonList.gd" id="3_hkb0m"]
 [ext_resource type="PackedScene" uid="uid://d0u268u2tja7g" path="res://game/scenes/SceneFader.tscn" id="4_mrfbt"]
 
 [node name="LanguageSelection" type="Control"]
@@ -38,6 +39,7 @@ offset_right = 62.0
 offset_bottom = 13.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("3_hkb0m")
 
 [node name="Spanish" type="Button" parent="HBoxContainer"]
 layout_mode = 2

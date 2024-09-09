@@ -20,14 +20,13 @@ var intro_state := PRE_INTRO
 @onready var scene_fader := $GUILayer/SceneFader as SceneFader
 
 func _ready() -> void:
-	Cursor.analog_cursor_enabled = true
 	BackgroundMusic.stop()
 	ScoreTracker.reset()
 	hud.hide()
 	init_screen.hide()
 	game_over.hide()
 
-func _process(delta: float):
+func _process(_delta: float):
 	update_intro()
 	update_foreground()
 
@@ -36,10 +35,9 @@ func _process(delta: float):
 
 	var distance := peron.position.x
 	ScoreTracker.set_distance(distance)
-	input(delta)
+	input()
 	
 	if !game_over.visible and peron.dying:
-		Cursor.analog_cursor_enabled = false
 		game_over.show()
 
 func update_intro():
@@ -64,7 +62,7 @@ func update_intro():
 				hud.show()
 				BackgroundMusic.play_ingame_music()
 
-func input(delta: float):
+func input():
 	if peron.dying:
 		return
 

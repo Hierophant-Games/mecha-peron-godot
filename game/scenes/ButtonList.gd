@@ -1,5 +1,5 @@
 class_name ButtonList
-extends VBoxContainer
+extends BoxContainer
 
 func _ready():
 	_on_visibility_changed()
@@ -11,7 +11,8 @@ func _process(_delta: float):
 ## Prevent showing the hovered button and the focused button at the same time
 ## Simply grab focus when hovering a button
 func fix_hover_focus():
-	for button: Button in get_children():
+	var buttons := get_children().filter(func (c): return c is Button)
+	for button: Button in buttons:
 		if button.is_hovered():
 			button.grab_focus()
 
