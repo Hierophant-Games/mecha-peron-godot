@@ -50,6 +50,8 @@ func _process(delta: float):
 	if !dying and health <= 0:
 		dying = true
 		idle()
+		stop_laser()
+		end_laser_overheat()
 		VFX.shake(0.01, 100)
 		$DyingExplosionsTimer.start()
 	
@@ -84,12 +86,7 @@ func update_laser(delta: float) -> void:
 		laser_charge -= Constants.LASER_CHARGE_STEP
 		if laser_charge <= 0:
 			laser_charge = 0
-			laser_overheat = true
-			laser_sfx_player.set_stream(sfx_laser_depleted)
-			laser_sfx_player.play()
-			for emitter in smoke_emitters:
-				emitter.emitting = true
-			laser_off()
+			start_laser_overheat()
 	else:
 		if laser_overheat:
 			laser_recharge_accum += delta
@@ -97,9 +94,20 @@ func update_laser(delta: float) -> void:
 			laser_charge += Constants.LASER_RECHARGE_STEP
 			if laser_charge >= Constants.LASER_MAX_CHARGE:
 				laser_charge = Constants.LASER_MAX_CHARGE
-				laser_overheat = false
-				for emitter in smoke_emitters:
-					emitter.emitting = false
+				end_laser_overheat()
+
+func start_laser_overheat():
+	laser_overheat = true
+	laser_sfx_player.set_stream(sfx_laser_depleted)
+	laser_sfx_player.play()
+	for emitter in smoke_emitters:
+		emitter.emitting = true
+	laser_off()
+
+func end_laser_overheat():
+	laser_overheat = false
+	for emitter in smoke_emitters:
+		emitter.emitting = false
 
 func play_and_set_next(anim: String):
 	animation_player.play(anim)
@@ -157,20 +165,23 @@ func laser():
 	right_laser.on()
 	VFX.flash(Color(Color.WHITE, 0.4), 0.5)
 
-func laser_reverse():
+func stop_laser():
 	shooting_laser = false
 	left_laser.off()
 	right_laser.off()
+
+## Used when the laser is turned off gracefully (i.e. releasing the input)
+func laser_reverse():
+	stop_laser()
 	animation_player.play_backwards("laser")
 	if laser_sfx_player.stream == sfx_laser_shoot:
 		laser_sfx_player.stop()
 	await animation_player.animation_finished
 	resume()
 
+## Used when the laser is turned off abruptly (e.g. overheat)
 func laser_off():
-	shooting_laser = false
-	left_laser.off()
-	right_laser.off()
+	stop_laser()
 	animation_player.play("laser_off")
 	await animation_player.animation_finished
 	resume()

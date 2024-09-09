@@ -66,6 +66,11 @@ func input():
 	if peron.dying:
 		return
 
+	# CHEATS
+	if OS.has_feature('debug'):
+		if Input.is_key_pressed(KEY_G):
+			peron.health = 0
+
 	var shoot_laser_pressed := Input.is_action_pressed("shoot_laser")
 
 	if peron.shooting_laser:
@@ -83,11 +88,6 @@ func input():
 		peron.attack_arm()
 	if shoot_laser_pressed:
 		laser()
-	
-	# CHEATS
-	if OS.has_feature('debug'):
-		if Input.is_key_pressed(KEY_G):
-			peron.health = 0
 
 func laser():
 	peron.laser()
