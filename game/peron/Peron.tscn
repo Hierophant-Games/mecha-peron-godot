@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://ck7uiqcyaf6j2"]
+[gd_scene load_steps=35 format=3 uid="uid://ck7uiqcyaf6j2"]
 
 [ext_resource type="Script" path="res://game/peron/Peron.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://du45m3pa52xc6" path="res://assets/peron/leftArm.png" id="2"]
@@ -21,6 +21,8 @@
 [ext_resource type="AudioStream" uid="uid://d2app630dlrd" path="res://assets/sfx/mecha_peron_phrase_3.mp3" id="10_wp1cg"]
 [ext_resource type="AudioStream" uid="uid://b8plmmrwnlmbm" path="res://assets/sfx/mecha_peron_phrase_4.mp3" id="11_nsalu"]
 [ext_resource type="AudioStream" uid="uid://c7uurlxk4truw" path="res://assets/sfx/mecha_peron_rocket_punch.mp3" id="15_gsis2"]
+[ext_resource type="PackedScene" uid="uid://buyc70hdc4bal" path="res://game/vfx/smoke_emitter/SmokeEmitter.tscn" id="21_dip6k"]
+[ext_resource type="Gradient" uid="uid://c5ii5malnx2lf" path="res://game/vfx/smoke_emitter/smoke_gradient.tres" id="22_nmy2k"]
 
 [sub_resource type="RectangleShape2D" id="9"]
 size = Vector2(167, 224)
@@ -415,8 +417,20 @@ position = Vector2(135, -132)
 [node name="RightEye" type="Node2D" parent="."]
 position = Vector2(51, -183)
 
+[node name="SmokeEmitter" parent="RightEye" instance=ExtResource("21_dip6k")]
+emitting = false
+amount = 30
+color_initial_ramp = ExtResource("22_nmy2k")
+type = 2
+
 [node name="LeftEye" type="Node2D" parent="."]
 position = Vector2(74, -183)
+
+[node name="SmokeEmitter" parent="LeftEye" instance=ExtResource("21_dip6k")]
+emitting = false
+amount = 30
+color_initial_ramp = ExtResource("22_nmy2k")
+type = 2
 
 [node name="arm_hit" type="Area2D" parent="."]
 collision_layer = 0
