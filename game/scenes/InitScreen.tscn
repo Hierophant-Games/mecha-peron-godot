@@ -43,3 +43,5 @@ label_settings = SubResource("LabelSettings_7g3hj")
 stream = ExtResource("3_ijuut")
 max_polyphony = 3
 bus = &"Sfx"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

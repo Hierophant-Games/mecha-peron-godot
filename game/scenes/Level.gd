@@ -84,8 +84,10 @@ func input():
 	
 	if Input.is_action_just_pressed("attack_fist"):
 		peron.attack_fist()
-	if Input.is_action_just_pressed("attack_arm"):
+		return
+	elif Input.is_action_just_pressed("attack_arm"):
 		peron.attack_arm()
+		return
 	if shoot_laser_pressed:
 		laser()
 
