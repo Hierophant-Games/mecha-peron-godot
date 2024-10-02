@@ -124,7 +124,7 @@ func spawn_building(x: float) -> void:
 	if _is_first_building:
 		_is_first_building = false
 		front_layer.add_child(spawn_floating_text(
-			tr("FIST_TUTORIAL_TEXT"),
+			tr("ROCKET_PUNCH_TUTORIAL_TEXT"),
 			Vector2((enemy_building.position.x - 100) * front_layer.scroll_scale.x, 30)
 		))
 
@@ -133,7 +133,7 @@ func spawn_cannon() -> void:
 	if _is_first_cannon:
 		_is_first_cannon = false
 		front_layer.add_child(spawn_floating_text(
-			tr("ARM_TUTORIAL_TEXT"),
+			tr("HAMMER_FIST_TUTORIAL_TEXT"),
 			Vector2(get_front_layer_screen_right() - 20, 60)
 		))
 
