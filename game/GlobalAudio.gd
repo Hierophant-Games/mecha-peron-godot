@@ -20,6 +20,6 @@ func sfx(stream: AudioStream):
 	sound_player.play()
 
 func _set_music_and_play(new_stream: AudioStream) -> void:
-	if music_player.stream != new_stream:
+	if music_player.stream != new_stream or !music_player.playing:
 		music_player.stream = new_stream
 		music_player.play()
