@@ -1,7 +1,7 @@
 class_name LanguageSelection extends Control
 
 func _ready() -> void:
-	BackgroundMusic.play_menu_music()
+	GlobalAudio.play_menu_music()
 
 func _on_english_pressed() -> void:
 	set_locale_and_fade("en")

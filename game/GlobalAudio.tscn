@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cxyic6ey50xlw"]
+
+[ext_resource type="Script" path="res://game/GlobalAudio.gd" id="1_huglu"]
+[ext_resource type="AudioStream" uid="uid://msn4cg7jg0sb" path="res://assets/sfx/los_muchachos_8bit.mp3" id="2_2v1bx"]
+[ext_resource type="AudioStream" uid="uid://lvnjsdkmeyvi" path="res://assets/sfx/game_theme.mp3" id="3_7q04e"]
+
+[node name="GlobalAudio" type="Node"]
+script = ExtResource("1_huglu")
+menu_music = ExtResource("2_2v1bx")
+ingame_music = ExtResource("3_7q04e")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Music"
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Sfx"

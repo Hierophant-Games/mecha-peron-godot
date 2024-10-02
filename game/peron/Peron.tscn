@@ -418,6 +418,7 @@ position = Vector2(135, -132)
 position = Vector2(51, -183)
 
 [node name="SmokeEmitter" parent="RightEye" instance=ExtResource("21_dip6k")]
+modulate = Color(0.588235, 0.45098, 0.517647, 1)
 emitting = false
 amount = 30
 color_initial_ramp = ExtResource("22_nmy2k")
@@ -427,6 +428,7 @@ type = 2
 position = Vector2(74, -183)
 
 [node name="SmokeEmitter" parent="LeftEye" instance=ExtResource("21_dip6k")]
+modulate = Color(0.588235, 0.45098, 0.517647, 1)
 emitting = false
 amount = 30
 color_initial_ramp = ExtResource("22_nmy2k")
