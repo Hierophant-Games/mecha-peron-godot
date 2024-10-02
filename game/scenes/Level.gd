@@ -3,6 +3,7 @@ extends Node2D
 
 const AirplaneScene = preload("res://game/enemies/Airplane.tscn")
 const EnemyBuildingScene = preload("res://game/enemies/EnemyBuilding.tscn")
+const FloatingTextScene = preload("res://game/tutorial/FloatingText.tscn")
 
 enum { PRE_INTRO, INTRO, POST_INTRO }
 var intro_state := PRE_INTRO
@@ -19,8 +20,11 @@ var intro_state := PRE_INTRO
 @onready var game_over := $GUILayer/GameOver as GameOver
 @onready var scene_fader := $GUILayer/SceneFader as SceneFader
 
+var _is_first_building := true
+var _is_first_cannon := true
+
 func _ready() -> void:
-	BackgroundMusic.stop()
+	GlobalAudio.stop_music()
 	ScoreTracker.reset()
 	hud.hide()
 	init_screen.hide()
@@ -60,7 +64,7 @@ func update_intro():
 				peron.walk()
 				init_screen.hide()
 				hud.show()
-				BackgroundMusic.play_ingame_music()
+				GlobalAudio.play_ingame_music()
 
 func input():
 	if peron.dying:
@@ -96,8 +100,7 @@ func laser():
 	peron.aim_laser()
 
 func update_foreground():
-	var screen_right := (camera.global_position.x + get_viewport_rect().size.x) * front_layer.scroll_scale.x
-	foreground.update_buildings(int(screen_right))
+	foreground.update_buildings(int(get_front_layer_screen_right()))
 
 func _on_AIDirector_enemy_needed(enemy_type: String, x: float):
 	match enemy_type:
@@ -106,18 +109,42 @@ func _on_AIDirector_enemy_needed(enemy_type: String, x: float):
 		"building":
 			spawn_building(x)
 		"cannon":
-			foreground.prepare_cannon()
+			spawn_cannon()
 
-func spawn_plane(x: float):
-	var plane: Airplane = AirplaneScene.instantiate() as Airplane
+func spawn_plane(x: float) -> void:
+	var plane := AirplaneScene.instantiate() as Airplane
 	plane.position.x = get_viewport_rect().size.x + x
 	main_layer.add_child(plane)
 
-func spawn_building(x: float):
-	var enemy_building: EnemyBuilding = EnemyBuildingScene.instantiate() as EnemyBuilding
+func spawn_building(x: float) -> void:
+	var enemy_building := EnemyBuildingScene.instantiate() as EnemyBuilding
 	enemy_building.position.y = get_viewport_rect().size.y
 	enemy_building.position.x = get_viewport_rect().size.x + x
 	main_layer.add_child(enemy_building)
+	if _is_first_building:
+		_is_first_building = false
+		front_layer.add_child(spawn_floating_text(
+			tr("FIST_TUTORIAL_TEXT"),
+			Vector2((enemy_building.position.x - 100) * front_layer.scroll_scale.x, 30)
+		))
+
+func spawn_cannon() -> void:
+	foreground.prepare_cannon()
+	if _is_first_cannon:
+		_is_first_cannon = false
+		front_layer.add_child(spawn_floating_text(
+			tr("ARM_TUTORIAL_TEXT"),
+			Vector2(get_front_layer_screen_right() - 20, 60)
+		))
+
+func spawn_floating_text(text: String, pos: Vector2) -> Label:
+	var label := FloatingTextScene.instantiate() as Label
+	label.text = text
+	label.position = pos
+	return label
+
+func get_front_layer_screen_right() -> float:
+	return (camera.global_position.x + get_viewport_rect().size.x) * front_layer.scroll_scale.x
 
 func _on_game_over_main_menu_pressed() -> void:
 	scene_fader.transition_to(main_menu_scene)

@@ -41,12 +41,10 @@ centered = false
 region_rect = Rect2(0, 0, 1280, 240)
 
 [node name="smoke1" parent="ParallaxBackground/MiddleLayer" instance=ExtResource("4_hb282")]
-modulate = Color(0.588235, 0.45098, 0.517647, 1)
 position = Vector2(134, 73)
 local_coords = true
 
 [node name="smoke2" parent="ParallaxBackground/MiddleLayer" instance=ExtResource("4_hb282")]
-modulate = Color(0.588235, 0.45098, 0.517647, 1)
 position = Vector2(395, 131)
 local_coords = true
 

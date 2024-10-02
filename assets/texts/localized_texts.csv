@@ -45,6 +45,10 @@ START_GAME_BUTTON_TEXT,Viva Mecha-Perón!,Viva Mecha-Perón!
 OPTIONS_BUTTON_TEXT,Configure,Configurar
 CREDITS_BUTTON_TEXT,Credits,Créditos
 HELP_BUTTON_TEXT,What the f*** is this all about?,¿Qué carajo es todo esto?
+ROCKET_PUNCH_TUTORIAL_TEXT,Press X to fire the Rocket Punch,Presiona X para disparar el puño cohete
+HAMMER_FIST_TUTORIAL_TEXT,Press Z to use the Justicialist arm,Presiona Z para usar el brazo justicialista
+WARNING_TEXT,WARNING! ->,CUIDADO! ->
+OVERHEAT_TEXT,OVERHEAT,SOBRECARGA
 CREDITS_TEXT,"GODOT PORT BY
 
 Santiago Martín Vilar
@@ -141,3 +145,5 @@ WE <3 JAPAN, no estamos burlándonos de los últimos sucesos acontecidos.*
 Este juego fue hecho para el concurso CODEAR ""Perón""de la Asociación de Desarolladores de Videojuegos Argentinos (ADVA). Gracias por jugarlo!
 
 Fue nuestro primer proyecto como equipo y estamos muy contentos con el resultado. Viva Perón!"
+FIST_TUTORIAL_TEXT,Press X for Rocket Punch,Presiona X para el Puño Cohete
+ARM_TUTORIAL_TEXT,Press Z for Justicialist Arm,Presiona Z para el Brazo Justicialista
