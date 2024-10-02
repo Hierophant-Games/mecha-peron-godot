@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://dti7kaqw5noda"]
+
+[ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_ueuaq"]
+
+[node name="FloatingText" type="Label"]
+theme = ExtResource("1_ueuaq")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 12
+text = "Some floating text"
+horizontal_alignment = 1
