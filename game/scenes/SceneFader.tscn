@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://d0u268u2tja7g"]
 
-[ext_resource type="Script" path="res://game/scenes/SceneFader.gd" id="1_w84vl"]
+[ext_resource type="Script" uid="uid://164v6gx6bl5y" path="res://game/scenes/SceneFader.gd" id="1_w84vl"]
 
 [sub_resource type="Animation" id="Animation_yos1j"]
 length = 0.001
@@ -35,8 +35,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_m7quw"]
 _data = {
-"RESET": SubResource("Animation_yos1j"),
-"fade": SubResource("Animation_y5t6y")
+&"RESET": SubResource("Animation_yos1j"),
+&"fade": SubResource("Animation_y5t6y")
 }
 
 [node name="SceneFader" type="ColorRect"]

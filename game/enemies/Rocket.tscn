@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=3 uid="uid://d3dm12hq5hnyd"]
 
-[ext_resource type="Script" path="res://game/enemies/Rocket.gd" id="1_ci3ib"]
+[ext_resource type="Script" uid="uid://cxbwa11vkh6ae" path="res://game/enemies/Rocket.gd" id="1_ci3ib"]
 [ext_resource type="Texture2D" uid="uid://tmqtcnotb12s" path="res://assets/rocket.png" id="2_e7x76"]
 [ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3_r24yk"]
-[ext_resource type="Script" path="res://game/EnemyProjectile.gd" id="4_7sae6"]
-[ext_resource type="Script" path="res://game/core/Damageable.gd" id="5_0ljut"]
-[ext_resource type="Script" path="res://game/core/AutoDeletable.gd" id="6_gxcgm"]
+[ext_resource type="Script" uid="uid://cbh4twumt4vdh" path="res://game/EnemyProjectile.gd" id="4_7sae6"]
+[ext_resource type="Script" uid="uid://d1p3hbt80baiv" path="res://game/core/Damageable.gd" id="5_0ljut"]
+[ext_resource type="Script" uid="uid://dne1cp6kua0b6" path="res://game/core/AutoDeletable.gd" id="6_gxcgm"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ghiyq"]
 size = Vector2(6, 4)
@@ -44,8 +44,8 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1f7rn"]
 _data = {
-"destroy": SubResource("Animation_3o6wd"),
-"fly": SubResource("Animation_eyvjw")
+&"destroy": SubResource("Animation_3o6wd"),
+&"fly": SubResource("Animation_eyvjw")
 }
 
 [node name="Rocket" type="Node2D"]

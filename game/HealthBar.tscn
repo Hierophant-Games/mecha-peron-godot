@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bs77dd6d7fpv8"]
 
-[ext_resource type="Script" path="res://game/HealthBar.gd" id="1"]
+[ext_resource type="Script" uid="uid://br2kn60330mwo" path="res://game/HealthBar.gd" id="1"]
 
 [node name="under" type="Polygon2D"]
 color = Color(0, 0, 0, 1)

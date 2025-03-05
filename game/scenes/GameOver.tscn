@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cvx6g6u1ytgd7"]
 
 [ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_iof84"]
-[ext_resource type="Script" path="res://game/scenes/ButtonList.gd" id="2_8ofis"]
-[ext_resource type="Script" path="res://game/scenes/GameOver.gd" id="2_tq0pw"]
+[ext_resource type="Script" uid="uid://c51bl025osu1w" path="res://game/scenes/ButtonList.gd" id="2_8ofis"]
+[ext_resource type="Script" uid="uid://c3ot2nnx1guuc" path="res://game/scenes/GameOver.gd" id="2_tq0pw"]
 
 [sub_resource type="Animation" id="Animation_7ilqy"]
 resource_name = "appear"
@@ -22,7 +22,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gsnde"]
 _data = {
-"appear": SubResource("Animation_7ilqy")
+&"appear": SubResource("Animation_7ilqy")
 }
 
 [node name="GameOver" type="Control"]

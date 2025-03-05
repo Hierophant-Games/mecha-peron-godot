@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_y8p3w"]
 [ext_resource type="PackedScene" uid="uid://d0u268u2tja7g" path="res://game/scenes/SceneFader.tscn" id="2_5f2r5"]
-[ext_resource type="Script" path="res://game/scenes/Disclaimer.gd" id="2_kiqr4"]
+[ext_resource type="Script" uid="uid://c436ku2andgq1" path="res://game/scenes/Disclaimer.gd" id="2_kiqr4"]
 
 [node name="Disclaimer" type="Control"]
 layout_mode = 3

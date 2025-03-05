@@ -1,12 +1,12 @@
 [gd_scene load_steps=12 format=3 uid="uid://l1qkrjpipmia"]
 
-[ext_resource type="Script" path="res://game/enemies/CannonBomb.gd" id="1_fu5bi"]
+[ext_resource type="Script" uid="uid://bv85bwrmuolt1" path="res://game/enemies/CannonBomb.gd" id="1_fu5bi"]
 [ext_resource type="Texture2D" uid="uid://pqhd2lo56vg8" path="res://assets/cannonBomb.png" id="2_ukl0k"]
 [ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="2_wlxlv"]
 [ext_resource type="Texture2D" uid="uid://d0hiemg3b3jin" path="res://assets/explosion.png" id="3_d6ebd"]
-[ext_resource type="Script" path="res://game/EnemyProjectile.gd" id="3_pf3mo"]
-[ext_resource type="Script" path="res://game/core/Damageable.gd" id="4_yn3pr"]
-[ext_resource type="Script" path="res://game/core/AutoDeletable.gd" id="5_yybm5"]
+[ext_resource type="Script" uid="uid://cbh4twumt4vdh" path="res://game/EnemyProjectile.gd" id="3_pf3mo"]
+[ext_resource type="Script" uid="uid://d1p3hbt80baiv" path="res://game/core/Damageable.gd" id="4_yn3pr"]
+[ext_resource type="Script" uid="uid://dne1cp6kua0b6" path="res://game/core/AutoDeletable.gd" id="5_yybm5"]
 [ext_resource type="AudioStream" uid="uid://wl8bce6ubbh2" path="res://assets/sfx/explosion.mp3" id="8_hji61"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i4flo"]
@@ -54,7 +54,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xjdqy"]
 _data = {
-"destroy": SubResource("Animation_5p5wc")
+&"destroy": SubResource("Animation_5p5wc")
 }
 
 [node name="CannonBomb" type="Node2D"]

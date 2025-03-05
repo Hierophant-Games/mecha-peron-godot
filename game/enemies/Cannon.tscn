@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://1ww3f1d0evk8"]
 
-[ext_resource type="Script" path="res://game/enemies/Cannon.gd" id="1_nqgpx"]
+[ext_resource type="Script" uid="uid://dnsv7rabqlmqu" path="res://game/enemies/Cannon.gd" id="1_nqgpx"]
 [ext_resource type="Texture2D" uid="uid://bvsig5d4ekwfy" path="res://assets/cannon.png" id="2_v2xqr"]
 [ext_resource type="Texture2D" uid="uid://d0hiemg3b3jin" path="res://assets/explosion.png" id="3_ns7hl"]
 
@@ -256,13 +256,13 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nuhau"]
 _data = {
-"explode": SubResource("Animation_x8b3n"),
-"idle_left": SubResource("Animation_5fd3v"),
-"idle_top": SubResource("Animation_pfl66"),
-"idle_top_left": SubResource("Animation_cm472"),
-"shoot_left": SubResource("Animation_qlme0"),
-"shoot_top": SubResource("Animation_faxh4"),
-"shoot_top_left": SubResource("Animation_c6dwa")
+&"explode": SubResource("Animation_x8b3n"),
+&"idle_left": SubResource("Animation_5fd3v"),
+&"idle_top": SubResource("Animation_pfl66"),
+&"idle_top_left": SubResource("Animation_cm472"),
+&"shoot_left": SubResource("Animation_qlme0"),
+&"shoot_top": SubResource("Animation_faxh4"),
+&"shoot_top_left": SubResource("Animation_c6dwa")
 }
 
 [node name="Cannon" type="Node2D"]

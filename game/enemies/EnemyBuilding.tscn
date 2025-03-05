@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://b1ph7ubpc2r11"]
 
-[ext_resource type="Script" path="res://game/enemies/EnemyBuilding.gd" id="1"]
+[ext_resource type="Script" uid="uid://ciftj8sbcbw8j" path="res://game/enemies/EnemyBuilding.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://bg4vwpi8d11d8" path="res://assets/enemyBuilding.png" id="2"]
-[ext_resource type="Script" path="res://game/core/Destroyable.gd" id="3_dw8vc"]
+[ext_resource type="Script" uid="uid://dy6untu7b50gi" path="res://game/core/Destroyable.gd" id="3_dw8vc"]
 [ext_resource type="AudioStream" uid="uid://btd05oe5xsa4o" path="res://assets/sfx/explosion_big.mp3" id="4_nlv65"]
 
 [sub_resource type="RectangleShape2D" id="1"]
@@ -40,7 +40,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1lcyo"]
 _data = {
-"destroy": SubResource("2")
+&"destroy": SubResource("2")
 }
 
 [node name="EnemyBuilding" type="Node2D"]

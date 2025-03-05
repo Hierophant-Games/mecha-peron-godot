@@ -1,7 +1,7 @@
 [gd_scene load_steps=8 format=3 uid="uid://bugffpvydnq64"]
 
 [ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="1_5inra"]
-[ext_resource type="Script" path="res://game/HUD.gd" id="2_h2fe7"]
+[ext_resource type="Script" uid="uid://qu2glur4lfxf" path="res://game/HUD.gd" id="2_h2fe7"]
 [ext_resource type="Texture2D" uid="uid://hsbv770oofon" path="res://assets/fistMini.png" id="2_pwux1"]
 [ext_resource type="Texture2D" uid="uid://bocx6xtqw127r" path="res://assets/hudGauge.png" id="2_yuei8"]
 

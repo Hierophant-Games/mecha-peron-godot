@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cot5epnlpx6rh"]
 
-[ext_resource type="Script" path="res://game/peron/Fist.gd" id="1"]
+[ext_resource type="Script" uid="uid://b1npuvuceahw4" path="res://game/peron/Fist.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://rwlrbaqu0psh" path="res://assets/fist.png" id="2"]
-[ext_resource type="Script" path="res://game/core/AutoDeletable.gd" id="3_lhf1x"]
+[ext_resource type="Script" uid="uid://dne1cp6kua0b6" path="res://game/core/AutoDeletable.gd" id="3_lhf1x"]
 
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(28, 28)
@@ -25,7 +25,7 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j75ny"]
 _data = {
-"flying": SubResource("2")
+&"flying": SubResource("2")
 }
 
 [node name="Fist" type="Area2D"]

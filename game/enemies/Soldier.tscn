@@ -1,11 +1,11 @@
 [gd_scene load_steps=23 format=3 uid="uid://dv46uf7dwa1d4"]
 
-[ext_resource type="Script" path="res://game/enemies/Soldier.gd" id="1"]
+[ext_resource type="Script" uid="uid://coo3po7wq0b4a" path="res://game/enemies/Soldier.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://on5k4bebfgjp" path="res://assets/soldier.png" id="2"]
 [ext_resource type="AudioStream" uid="uid://c2881x11oorxo" path="res://assets/sfx/soldier_fire_1.mp3" id="2_w0vlk"]
 [ext_resource type="PackedScene" uid="uid://bs77dd6d7fpv8" path="res://game/HealthBar.tscn" id="3"]
 [ext_resource type="AudioStream" uid="uid://b1uwyqnlhctdc" path="res://assets/sfx/soldier_fire_2.mp3" id="3_o8e85"]
-[ext_resource type="Script" path="res://game/core/Damageable.gd" id="4_71esg"]
+[ext_resource type="Script" uid="uid://d1p3hbt80baiv" path="res://game/core/Damageable.gd" id="4_71esg"]
 [ext_resource type="AudioStream" uid="uid://bwdishepfkdv8" path="res://assets/sfx/soldier_fire_3.mp3" id="4_ycakt"]
 [ext_resource type="AudioStream" uid="uid://ise8iaf2odij" path="res://assets/sfx/soldier_reload_1.mp3" id="5_gjn4r"]
 [ext_resource type="AudioStream" uid="uid://bs4e5gcdqt8yb" path="res://assets/sfx/soldier_reload_2.mp3" id="6_krtce"]
@@ -113,10 +113,10 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fk5vw"]
 _data = {
-"aim": SubResource("2"),
-"die": SubResource("5"),
-"reload": SubResource("4"),
-"shoot": SubResource("3")
+&"aim": SubResource("2"),
+&"die": SubResource("5"),
+&"reload": SubResource("4"),
+&"shoot": SubResource("3")
 }
 
 [node name="Soldier" type="Node2D"]

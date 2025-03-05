@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://cvr2lhhvhj581" path="res://assets/logo/hierophant_logo.png" id="1_h23h6"]
 [ext_resource type="Theme" uid="uid://ct3h1jpn888ka" path="res://assets/default_theme.tres" id="2_eialb"]
-[ext_resource type="Script" path="res://game/scenes/Logo.gd" id="2_oshde"]
+[ext_resource type="Script" uid="uid://fk7t2c7le5da" path="res://game/scenes/Logo.gd" id="2_oshde"]
 [ext_resource type="PackedScene" uid="uid://d0u268u2tja7g" path="res://game/scenes/SceneFader.tscn" id="4_pm6re"]
 
 [node name="Logo" type="Control"]

@@ -2,7 +2,7 @@
 
 [ext_resource type="Material" uid="uid://cgkc3cbvyafa8" path="res://game/vfx/smoke_emitter/smoke.tres" id="1_unlo3"]
 [ext_resource type="Texture2D" uid="uid://dqj4sd7e4njic" path="res://assets/smoke.png" id="2_kqo3f"]
-[ext_resource type="Script" path="res://game/vfx/smoke_emitter/SmokeEmitter.gd" id="3_lbb6c"]
+[ext_resource type="Script" uid="uid://b8v6r2r5g4u32" path="res://game/vfx/smoke_emitter/SmokeEmitter.gd" id="3_lbb6c"]
 
 [node name="SmokeEmitter" type="CPUParticles2D"]
 modulate = Color(0.588235, 0.45098, 0.517647, 1)
